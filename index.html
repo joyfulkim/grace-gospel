@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>은혜의 문 — 예수 그리스도의 복음</title>
+  <meta name="description" content="교회 밖에 계신 성도님들을 위한 복음과 실시간 상담. 당신의 믿음은 여전히 소중합니다." />
+
+  <!-- Pretendard Font -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Iconify -->
+  <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Pretendard Variable', 'Pretendard', 'sans-serif'] },
+          colors: {
+            midnight: '#080D1A',
+            deep: '#0D1426',
+            card: '#111827',
+            gold: { DEFAULT: '#C9A84C', light: '#E8C96B', dim: '#9A7C38' },
+            violet: { DEFAULT: '#7C5CBF', light: '#9B7DD4', dim: '#5A4190' },
+            cream: { DEFAULT: '#F8F0E3', dim: '#D4C9B8', muted: '#9A9080' },
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'fade-in': 'fadeIn 1s ease forwards',
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s ease-in-out infinite',
+            'spin-slow': 'spin 20s linear infinite',
+            'shimmer': 'shimmer 3s ease-in-out infinite',
+          },
+          keyframes: {
+            fadeUp: { '0%': { opacity: '0', transform: 'translateY(32px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+            fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+            float: { '0%,100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-16px)' } },
+            shimmer: { '0%,100%': { opacity: '0.5' }, '50%': { opacity: '1' } },
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Pretendard Variable', Pretendard, sans-serif;
+      background-color: #080D1A;
+      color: #F8F0E3;
+      word-break: keep-all;
+      overflow-x: hidden;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #080D1A; }
+    ::-webkit-scrollbar-thumb { background: #C9A84C40; border-radius: 4px; }
+
+    /* ── Glass Nav ── */
+    .glass-nav {
+      background: rgba(8, 13, 26, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+    }
+
+    /* ── Double Bezel Card ── */
+    .bezel-card {
+      background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      box-shadow:
+        0 0 0 1px rgba(201, 168, 76, 0.06) inset,
+        0 32px 64px rgba(0,0,0,0.5),
+        0 8px 16px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .bezel-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      pointer-events: none;
+    }
+
+    /* ── Glass Card ── */
+    .glass-card {
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+    }
+
+    /* ── Gold gradient text ── */
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #E8C96B 0%, #C9A84C 50%, #9A7C38 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Violet gradient text ── */
+    .text-violet-gradient {
+      background: linear-gradient(135deg, #9B7DD4 0%, #7C5CBF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Ambient glow orbs ── */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.35s; }
+    .reveal-delay-4 { transition-delay: 0.5s; }
+
+    /* ── Magnetic button ── */
+    .magnetic-btn {
+      position: relative;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .magnetic-btn:hover { transform: translateY(-3px); }
+    .magnetic-btn:active { transform: translateY(0px) scale(0.98); }
+
+    /* ── Gold button ── */
+    .btn-gold {
+      background: linear-gradient(135deg, #E8C96B 0%, #C9A84C 100%);
+      color: #080D1A;
+      font-weight: 700;
+      border-radius: 50px;
+      padding: 14px 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 32px rgba(201, 168, 76, 0.3);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-gold:hover {
+      box-shadow: 0 12px 40px rgba(201, 168, 76, 0.5);
+      transform: translateY(-3px);
+    }
+
+    /* ── Outline button ── */
+    .btn-outline {
+      border: 1.5px solid rgba(201, 168, 76, 0.4);
+      color: #E8C96B;
+      font-weight: 600;
+      border-radius: 50px;
+      padding: 13px 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      backdrop-filter: blur(8px);
+    }
+    .btn-outline:hover {
+      background: rgba(201, 168, 76, 0.1);
+      border-color: rgba(201, 168, 76, 0.7);
+      transform: translateY(-3px);
+    }
+
+    /* ── Scripture quote ── */
+    .scripture-card {
+      background: linear-gradient(135deg, rgba(124, 92, 191, 0.12) 0%, rgba(201, 168, 76, 0.06) 100%);
+      border: 1px solid rgba(124, 92, 191, 0.2);
+      border-radius: 20px;
+      position: relative;
+    }
+    .scripture-card::before {
+      content: '"';
+      position: absolute;
+      top: -20px;
+      left: 24px;
+      font-size: 120px;
+      color: rgba(201, 168, 76, 0.12);
+      line-height: 1;
+      font-family: Georgia, serif;
+    }
+
+    /* ── Chat UI ── */
+    .chat-window {
+      background: rgba(8, 13, 26, 0.95);
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+    }
+    .chat-header {
+      background: linear-gradient(135deg, rgba(201, 168, 76, 0.1) 0%, rgba(124, 92, 191, 0.1) 100%);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .chat-body { padding: 20px; height: 340px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
+    .chat-body::-webkit-scrollbar { width: 3px; }
+    .chat-body::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.2); border-radius: 3px; }
+
+    .msg-counselor {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      max-width: 80%;
+    }
+    .msg-counselor .bubble {
+      background: rgba(124, 92, 191, 0.15);
+      border: 1px solid rgba(124, 92, 191, 0.25);
+      border-radius: 4px 16px 16px 16px;
+      padding: 12px 16px;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: #E8E0F0;
+    }
+    .msg-user {
+      display: flex;
+      justify-content: flex-end;
+      max-width: 80%;
+      margin-left: auto;
+    }
+    .msg-user .bubble {
+      background: linear-gradient(135deg, rgba(201, 168, 76, 0.2) 0%, rgba(201, 168, 76, 0.1) 100%);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      border-radius: 16px 4px 16px 16px;
+      padding: 12px 16px;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: #F8F0E3;
+    }
+    .typing-dot {
+      width: 6px; height: 6px;
+      background: rgba(124, 92, 191, 0.7);
+      border-radius: 50%;
+      display: inline-block;
+      animation: typingBounce 1.2s ease-in-out infinite;
+    }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingBounce {
+      0%,60%,100% { transform: translateY(0); opacity: 0.5; }
+      30% { transform: translateY(-5px); opacity: 1; }
+    }
+
+    .chat-input-area {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 14px 16px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .chat-input {
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50px;
+      padding: 10px 18px;
+      color: #F8F0E3;
+      font-size: 0.875rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .chat-input:focus { border-color: rgba(201, 168, 76, 0.4); }
+    .chat-input::placeholder { color: rgba(248,240,227,0.3); }
+    .chat-send-btn {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, #E8C96B, #C9A84C);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .chat-send-btn:hover { transform: scale(1.1); box-shadow: 0 4px 16px rgba(201,168,76,0.4); }
+
+    /* ── Section divider ── */
+    .section-divider {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, #C9A84C, transparent);
+      margin-bottom: 24px;
+    }
+
+    /* ── Gospel step card ── */
+    .step-number {
+      font-size: 4rem;
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, rgba(201,168,76,0.3) 0%, transparent 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Hover card ── */
+    .hover-card {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hover-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,76,0.15);
+    }
+
+    /* ── Avatar ring ── */
+    .avatar-ring {
+      background: linear-gradient(135deg, #E8C96B, #7C5CBF);
+      padding: 2px;
+      border-radius: 50%;
+    }
+
+    /* ── Noise overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── Prayer form ── */
+    .form-input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 14px 18px;
+      color: #F8F0E3;
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-input:focus {
+      border-color: rgba(201, 168, 76, 0.4);
+      box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.08);
+    }
+    .form-input::placeholder { color: rgba(248,240,227,0.3); }
+    textarea.form-input { resize: none; min-height: 120px; }
+
+    /* ── Nav link ── */
+    .nav-link {
+      color: rgba(248,240,227,0.6);
+      font-size: 0.9rem;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #C9A84C;
+      transition: width 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .nav-link:hover { color: #F8F0E3; }
+    .nav-link:hover::after { width: 100%; }
+
+    /* Status dot pulse */
+    .status-dot {
+      width: 8px; height: 8px;
+      background: #4ade80;
+      border-radius: 50%;
+      position: relative;
+    }
+    .status-dot::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      background: rgba(74, 222, 128, 0.3);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 640px) {
+      .hero-title { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- ════════════════════════════════════
+       FLOATING GLASS NAVIGATION
+  ════════════════════════════════════ -->
+  <nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg,#E8C96B,#7C5CBF);">
+          <iconify-icon icon="solar:cross-bold" style="color:#080D1A; font-size:16px;"></iconify-icon>
+        </div>
+        <span class="font-bold text-base tracking-tight text-gold-gradient">은혜의 문</span>
+      </a>
+
+      <!-- Nav Links (desktop) -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#gospel" class="nav-link">복음</a>
+        <a href="#scripture" class="nav-link">말씀</a>
+        <a href="#counsel" class="nav-link">상담</a>
+        <a href="#pray" class="nav-link">기도 요청</a>
+        <a href="#counsel" class="btn-gold text-sm py-2.5 px-5 magnetic-btn">
+          <iconify-icon icon="solar:chat-round-dots-bold"></iconify-icon>
+          지금 상담하기
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <button id="menuBtn" class="md:hidden text-cream-dim p-2">
+        <iconify-icon icon="solar:hamburger-menu-bold" style="font-size:22px;"></iconify-icon>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden px-6 pb-6 flex flex-col gap-4">
+      <a href="#gospel" class="nav-link py-1" onclick="closeMobile()">복음</a>
+      <a href="#scripture" class="nav-link py-1" onclick="closeMobile()">말씀</a>
+      <a href="#counsel" class="nav-link py-1" onclick="closeMobile()">상담</a>
+      <a href="#pray" class="nav-link py-1" onclick="closeMobile()">기도 요청</a>
+      <a href="#counsel" class="btn-gold text-sm self-start mt-2" onclick="closeMobile()">
+        <iconify-icon icon="solar:chat-round-dots-bold"></iconify-icon>
+        지금 상담하기
+      </a>
+    </div>
+  </nav>
+
+
+  <!-- ════════════════════════════════════
+       HERO SECTION
+  ════════════════════════════════════ -->
+  <section class="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-16 overflow-hidden">
+
+    <!-- Ambient orbs -->
+    <div class="orb w-[600px] h-[600px] top-[-200px] left-[-200px]" style="background: radial-gradient(circle, rgba(124,92,191,0.18) 0%, transparent 70%);"></div>
+    <div class="orb w-[500px] h-[500px] bottom-[-100px] right-[-150px]" style="background: radial-gradient(circle, rgba(201,168,76,0.14) 0%, transparent 70%);"></div>
+    <div class="orb w-[300px] h-[300px] top-1/3 left-1/2 -translate-x-1/2" style="background: radial-gradient(circle, rgba(124,92,191,0.08) 0%, transparent 70%);"></div>
+
+    <!-- Cross symbol floating -->
+    <div class="absolute top-32 right-12 opacity-10 animate-float" style="animation-delay: 1s;">
+      <iconify-icon icon="solar:cross-bold" style="font-size:80px; color:#C9A84C;"></iconify-icon>
+    </div>
+    <div class="absolute bottom-32 left-8 opacity-8 animate-float" style="animation-delay: 2s;">
+      <iconify-icon icon="solar:star-bold" style="font-size:48px; color:#7C5CBF;"></iconify-icon>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-3xl mx-auto text-center">
+
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 reveal" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.2);">
+        <div class="status-dot"></div>
+        <span class="text-sm text-gold-dim font-medium">지금 이 순간도 상담사가 함께합니다</span>
+      </div>
+
+      <!-- Main title -->
+      <h1 class="hero-title font-black leading-tight mb-6 reveal reveal-delay-1" style="font-size: clamp(2.4rem, 6vw, 4.5rem); letter-spacing: -0.03em;">
+        교회를 떠나셨나요?<br />
+        <span class="text-gold-gradient">그래도 괜찮습니다.</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-cream-dim text-lg md:text-xl leading-relaxed mb-10 reveal reveal-delay-2" style="max-width: 560px; margin-left: auto; margin-right: auto;">
+        가나안 성도님들을 위한 공간입니다.<br />
+        예수 그리스도의 사랑은 건물이 아닌 <strong class="text-cream-DEFAULT">당신 안에</strong> 있습니다.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center reveal reveal-delay-3">
+        <a href="#gospel" class="btn-gold text-base">
+          <iconify-icon icon="solar:book-bold"></iconify-icon>
+          복음 이야기 듣기
+        </a>
+        <a href="#counsel" class="btn-outline text-base">
+          <iconify-icon icon="solar:chat-round-line-bold"></iconify-icon>
+          실시간 상담
+        </a>
+      </div>
+
+      <!-- Trust indicators -->
+      <div class="flex flex-wrap justify-center gap-6 mt-14 reveal reveal-delay-4">
+        <div class="flex items-center gap-2 text-cream-muted text-sm">
+          <iconify-icon icon="solar:shield-check-bold" style="color:#C9A84C; font-size:18px;"></iconify-icon>
+          익명 보장
+        </div>
+        <div class="flex items-center gap-2 text-cream-muted text-sm">
+          <iconify-icon icon="solar:clock-circle-bold" style="color:#C9A84C; font-size:18px;"></iconify-icon>
+          24시간 운영
+        </div>
+        <div class="flex items-center gap-2 text-cream-muted text-sm">
+          <iconify-icon icon="solar:heart-bold" style="color:#C9A84C; font-size:18px;"></iconify-icon>
+          판단 없이 들어드립니다
+        </div>
+        <div class="flex items-center gap-2 text-cream-muted text-sm">
+          <iconify-icon icon="solar:diploma-bold" style="color:#C9A84C; font-size:18px;"></iconify-icon>
+          신앙 상담사 운영
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce opacity-40">
+      <iconify-icon icon="solar:alt-arrow-down-bold" style="font-size:24px; color:#C9A84C;"></iconify-icon>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════
+       EMPATHY SECTION (가나안 성도)
+  ════════════════════════════════════ -->
+  <section class="py-24 px-6 relative">
+    <div class="max-w-5xl mx-auto">
+
+      <div class="bezel-card p-10 md:p-16 reveal">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <div class="section-divider"></div>
+            <h2 class="text-3xl md:text-4xl font-bold leading-tight mb-6" style="letter-spacing: -0.02em;">
+              혼자 고민해오셨죠.<br />
+              <span class="text-gold-gradient">이제 함께해요.</span>
+            </h2>
+            <p class="text-cream-dim leading-relaxed mb-6">
+              '가나안 성도'란 교회에 나가지 않지만 여전히 하나님을 믿는 분들을 말합니다. 한국 기독교인의 약 <strong class="text-cream-DEFAULT">23%</strong>가 이 자리에 계십니다.
+            </p>
+            <p class="text-cream-dim leading-relaxed">
+              상처받은 경험, 공동체에 대한 실망, 바쁜 일상 속 지쳐버린 신앙... 그 어떤 이유도 당신의 믿음을 지워버리지 못합니다. 우리는 정죄하지 않습니다.
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <!-- Stat cards -->
+            <div class="glass-card p-6 reveal reveal-delay-1">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(201,168,76,0.15);">
+                  <iconify-icon icon="solar:users-group-rounded-bold" style="color:#C9A84C; font-size:20px;"></iconify-icon>
+                </div>
+                <div>
+                  <div class="text-2xl font-black text-gold-gradient mb-1">200만+</div>
+                  <div class="text-cream-dim text-sm">한국의 가나안 성도 추정 수</div>
+                </div>
+              </div>
+            </div>
+            <div class="glass-card p-6 reveal reveal-delay-2">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(124,92,191,0.15);">
+                  <iconify-icon icon="solar:heart-pulse-bold" style="color:#9B7DD4; font-size:20px;"></iconify-icon>
+                </div>
+                <div>
+                  <div class="text-2xl font-black text-violet-gradient mb-1">89%</div>
+                  <div class="text-cream-dim text-sm">상담 후 영적 평안을 느꼈다고 응답</div>
+                </div>
+              </div>
+            </div>
+            <div class="glass-card p-6 reveal reveal-delay-3">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(201,168,76,0.15);">
+                  <iconify-icon icon="solar:chat-round-check-bold" style="color:#C9A84C; font-size:20px;"></iconify-icon>
+                </div>
+                <div>
+                  <div class="text-2xl font-black text-gold-gradient mb-1">3,200+</div>
+                  <div class="text-cream-dim text-sm">누적 상담 건수 (2023~)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════
+       GOSPEL SECTION
+  ════════════════════════════════════ -->
+  <section id="gospel" class="py-24 px-6 relative overflow-hidden">
+
+    <div class="orb w-[400px] h-[400px] top-0 right-0 opacity-50" style="background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%);"></div>
+
+    <div class="max-w-5xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-16 reveal">
+        <div class="section-divider mx-auto" style="background: linear-gradient(90deg, transparent, #C9A84C, transparent); width: 80px;"></div>
+        <span class="text-gold text-sm font-semibold tracking-widest uppercase mb-4 block">The Gospel</span>
+        <h2 class="text-3xl md:text-4xl font-bold leading-tight" style="letter-spacing: -0.02em;">
+          복음이 무엇인가요?
+        </h2>
+        <p class="text-cream-dim mt-4 max-w-md mx-auto">종교적 규율이 아닌, <strong class="text-cream-DEFAULT">관계</strong>의 이야기입니다</p>
+      </div>
+
+      <!-- Gospel steps - asymmetric layout -->
+      <div class="space-y-6">
+
+        <!-- Step 1 -->
+        <div class="bezel-card p-8 md:p-10 hover-card reveal">
+          <div class="grid md:grid-cols-5 gap-6 items-start">
+            <div class="md:col-span-1">
+              <div class="step-number">01</div>
+            </div>
+            <div class="md:col-span-4">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(201,168,76,0.12);">
+                  <iconify-icon icon="solar:crown-bold" style="color:#C9A84C; font-size:18px;"></iconify-icon>
+                </div>
+                <h3 class="text-xl font-bold">하나님은 우리를 사랑하십니다</h3>
+              </div>
+              <p class="text-cream-dim leading-relaxed">
+                하나님께서는 이 세상을 창조하셨고, 우리 각 사람을 깊이 사랑하십니다. 그 사랑은 우리가 착하거나 종교적이어서가 아니라, 우리가 그분의 형상대로 창조되었기 때문입니다.
+              </p>
+              <div class="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.15);">
+                <iconify-icon icon="solar:book-open-bold"></iconify-icon>
+                요 3:16 — 하나님이 세상을 이처럼 사랑하사
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bezel-card p-8 md:p-10 hover-card reveal reveal-delay-1" style="margin-left: clamp(0px, 4%, 40px);">
+          <div class="grid md:grid-cols-5 gap-6 items-start">
+            <div class="md:col-span-1">
+              <div class="step-number">02</div>
+            </div>
+            <div class="md:col-span-4">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(124,92,191,0.12);">
+                  <iconify-icon icon="solar:broken-line-bold" style="color:#9B7DD4; font-size:18px;"></iconify-icon>
+                </div>
+                <h3 class="text-xl font-bold">우리는 하나님과 멀어졌습니다</h3>
+              </div>
+              <p class="text-cream-dim leading-relaxed">
+                성경은 이것을 '죄'라고 부릅니다. 나쁜 행동의 목록이 아니라, 하나님과의 관계가 끊어진 상태입니다. 우리 모두가 경험하는 공허함, 의미 없음의 근원이 바로 여기 있습니다.
+              </p>
+              <div class="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs" style="background: rgba(124,92,191,0.08); border: 1px solid rgba(124,92,191,0.2); color: #9B7DD4;">
+                <iconify-icon icon="solar:book-open-bold"></iconify-icon>
+                롬 3:23 — 모든 사람이 죄를 범하였으매
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bezel-card p-8 md:p-10 hover-card reveal reveal-delay-2">
+          <div class="grid md:grid-cols-5 gap-6 items-start">
+            <div class="md:col-span-1">
+              <div class="step-number">03</div>
+            </div>
+            <div class="md:col-span-4">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(201,168,76,0.12);">
+                  <iconify-icon icon="solar:cross-bold" style="color:#C9A84C; font-size:18px;"></iconify-icon>
+                </div>
+                <h3 class="text-xl font-bold">예수님이 그 다리가 되어 주셨습니다</h3>
+              </div>
+              <p class="text-cream-dim leading-relaxed">
+                하나님의 아들 예수 그리스도께서 이 세상에 오셔서 우리의 모든 죄를 대신 짊어지시고 십자가에서 죽으셨습니다. 그리고 3일 만에 부활하셨습니다. 이것이 바로 '복음(Good News)'입니다.
+              </p>
+              <div class="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.15);">
+                <iconify-icon icon="solar:book-open-bold"></iconify-icon>
+                롬 5:8 — 우리가 아직 죄인 되었을 때에 그리스도께서 우리를 위하여 죽으심으로
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bezel-card p-8 md:p-10 hover-card reveal reveal-delay-3" style="margin-left: clamp(0px, 4%, 40px);">
+          <div class="grid md:grid-cols-5 gap-6 items-start">
+            <div class="md:col-span-1">
+              <div class="step-number">04</div>
+            </div>
+            <div class="md:col-span-4">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: rgba(124,92,191,0.12);">
+                  <iconify-icon icon="solar:hand-heart-bold" style="color:#9B7DD4; font-size:18px;"></iconify-icon>
+                </div>
+                <h3 class="text-xl font-bold">당신은 지금 이대로 받아들여집니다</h3>
+              </div>
+              <p class="text-cream-dim leading-relaxed">
+                종교적 노력이나 완벽한 삶이 필요하지 않습니다. 예수님을 믿고 신뢰하면, 하나님과의 관계가 회복됩니다. 교회를 떠나있더라도, 하나님은 지금도 당신을 찾고 계십니다.
+              </p>
+              <div class="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs" style="background: rgba(124,92,191,0.08); border: 1px solid rgba(124,92,191,0.2); color: #9B7DD4;">
+                <iconify-icon icon="solar:book-open-bold"></iconify-icon>
+                요 1:12 — 영접하는 자 곧 그 이름을 믿는 자들에게는
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CTA after gospel -->
+      <div class="text-center mt-14 reveal">
+        <p class="text-cream-dim mb-6">더 깊이 이야기 나누고 싶으신가요?</p>
+        <a href="#counsel" class="btn-gold text-base magnetic-btn">
+          <iconify-icon icon="solar:chat-round-dots-bold"></iconify-icon>
+          상담사와 대화하기
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════
+       SCRIPTURE SECTION
+  ════════════════════════════════════ -->
+  <section id="scripture" class="py-24 px-6 relative overflow-hidden">
+
+    <div class="orb w-[500px] h-[500px] top-1/2 left-0 -translate-y-1/2 opacity-40" style="background: radial-gradient(circle, rgba(124,92,191,0.15) 0%, transparent 70%);"></div>
+
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16 reveal">
+        <span class="text-gold text-sm font-semibold tracking-widest uppercase mb-4 block">말씀</span>
+        <h2 class="text-3xl md:text-4xl font-bold" style="letter-spacing: -0.02em;">오늘 당신에게 드리는 말씀</h2>
+      </div>
+
+      <!-- Main featured scripture -->
+      <div class="scripture-card p-10 md:p-14 mb-8 reveal">
+        <p class="text-2xl md:text-3xl font-light leading-relaxed text-cream-DEFAULT mb-6" style="letter-spacing: -0.01em;">
+          "수고하고 무거운 짐 진 자들아 다 내게로 오라 내가 너희를 쉬게 하리라"
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-6 h-px bg-gold"></div>
+          <span class="text-gold text-sm font-semibold">마태복음 11:28</span>
+        </div>
+      </div>
+
+      <!-- Scripture grid -->
+      <div class="grid md:grid-cols-3 gap-5">
+        <div class="glass-card p-6 hover-card reveal reveal-delay-1">
+          <iconify-icon icon="solar:flower-bold" style="color:#C9A84C; font-size:28px;" class="mb-4 block"></iconify-icon>
+          <p class="text-cream-dim text-sm leading-relaxed mb-4">
+            "내가 세상 끝날까지 너희와 항상 함께 있으리라"
+          </p>
+          <span class="text-gold-dim text-xs font-semibold">마태복음 28:20</span>
+        </div>
+        <div class="glass-card p-6 hover-card reveal reveal-delay-2">
+          <iconify-icon icon="solar:sun-2-bold" style="color:#9B7DD4; font-size:28px;" class="mb-4 block"></iconify-icon>
+          <p class="text-cream-dim text-sm leading-relaxed mb-4">
+            "주 예수를 믿으라 그리하면 너와 네 집이 구원을 받으리라"
+          </p>
+          <span class="text-violet text-xs font-semibold">사도행전 16:31</span>
+        </div>
+        <div class="glass-card p-6 hover-card reveal reveal-delay-3">
+          <iconify-icon icon="solar:heart-shine-bold" style="color:#C9A84C; font-size:28px;" class="mb-4 block"></iconify-icon>
+          <p class="text-cream-dim text-sm leading-relaxed mb-4">
+            "하나님은 사랑이심이라... 두려움에는 형벌이 있나니 두려워하는 자는 사랑 안에서 온전히 이루지 못하였느니라"
+          </p>
+          <span class="text-gold-dim text-xs font-semibold">요한일서 4:16,18</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════
+       REAL-TIME COUNSELING SECTION
+  ════════════════════════════════════ -->
+  <section id="counsel" class="py-24 px-6 relative overflow-hidden">
+
+    <div class="orb w-[600px] h-[400px] bottom-0 right-0 opacity-30" style="background: radial-gradient(ellipse, rgba(201,168,76,0.15) 0%, transparent 70%);"></div>
+
+    <div class="max-w-5xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-14 items-start">
+
+        <!-- Left: Info -->
+        <div>
+          <div class="section-divider reveal"></div>
+          <span class="text-gold text-sm font-semibold tracking-widest uppercase mb-4 block reveal">실시간 상담</span>
+          <h2 class="text-3xl md:text-4xl font-bold leading-tight mb-6 reveal reveal-delay-1" style="letter-spacing: -0.02em;">
+            지금 이 순간,<br />
+            <span class="text-gold-gradient">누군가 듣고 있습니다</span>
+          </h2>
+          <p class="text-cream-dim leading-relaxed mb-8 reveal reveal-delay-2">
+            판단 없이, 강요 없이, 그저 당신의 이야기를 들어드립니다. 신앙에 대한 의심, 교회에 대한 상처, 삶의 무게... 무엇이든 나눠주세요.
+          </p>
+
+          <!-- Features -->
+          <div class="space-y-4 reveal reveal-delay-3">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(201,168,76,0.12);">
+                <iconify-icon icon="solar:shield-user-bold" style="color:#C9A84C; font-size:16px;"></iconify-icon>
+              </div>
+              <span class="text-cream-dim text-sm">완전 익명 · 기록 없음</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(201,168,76,0.12);">
+                <iconify-icon icon="solar:diploma-verified-bold" style="color:#C9A84C; font-size:16px;"></iconify-icon>
+              </div>
+              <span class="text-cream-dim text-sm">신학 훈련을 받은 상담사</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(201,168,76,0.12);">
+                <iconify-icon icon="solar:clock-circle-bold" style="color:#C9A84C; font-size:16px;"></iconify-icon>
+              </div>
+              <span class="text-cream-dim text-sm">24시간 · 365일 운영</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(201,168,76,0.12);">
+                <iconify-icon icon="solar:card-bold" style="color:#C9A84C; font-size:16px;"></iconify-icon>
+              </div>
+              <span class="text-cream-dim text-sm">완전 무료</span>
+            </div>
+          </div>
+
+          <!-- Counselor avatars -->
+          <div class="mt-10 reveal reveal-delay-4">
+            <p class="text-cream-muted text-xs mb-3">현재 대기 중인 상담사</p>
+            <div class="flex items-center gap-3">
+              <div class="flex -space-x-2">
+                <div class="avatar-ring w-10 h-10">
+                  <div class="w-full h-full rounded-full flex items-center justify-center text-xs font-bold" style="background: #1a1f35; margin: 2px;">김</div>
+                </div>
+                <div class="avatar-ring w-10 h-10">
+                  <div class="w-full h-full rounded-full flex items-center justify-center text-xs font-bold" style="background: #1a1f35; margin: 2px;">이</div>
+                </div>
+                <div class="avatar-ring w-10 h-10">
+                  <div class="w-full h-full rounded-full flex items-center justify-center text-xs font-bold" style="background: #1a1f35; margin: 2px;">박</div>
+                </div>
+                <div class="w-10 h-10 rounded-full flex items-center justify-center text-xs text-cream-muted" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);">+5</div>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <div class="status-dot"></div>
+                <span class="text-xs text-cream-muted">8명 온라인</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Chat Window -->
+        <div class="chat-window reveal reveal-delay-2">
+
+          <!-- Chat header -->
+          <div class="chat-header">
+            <div class="avatar-ring w-9 h-9 flex-shrink-0">
+              <div class="w-full h-full rounded-full flex items-center justify-center" style="background: #1a1f35; margin: 2px;">
+                <iconify-icon icon="solar:heart-bold" style="color:#C9A84C; font-size:14px;"></iconify-icon>
+              </div>
+            </div>
+            <div class="flex-1">
+              <div class="text-sm font-semibold text-cream-DEFAULT">은혜 상담사</div>
+              <div class="flex items-center gap-1.5">
+                <div class="status-dot" style="width:6px; height:6px;"></div>
+                <span class="text-xs text-cream-muted">지금 온라인</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <iconify-icon icon="solar:phone-bold" style="color:rgba(248,240,227,0.4); font-size:18px;" class="cursor-pointer"></iconify-icon>
+              <iconify-icon icon="solar:more-circle-bold" style="color:rgba(248,240,227,0.4); font-size:18px;" class="cursor-pointer"></iconify-icon>
+            </div>
+          </div>
+
+          <!-- Chat body -->
+          <div class="chat-body" id="chatBody">
+
+            <!-- Date divider -->
+            <div class="text-center text-xs text-cream-muted py-1">지금</div>
+
+            <!-- Counselor messages -->
+            <div class="msg-counselor">
+              <div class="avatar-ring w-7 h-7 flex-shrink-0">
+                <div class="w-full h-full rounded-full flex items-center justify-center" style="background: #1a1f35; margin: 2px; font-size: 10px;">은</div>
+              </div>
+              <div class="bubble">
+                안녕하세요 😊 은혜의 문에 오신 것을 환영해요. 어떤 이야기든 편하게 나눠주세요.
+              </div>
+            </div>
+
+            <div class="msg-counselor">
+              <div class="avatar-ring w-7 h-7 flex-shrink-0">
+                <div class="w-full h-full rounded-full flex items-center justify-center" style="background: #1a1f35; margin: 2px; font-size: 10px;">은</div>
+              </div>
+              <div class="bubble">
+                교회를 떠나신 이유나, 지금 마음에 있는 것들... 판단 없이 들어드릴게요.
+              </div>
+            </div>
+
+            <!-- User message -->
+            <div class="msg-user">
+              <div class="bubble">
+                몇 년 전 교회 상처로 신앙을 잃은 것 같아요. 그래도 하나님은 계실까요...
+              </div>
+            </div>
+
+            <!-- Counselor reply -->
+            <div class="msg-counselor">
+              <div class="avatar-ring w-7 h-7 flex-shrink-0">
+                <div class="w-full h-full rounded-full flex items-center justify-center" style="background: #1a1f35; margin: 2px; font-size: 10px;">은</div>
+              </div>
+              <div class="bubble">
+                그 상처가 얼마나 깊었을지... 먼저 마음 아프셨겠다고 말씀드리고 싶어요. 교회가 실망시킨 거지, 하나님이 당신을 포기하신 게 아닙니다 ❤️
+              </div>
+            </div>
+
+            <!-- Typing indicator -->
+            <div class="msg-counselor" id="typingIndicator">
+              <div class="avatar-ring w-7 h-7 flex-shrink-0">
+                <div class="w-full h-full rounded-full flex items-center justify-center" style="background: #1a1f35; margin: 2px; font-size: 10px;">은</div>
+              </div>
+              <div class="bubble flex items-center gap-1.5 px-4 py-3" style="min-width: 60px;">
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Chat input -->
+          <div class="chat-input-area">
+            <input
+              id="chatInput"
+              type="text"
+              class="chat-input"
+              placeholder="메시지를 입력하세요..."
+              autocomplete="off"
+              onkeydown="if(event.key==='Enter') sendMessage()"
+            />
+            <div class="chat-send-btn" onclick="sendMessage()">
+              <iconify-icon icon="solar:arrow-right-bold" style="color:#080D1A; font-size:16px;"></iconify-icon>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════
+       TESTIMONIALS
+  ════════════════════════════════════ -->
+  <section class="py-24 px-6 relative">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-14 reveal">
+        <span class="text-gold text-sm font-semibold tracking-widest uppercase mb-4 block">이야기</span>
+        <h2 class="text-3xl md:text-4xl font-bold" style="letter-spacing: -0.02em;">함께 걸어온 분들</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <div class="bezel-card p-7 hover-card reveal reveal-delay-1">
+          <iconify-icon icon="solar:stars-bold" style="color:#C9A84C; font-size:22px;" class="mb-4 block"></iconify-icon>
+          <p class="text-cream-dim text-sm leading-relaxed mb-6">
+            "10년 만에 처음으로 신앙에 대해 솔직하게 이야기했어요. 강요하거나 정죄하지 않아서 너무 좋았습니다."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold" style="background: rgba(201,168,76,0.1);">정</div>
+            <div>
+              <div class="text-sm font-semibold">정O희 님</div>
+              <div class="text-xs text-cream-muted">서울 · 35세</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bezel-card p-7 hover-card reveal reveal-delay-2">
+          <iconify-icon icon="solar:stars-bold" style="color:#C9A84C; font-size:22px;" class="mb-4 block"></iconify-icon>
+          <p class="text-cream-dim text-sm leading-relaxed mb-6">
+            "목사님에게 받은 상처를 털어놓기 두려웠는데, 여기서는 진심으로 들어주시고 함께 아파해 주셨어요."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold" style="background: rgba(124,92,191,0.1);">박</div>
+            <div>
+              <div class="text-sm font-semibold">박O준 님</div>
+              <div class="text-xs text-cream-muted">부산 · 29세</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bezel-card p-7 hover-card reveal reveal-delay-3">
+          <iconify-icon icon="solar:stars-bold" style="color:#C9A84C; font-size:22px;" class="mb-4 block"></iconify-icon>
+          <p class="text-cream-dim text-sm leading-relaxed mb-6">
+            "복음을 처음부터 다시 설명해 주셨는데, 20년 신앙생활 중에 이렇게 명확하게 들은 적이 없었어요."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold" style="background: rgba(201,168,76,0.1);">이</div>
+            <div>
+              <div class="text-sm font-semibold">이O영 님</div>
+              <div class="text-xs text-cream-muted">인천 · 42세</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════
+       PRAYER REQUEST SECTION
+  ════════════════════════════════════ -->
+  <section id="pray" class="py-24 px-6 relative overflow-hidden">
+
+    <div class="orb w-[500px] h-[500px] top-1/2 right-0 -translate-y-1/2 opacity-30" style="background: radial-gradient(circle, rgba(124,92,191,0.18) 0%, transparent 70%);"></div>
+
+    <div class="max-w-2xl mx-auto">
+      <div class="text-center mb-12 reveal">
+        <div class="w-14 h-14 rounded-2xl mx-auto mb-6 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(124,92,191,0.15)); border: 1px solid rgba(255,255,255,0.08);">
+          <iconify-icon icon="solar:hand-prayer-bold" style="color:#C9A84C; font-size:28px;"></iconify-icon>
+        </div>
+        <span class="text-gold text-sm font-semibold tracking-widest uppercase mb-4 block">기도 요청</span>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4" style="letter-spacing: -0.02em;">
+          함께 기도하겠습니다
+        </h2>
+        <p class="text-cream-dim">
+          기도 제목을 남겨주시면, 저희 상담사들이 매일 중보기도합니다.
+        </p>
+      </div>
+
+      <div class="bezel-card p-8 md:p-10 reveal reveal-delay-1">
+        <form onsubmit="submitPrayer(event)" class="space-y-5">
+
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-sm text-cream-muted mb-2">이름 (익명 가능)</label>
+              <input type="text" class="form-input" placeholder="이름 또는 닉네임" />
+            </div>
+            <div>
+              <label class="block text-sm text-cream-muted mb-2">연락처 (선택)</label>
+              <input type="text" class="form-input" placeholder="이메일 또는 연락처" />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm text-cream-muted mb-2">기도 제목 분류</label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <label class="prayer-tag flex items-center gap-2 px-3 py-2.5 rounded-xl cursor-pointer text-sm text-cream-dim" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+                <input type="radio" name="prayerType" value="healing" class="hidden prayer-radio" />
+                <iconify-icon icon="solar:heart-pulse-bold" style="font-size:16px;"></iconify-icon>
+                치유
+              </label>
+              <label class="prayer-tag flex items-center gap-2 px-3 py-2.5 rounded-xl cursor-pointer text-sm text-cream-dim" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+                <input type="radio" name="prayerType" value="family" class="hidden prayer-radio" />
+                <iconify-icon icon="solar:users-group-rounded-bold" style="font-size:16px;"></iconify-icon>
+                가정
+              </label>
+              <label class="prayer-tag flex items-center gap-2 px-3 py-2.5 rounded-xl cursor-pointer text-sm text-cream-dim" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+                <input type="radio" name="prayerType" value="faith" class="hidden prayer-radio" />
+                <iconify-icon icon="solar:cross-bold" style="font-size:16px;"></iconify-icon>
+                신앙
+              </label>
+              <label class="prayer-tag flex items-center gap-2 px-3 py-2.5 rounded-xl cursor-pointer text-sm text-cream-dim" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+                <input type="radio" name="prayerType" value="life" class="hidden prayer-radio" />
+                <iconify-icon icon="solar:sun-bold" style="font-size:16px;"></iconify-icon>
+                일상
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm text-cream-muted mb-2">기도 내용</label>
+            <textarea class="form-input" placeholder="기도 제목을 자유롭게 적어주세요. 모든 내용은 비밀이 보장됩니다."></textarea>
+          </div>
+
+          <button type="submit" class="w-full btn-gold justify-center text-base magnetic-btn" style="border-radius: 12px; padding: 16px;">
+            <iconify-icon icon="solar:hand-prayer-bold"></iconify-icon>
+            기도 제목 전달하기
+          </button>
+        </form>
+
+        <!-- Success message (hidden) -->
+        <div id="prayerSuccess" class="hidden text-center py-8">
+          <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center" style="background: rgba(201,168,76,0.15);">
+            <iconify-icon icon="solar:check-circle-bold" style="color:#C9A84C; font-size:32px;"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-bold mb-2">기도 요청을 받았습니다</h3>
+          <p class="text-cream-dim text-sm">저희 팀이 매일 함께 기도하겠습니다. ❤️</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════
+       FINAL CTA BANNER
+  ════════════════════════════════════ -->
+  <section class="py-20 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="bezel-card p-12 md:p-20 text-center reveal" style="background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(124,92,191,0.08) 100%);">
+
+        <div class="animate-float inline-block mb-6">
+          <iconify-icon icon="solar:cross-bold" style="font-size:48px; color:#C9A84C;"></iconify-icon>
+        </div>
+
+        <h2 class="text-3xl md:text-5xl font-black leading-tight mb-6" style="letter-spacing: -0.03em;">
+          지금 이 순간도<br />
+          <span class="text-gold-gradient">하나님은 당신을 사랑합니다</span>
+        </h2>
+        <p class="text-cream-dim text-lg mb-10 max-w-lg mx-auto">
+          교회 건물이 아닌, 예수 그리스도와의 관계가 시작점입니다. 오늘 첫 걸음을 내딛어 보세요.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#counsel" class="btn-gold text-base">
+            <iconify-icon icon="solar:chat-round-dots-bold"></iconify-icon>
+            지금 상담 시작하기
+          </a>
+          <a href="#gospel" class="btn-outline text-base">
+            <iconify-icon icon="solar:book-bold"></iconify-icon>
+            복음 이야기 보기
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════ -->
+  <footer class="border-t border-white border-opacity-5 py-12 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-10 mb-10">
+        <!-- Brand -->
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-2.5 mb-4">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg,#E8C96B,#7C5CBF);">
+              <iconify-icon icon="solar:cross-bold" style="color:#080D1A; font-size:16px;"></iconify-icon>
+            </div>
+            <span class="font-bold text-base text-gold-gradient">은혜의 문</span>
+          </div>
+          <p class="text-cream-muted text-sm leading-relaxed max-w-xs">
+            가나안 성도를 위한 복음 상담 플랫폼. 예수 그리스도의 사랑을 교회 밖에서도 경험할 수 있도록 함께합니다.
+          </p>
+          <div class="flex gap-3 mt-5">
+            <a href="#" class="w-9 h-9 rounded-full flex items-center justify-center text-cream-muted hover:text-cream-DEFAULT transition-colors" style="background: rgba(255,255,255,0.05);">
+              <iconify-icon icon="solar:instagram-line-duotone" style="font-size:18px;"></iconify-icon>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-full flex items-center justify-center text-cream-muted hover:text-cream-DEFAULT transition-colors" style="background: rgba(255,255,255,0.05);">
+              <iconify-icon icon="solar:youtube-line-duotone" style="font-size:18px;"></iconify-icon>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-full flex items-center justify-center text-cream-muted hover:text-cream-DEFAULT transition-colors" style="background: rgba(255,255,255,0.05);">
+              <iconify-icon icon="solar:letter-line-duotone" style="font-size:18px;"></iconify-icon>
+            </a>
+          </div>
+        </div>
+
+        <!-- Links -->
+        <div>
+          <h4 class="text-sm font-semibold mb-4 text-cream-DEFAULT">바로가기</h4>
+          <ul class="space-y-2.5 text-sm text-cream-muted">
+            <li><a href="#gospel" class="hover:text-cream-DEFAULT transition-colors">복음이란?</a></li>
+            <li><a href="#scripture" class="hover:text-cream-DEFAULT transition-colors">오늘의 말씀</a></li>
+            <li><a href="#counsel" class="hover:text-cream-DEFAULT transition-colors">실시간 상담</a></li>
+            <li><a href="#pray" class="hover:text-cream-DEFAULT transition-colors">기도 요청</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="text-sm font-semibold mb-4 text-cream-DEFAULT">연락처</h4>
+          <ul class="space-y-2.5 text-sm text-cream-muted">
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="solar:letter-bold" style="font-size:14px; color:#C9A84C;"></iconify-icon>
+              grace@example.com
+            </li>
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="solar:phone-bold" style="font-size:14px; color:#C9A84C;"></iconify-icon>
+              1588-0000
+            </li>
+            <li class="flex items-center gap-2">
+              <iconify-icon icon="solar:clock-circle-bold" style="font-size:14px; color:#C9A84C;"></iconify-icon>
+              24시간 · 365일
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white border-opacity-5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-cream-muted">
+        <p>© 2024 은혜의 문. 모든 권리 보유.</p>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-cream-DEFAULT transition-colors">개인정보처리방침</a>
+          <a href="#" class="hover:text-cream-DEFAULT transition-colors">이용약관</a>
+          <a href="#" class="hover:text-cream-DEFAULT transition-colors">상담사 지원</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ════════════════════════════════════
+       JAVASCRIPT
+  ════════════════════════════════════ -->
+  <script>
+    // ── Mobile menu ──
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    function closeMobile() {
+      mobileMenu.classList.add('hidden');
+    }
+
+    // ── Scroll reveal ──
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── Prayer type radio styling ──
+    document.querySelectorAll('.prayer-radio').forEach(radio => {
+      radio.addEventListener('change', () => {
+        document.querySelectorAll('.prayer-tag').forEach(tag => {
+          tag.style.background = 'rgba(255,255,255,0.03)';
+          tag.style.borderColor = 'rgba(255,255,255,0.08)';
+          tag.style.color = 'rgba(248,240,227,0.6)';
+        });
+        const parentLabel = radio.closest('.prayer-tag');
+        parentLabel.style.background = 'rgba(201,168,76,0.1)';
+        parentLabel.style.borderColor = 'rgba(201,168,76,0.3)';
+        parentLabel.style.color = '#E8C96B';
+      });
+    });
+
+    // ── Prayer form submit ──
+    function submitPrayer(e) {
+      e.preventDefault();
+      const form = e.target;
+      const success = document.getElementById('prayerSuccess');
+      form.style.opacity = '0';
+      form.style.transform = 'scale(0.96)';
+      form.style.transition = 'all 0.3s ease';
+      setTimeout(() => {
+        form.style.display = 'none';
+        success.classList.remove('hidden');
+        success.style.opacity = '0';
+        success.style.transform = 'scale(0.9)';
+        success.style.transition = 'all 0.5s cubic-bezier(0.16,1,0.3,1)';
+        requestAnimationFrame(() => {
+          success.style.opacity = '1';
+          success.style.transform = 'scale(1)';
+        });
+      }, 300);
+    }
+
+    // ── Chat UI ──
+    const chatBody = document.getElementById('chatBody');
+    const chatInput = document.getElementById('chatInput');
+    const typingIndicator = document.getElementById('typingIndicator');
+
+    const counselorReplies = [
+      "그 마음이 충분히 이해됩니다. 좀 더 이야기해 주실 수 있나요?",
+      "하나님은 상처받은 마음을 외면하지 않으십니다. 시편 34:18 말씀처럼요.",
+      "신앙에 의심이 드는 것은 오히려 진지하게 믿으려는 표시일 수 있어요.",
+      "교회와 하나님을 분리해서 생각하는 것이 도움이 될 수 있어요. 어떻게 생각하세요?",
+      "지금 이 대화 자체가 이미 하나님을 찾고 있다는 신호라고 생각해요 ❤️",
+      "당신의 이야기를 나눠주셔서 감사합니다. 함께 기도해 드릴게요.",
+    ];
+    let replyIndex = 0;
+
+    function addMessage(text, type) {
+      const wrapper = document.createElement('div');
+
+      if (type === 'user') {
+        wrapper.className = 'msg-user';
+        wrapper.innerHTML = `<div class="bubble">${text}</div>`;
+      } else {
+        wrapper.className = 'msg-counselor';
+        wrapper.innerHTML = `
+          <div class="avatar-ring w-7 h-7 flex-shrink-0">
+            <div class="w-full h-full rounded-full flex items-center justify-center" style="background: #1a1f35; margin: 2px; font-size: 10px;">은</div>
+          </div>
+          <div class="bubble">${text}</div>`;
+      }
+
+      chatBody.insertBefore(wrapper, typingIndicator);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function sendMessage() {
+      const text = chatInput.value.trim();
+      if (!text) return;
+
+      addMessage(text, 'user');
+      chatInput.value = '';
+
+      // Show typing
+      typingIndicator.style.display = 'flex';
+      chatBody.scrollTop = chatBody.scrollHeight;
+
+      setTimeout(() => {
+        typingIndicator.style.display = 'none';
+        const reply = counselorReplies[replyIndex % counselorReplies.length];
+        replyIndex++;
+        addMessage(reply, 'counselor');
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 1800 + Math.random() * 1000);
+    }
+
+    // Show typing initially
+    typingIndicator.style.display = 'flex';
+    setTimeout(() => {
+      typingIndicator.style.display = 'none';
+      addMessage("오늘 어떤 마음으로 이 곳에 오셨나요? 편하게 말씀해 주세요 🙏", 'counselor');
+    }, 2500);
+
+    // ── Magnetic hover effect ──
+    document.querySelectorAll('.magnetic-btn').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) translateY(-3px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+      });
+    });
+  </script>
+</body>
+</html>

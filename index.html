@@ -439,10 +439,10 @@
         <a href="#scripture" class="nav-link">말씀</a>
         <a href="#counsel" class="nav-link">상담</a>
         <a href="#pray" class="nav-link">기도 요청</a>
-        <a href="#counsel" class="btn-gold text-sm py-2.5 px-5 magnetic-btn">
+        <button onclick="ChannelIO('openChat')" class="btn-gold text-sm py-2.5 px-5 magnetic-btn">
           <iconify-icon icon="solar:chat-round-dots-bold"></iconify-icon>
           지금 상담하기
-        </a>
+        </button>
       </div>
 
       <!-- Mobile menu button -->
@@ -457,10 +457,10 @@
       <a href="#scripture" class="nav-link py-1" onclick="closeMobile()">말씀</a>
       <a href="#counsel" class="nav-link py-1" onclick="closeMobile()">상담</a>
       <a href="#pray" class="nav-link py-1" onclick="closeMobile()">기도 요청</a>
-      <a href="#counsel" class="btn-gold text-sm self-start mt-2" onclick="closeMobile()">
+      <button onclick="closeMobile(); ChannelIO('openChat')" class="btn-gold text-sm self-start mt-2">
         <iconify-icon icon="solar:chat-round-dots-bold"></iconify-icon>
         지금 상담하기
-      </a>
+      </button>
     </div>
   </nav>
 
@@ -510,10 +510,10 @@
           <iconify-icon icon="solar:book-bold"></iconify-icon>
           복음 이야기 듣기
         </a>
-        <a href="#counsel" class="btn-outline text-base">
+        <button onclick="ChannelIO('openChat')" class="btn-outline text-base">
           <iconify-icon icon="solar:chat-round-line-bold"></iconify-icon>
           실시간 상담
-        </a>
+        </button>
       </div>
 
       <!-- Trust indicators -->
@@ -731,10 +731,10 @@
       <!-- CTA after gospel -->
       <div class="text-center mt-14 reveal">
         <p class="text-cream-dim mb-6">더 깊이 이야기 나누고 싶으신가요?</p>
-        <a href="#counsel" class="btn-gold text-base magnetic-btn">
+        <button onclick="ChannelIO('openChat')" class="btn-gold text-base magnetic-btn">
           <iconify-icon icon="solar:chat-round-dots-bold"></iconify-icon>
           상담사와 대화하기
-        </a>
+        </button>
       </div>
     </div>
   </section>
@@ -866,7 +866,7 @@
           </div>
         </div>
 
-        <!-- Right: Chat Window -->
+        <!-- Right: Channel Talk Chat CTA -->
         <div class="chat-window reveal reveal-delay-2">
 
           <!-- Chat header -->
@@ -884,80 +884,52 @@
               </div>
             </div>
             <div class="flex items-center gap-2">
-              <iconify-icon icon="solar:phone-bold" style="color:rgba(248,240,227,0.4); font-size:18px;" class="cursor-pointer"></iconify-icon>
-              <iconify-icon icon="solar:more-circle-bold" style="color:rgba(248,240,227,0.4); font-size:18px;" class="cursor-pointer"></iconify-icon>
+              <iconify-icon icon="solar:phone-bold" style="color:rgba(248,240,227,0.4); font-size:18px;"></iconify-icon>
+              <iconify-icon icon="solar:more-circle-bold" style="color:rgba(248,240,227,0.4); font-size:18px;"></iconify-icon>
             </div>
           </div>
 
-          <!-- Chat body -->
-          <div class="chat-body" id="chatBody">
-
-            <!-- Date divider -->
-            <div class="text-center text-xs text-cream-muted py-1">지금</div>
-
-            <!-- Counselor messages -->
-            <div class="msg-counselor">
-              <div class="avatar-ring w-7 h-7 flex-shrink-0">
-                <div class="w-full h-full rounded-full flex items-center justify-center" style="background: #1a1f35; margin: 2px; font-size: 10px;">은</div>
-              </div>
-              <div class="bubble">
-                안녕하세요 😊 은혜의 문에 오신 것을 환영해요. 어떤 이야기든 편하게 나눠주세요.
-              </div>
-            </div>
+          <!-- Preview messages (static) -->
+          <div class="chat-body" style="pointer-events:none;">
+            <div class="text-center text-xs text-cream-muted py-1">대화 미리보기</div>
 
             <div class="msg-counselor">
               <div class="avatar-ring w-7 h-7 flex-shrink-0">
                 <div class="w-full h-full rounded-full flex items-center justify-center" style="background: #1a1f35; margin: 2px; font-size: 10px;">은</div>
               </div>
-              <div class="bubble">
-                교회를 떠나신 이유나, 지금 마음에 있는 것들... 판단 없이 들어드릴게요.
-              </div>
+              <div class="bubble">안녕하세요 😊 어떤 이야기든 편하게 나눠주세요.</div>
             </div>
 
-            <!-- User message -->
             <div class="msg-user">
-              <div class="bubble">
-                몇 년 전 교회 상처로 신앙을 잃은 것 같아요. 그래도 하나님은 계실까요...
-              </div>
+              <div class="bubble">교회 상처로 신앙을 잃은 것 같아요...</div>
             </div>
 
-            <!-- Counselor reply -->
             <div class="msg-counselor">
               <div class="avatar-ring w-7 h-7 flex-shrink-0">
                 <div class="w-full h-full rounded-full flex items-center justify-center" style="background: #1a1f35; margin: 2px; font-size: 10px;">은</div>
               </div>
-              <div class="bubble">
-                그 상처가 얼마나 깊었을지... 먼저 마음 아프셨겠다고 말씀드리고 싶어요. 교회가 실망시킨 거지, 하나님이 당신을 포기하신 게 아닙니다 ❤️
-              </div>
+              <div class="bubble">교회가 실망시킨 거지, 하나님이 당신을 포기하신 게 아닙니다 ❤️</div>
             </div>
 
-            <!-- Typing indicator -->
-            <div class="msg-counselor" id="typingIndicator">
+            <div class="msg-counselor">
               <div class="avatar-ring w-7 h-7 flex-shrink-0">
                 <div class="w-full h-full rounded-full flex items-center justify-center" style="background: #1a1f35; margin: 2px; font-size: 10px;">은</div>
               </div>
-              <div class="bubble flex items-center gap-1.5 px-4 py-3" style="min-width: 60px;">
+              <div class="bubble flex items-center gap-1.5">
                 <span class="typing-dot"></span>
                 <span class="typing-dot"></span>
                 <span class="typing-dot"></span>
               </div>
             </div>
-
           </div>
 
-          <!-- Chat input -->
-          <div class="chat-input-area">
-            <input
-              id="chatInput"
-              type="text"
-              class="chat-input"
-              placeholder="메시지를 입력하세요..."
-              autocomplete="off"
-              onkeydown="if(event.key==='Enter') sendMessage()"
-            />
-            <div class="chat-send-btn" onclick="sendMessage()">
-              <iconify-icon icon="solar:arrow-right-bold" style="color:#080D1A; font-size:16px;"></iconify-icon>
-            </div>
+          <!-- Channel Talk 시작 버튼 -->
+          <div class="p-4 flex flex-col gap-3">
+            <button onclick="ChannelIO('openChat')" class="btn-gold w-full justify-center text-sm magnetic-btn" style="border-radius:12px; padding:14px;">
+              <iconify-icon icon="solar:chat-round-dots-bold"></iconify-icon>
+              지금 바로 상담 시작하기
+            </button>
+            <p class="text-center text-xs text-cream-muted">채널톡으로 연결됩니다 · 완전 무료 · 익명 가능</p>
           </div>
         </div>
 
@@ -1129,10 +1101,10 @@
           교회 건물이 아닌, 예수 그리스도와의 관계가 시작점입니다. 오늘 첫 걸음을 내딛어 보세요.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#counsel" class="btn-gold text-base">
+          <button onclick="ChannelIO('openChat')" class="btn-gold text-base">
             <iconify-icon icon="solar:chat-round-dots-bold"></iconify-icon>
             지금 상담 시작하기
-          </a>
+          </button>
           <a href="#gospel" class="btn-outline text-base">
             <iconify-icon icon="solar:book-bold"></iconify-icon>
             복음 이야기 보기
@@ -1275,66 +1247,6 @@
       }, 300);
     }
 
-    // ── Chat UI ──
-    const chatBody = document.getElementById('chatBody');
-    const chatInput = document.getElementById('chatInput');
-    const typingIndicator = document.getElementById('typingIndicator');
-
-    const counselorReplies = [
-      "그 마음이 충분히 이해됩니다. 좀 더 이야기해 주실 수 있나요?",
-      "하나님은 상처받은 마음을 외면하지 않으십니다. 시편 34:18 말씀처럼요.",
-      "신앙에 의심이 드는 것은 오히려 진지하게 믿으려는 표시일 수 있어요.",
-      "교회와 하나님을 분리해서 생각하는 것이 도움이 될 수 있어요. 어떻게 생각하세요?",
-      "지금 이 대화 자체가 이미 하나님을 찾고 있다는 신호라고 생각해요 ❤️",
-      "당신의 이야기를 나눠주셔서 감사합니다. 함께 기도해 드릴게요.",
-    ];
-    let replyIndex = 0;
-
-    function addMessage(text, type) {
-      const wrapper = document.createElement('div');
-
-      if (type === 'user') {
-        wrapper.className = 'msg-user';
-        wrapper.innerHTML = `<div class="bubble">${text}</div>`;
-      } else {
-        wrapper.className = 'msg-counselor';
-        wrapper.innerHTML = `
-          <div class="avatar-ring w-7 h-7 flex-shrink-0">
-            <div class="w-full h-full rounded-full flex items-center justify-center" style="background: #1a1f35; margin: 2px; font-size: 10px;">은</div>
-          </div>
-          <div class="bubble">${text}</div>`;
-      }
-
-      chatBody.insertBefore(wrapper, typingIndicator);
-      chatBody.scrollTop = chatBody.scrollHeight;
-    }
-
-    function sendMessage() {
-      const text = chatInput.value.trim();
-      if (!text) return;
-
-      addMessage(text, 'user');
-      chatInput.value = '';
-
-      // Show typing
-      typingIndicator.style.display = 'flex';
-      chatBody.scrollTop = chatBody.scrollHeight;
-
-      setTimeout(() => {
-        typingIndicator.style.display = 'none';
-        const reply = counselorReplies[replyIndex % counselorReplies.length];
-        replyIndex++;
-        addMessage(reply, 'counselor');
-        chatBody.scrollTop = chatBody.scrollHeight;
-      }, 1800 + Math.random() * 1000);
-    }
-
-    // Show typing initially
-    typingIndicator.style.display = 'flex';
-    setTimeout(() => {
-      typingIndicator.style.display = 'none';
-      addMessage("오늘 어떤 마음으로 이 곳에 오셨나요? 편하게 말씀해 주세요 🙏", 'counselor');
-    }, 2500);
 
     // ── Magnetic hover effect ──
     document.querySelectorAll('.magnetic-btn').forEach(btn => {
@@ -1347,6 +1259,17 @@
       btn.addEventListener('mouseleave', () => {
         btn.style.transform = '';
       });
+    });
+  </script>
+  <!-- ── 채널톡 실시간 상담 ── -->
+  <script>
+    (function(){var w=window;if(w.ChannelIO){return w.console.error("ChannelIO script included twice.")}var ch=function(){ch.c(arguments)};ch.q=[];ch.c=function(args){ch.q.push(args)};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x)}}if(document.readyState==="complete"){l()}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l)}})();
+
+    ChannelIO('boot', {
+      pluginKey: '2dd08436-53d0-45b0-b20d-55cadb7c77c4',
+      language: 'ko',
+      customLauncherSelector: '.ch-open-btn',
+      hideChannelButtonOnBoot: false,
     });
   </script>
 </body>

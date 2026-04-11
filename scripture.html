@@ -218,53 +218,45 @@
     <div class="orb w-[420px] h-[420px] top-[10%] right-[-80px]" style="background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 72%);"></div>
 
     <section class="px-6">
-      <div class="max-w-6xl mx-auto">
-        <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 items-center">
-          <div class="reveal">
-            <div class="section-divider"></div>
-            <span class="text-gold text-sm font-semibold tracking-widest uppercase mb-4 block">말씀 페이지</span>
-            <h1 class="text-4xl md:text-6xl font-black leading-tight mb-6" style="letter-spacing: -0.03em;">
-              오늘 당신에게 드리는<br />
-              <span class="text-gold-gradient">말씀의 빛</span>
-            </h1>
-            <p class="text-cream-dim text-lg leading-relaxed max-w-2xl mb-8">
-              메인 페이지에 있던 말씀 컨테이너들을 그대로 옮겨와, 따로 머물며 읽을 수 있는 페이지로 분리했습니다.
-              조용히 읽고, 다시 마음을 붙들 수 있도록 구성했습니다.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <a href="#verses" class="btn-gold">
-                <iconify-icon icon="solar:book-open-bold"></iconify-icon>
-                말씀 카드 보기
-              </a>
-              <a href="index.html" class="btn-outline">
-                <iconify-icon icon="solar:alt-arrow-left-bold"></iconify-icon>
-                메인으로 돌아가기
-              </a>
+      <div class="max-w-5xl mx-auto">
+        <div class="reveal text-center">
+          <div class="section-divider mx-auto"></div>
+          <span class="text-gold text-sm font-semibold tracking-widest uppercase mb-4 block">말씀 페이지</span>
+          <h1 class="text-4xl md:text-6xl font-black leading-tight mb-6" style="letter-spacing: -0.03em;">
+            교회를 떠났어도<br />
+            <span class="text-gold-gradient">말씀은 당신을 떠나지 않습니다</span>
+          </h1>
+          <p class="text-cream-dim text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-5">
+            사람에게 상처받아 예배당에서 멀어졌어도, 하나님 말씀까지 멀어진 것은 아닙니다.
+            지친 마음, 식어버린 사랑, 다시 돌아가고 싶은데 어디서부터 시작해야 할지 모르는 마음을 위해 이 페이지를 준비했습니다.
+          </p>
+          <p class="text-cream-dim text-lg leading-relaxed max-w-3xl mx-auto mb-8">
+            오늘의 말씀 한 구절이 무너진 믿음을 단번에 다 고치지는 못해도, 다시 주님을 바라보게 하는 첫 빛이 될 수 있습니다.
+            정죄보다 위로가 먼저 필요한 날, 이곳에서 조용히 말씀 앞에 머물러 보세요.
+          </p>
+          <div class="flex flex-wrap justify-center gap-3 mb-8">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm text-cream-dim" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+              <span style="width:6px; height:6px; border-radius:999px; background:#C9A84C; display:inline-block;"></span>
+              상처 입은 마음을 위한 말씀
+            </div>
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm text-cream-dim" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+              <span style="width:6px; height:6px; border-radius:999px; background:#C9A84C; display:inline-block;"></span>
+              다시 가까이 가게 하는 묵상
+            </div>
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm text-cream-dim" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+              <span style="width:6px; height:6px; border-radius:999px; background:#C9A84C; display:inline-block;"></span>
+              조용히 머물 수 있는 페이지
             </div>
           </div>
-
-          <div class="bezel-card p-7 md:p-8 reveal reveal-delay-1" style="background: linear-gradient(135deg, rgba(124,92,191,0.08) 0%, rgba(201,168,76,0.08) 100%);">
-            <div class="flex items-center gap-3 mb-5">
-              <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background: rgba(124,92,191,0.16);">
-                <iconify-icon icon="solar:book-bookmark-bold" style="color:#E8C96B; font-size:22px;"></iconify-icon>
-              </div>
-              <div>
-                <div class="text-sm font-semibold text-cream-DEFAULT">오늘의 말씀 보드</div>
-                <div class="text-xs text-cream-muted">메인에 있던 말씀 컨테이너를 별도 페이지로 이동</div>
-              </div>
-            </div>
-
-            <div class="space-y-3 text-sm text-cream-dim leading-relaxed">
-              <div class="rounded-2xl px-4 py-4" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
-                메인 featured 말씀 카드 1개
-              </div>
-              <div class="rounded-2xl px-4 py-4" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
-                짧은 묵상 말씀 카드 3개
-              </div>
-              <div class="rounded-2xl px-4 py-4" style="background: rgba(255,255,255,0.03); border: 1px dashed rgba(201,168,76,0.25);">
-                메인에서는 걷어내고, 이 페이지에서만 집중해서 읽을 수 있도록 정리했습니다.
-              </div>
-            </div>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#verses" class="btn-gold">
+              <iconify-icon icon="solar:book-open-bold"></iconify-icon>
+              오늘의 말씀 읽기
+            </a>
+            <a href="index.html" class="btn-outline">
+              <iconify-icon icon="solar:alt-arrow-left-bold"></iconify-icon>
+              메인으로 돌아가기
+            </a>
           </div>
         </div>
       </div>

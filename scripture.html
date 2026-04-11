@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>은혜의 문 — 말씀</title>
+  <meta name="description" content="오늘 당신에게 드리는 말씀을 모아둔 페이지입니다." />
+  <link rel="icon" type="image/png" href="logo.png" />
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Pretendard Variable', 'Pretendard', 'sans-serif'] },
+          colors: {
+            midnight: '#080D1A',
+            deep: '#0D1426',
+            card: '#111827',
+            gold: { DEFAULT: '#C9A84C', light: '#E8C96B', dim: '#9A7C38' },
+            violet: { DEFAULT: '#7C5CBF', light: '#9B7DD4', dim: '#5A4190' },
+            cream: { DEFAULT: '#F8F0E3', dim: '#D4C9B8', muted: '#9A9080' },
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Pretendard Variable', Pretendard, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124,92,191,0.14), transparent 30%),
+        radial-gradient(circle at top right, rgba(201,168,76,0.12), transparent 32%),
+        #080D1A;
+      color: #F8F0E3;
+      word-break: keep-all;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #080D1A; }
+    ::-webkit-scrollbar-thumb { background: #C9A84C40; border-radius: 4px; }
+    .glass-nav {
+      background: rgba(8, 13, 26, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+    }
+    .bezel-card {
+      background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      box-shadow:
+        0 0 0 1px rgba(201,168,76,0.06) inset,
+        0 30px 62px rgba(0,0,0,0.48),
+        0 8px 20px rgba(0,0,0,0.28);
+      position: relative;
+      overflow: hidden;
+    }
+    .bezel-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 22px;
+      border: 1px solid rgba(201,168,76,0.12);
+      pointer-events: none;
+    }
+    .glass-card {
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    }
+    .glass-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(201,168,76,0.2);
+    }
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #E8C96B 0%, #C9A84C 50%, #9A7C38 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-divider {
+      width: 72px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+      margin-bottom: 22px;
+    }
+    .nav-link {
+      color: rgba(248,240,227,0.6);
+      font-size: 1.05rem;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #C9A84C;
+      transition: width 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .nav-link:hover { color: #F8F0E3; }
+    .nav-link:hover::after { width: 100%; }
+    .btn-gold {
+      background: linear-gradient(135deg, #E8C96B 0%, #C9A84C 100%);
+      color: #080D1A;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 13px 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 30px rgba(201, 168, 76, 0.3);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-gold:hover { transform: translateY(-2px); }
+    .btn-outline {
+      border: 1.5px solid rgba(201, 168, 76, 0.4);
+      color: #E8C96B;
+      font-weight: 600;
+      border-radius: 999px;
+      padding: 12px 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      backdrop-filter: blur(8px);
+    }
+    .btn-outline:hover {
+      background: rgba(201, 168, 76, 0.1);
+      border-color: rgba(201, 168, 76, 0.7);
+      transform: translateY(-2px);
+    }
+    .scripture-card {
+      background: linear-gradient(135deg, rgba(124, 92, 191, 0.12) 0%, rgba(201, 168, 76, 0.06) 100%);
+      border: 1px solid rgba(124, 92, 191, 0.2);
+      border-radius: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .scripture-card::before {
+      content: '"';
+      position: absolute;
+      top: -20px;
+      left: 24px;
+      font-size: 120px;
+      color: rgba(201, 168, 76, 0.12);
+      line-height: 1;
+      font-family: Georgia, serif;
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.35s; }
+  </style>
+</head>
+<body class="antialiased">
+
+  <nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5">
+        <img src="logo.png" alt="은혜의 문 로고" class="w-8 h-8 object-contain" />
+        <span class="font-bold tracking-tight text-gold-gradient" style="font-size:20px;">은혜의 문</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-7">
+        <a href="index.html#gospel" class="nav-link">복음</a>
+        <a href="scripture.html" class="nav-link" style="color:#F8F0E3;">말씀</a>
+        <a href="grace.html" class="nav-link">은혜</a>
+        <a href="index.html#counsel" class="nav-link">상담</a>
+        <a href="index.html#pray" class="nav-link">기도 요청</a>
+        <a href="index.html#counsel" class="btn-gold text-sm">
+          <iconify-icon icon="solar:chat-round-dots-bold"></iconify-icon>
+          상담 연결하기
+        </a>
+      </div>
+
+      <button id="menuBtn" class="md:hidden text-cream-dim p-2">
+        <iconify-icon icon="solar:hamburger-menu-bold" style="font-size:22px;"></iconify-icon>
+      </button>
+    </div>
+
+    <div id="mobileMenu" class="hidden md:hidden px-6 pb-6 flex flex-col gap-4">
+      <a href="index.html#gospel" class="nav-link py-1" onclick="closeMobile()">복음</a>
+      <a href="scripture.html" class="nav-link py-1" onclick="closeMobile()">말씀</a>
+      <a href="grace.html" class="nav-link py-1" onclick="closeMobile()">은혜</a>
+      <a href="index.html#counsel" class="nav-link py-1" onclick="closeMobile()">상담</a>
+      <a href="index.html#pray" class="nav-link py-1" onclick="closeMobile()">기도 요청</a>
+      <a href="index.html#counsel" class="btn-gold text-sm self-start mt-2" onclick="closeMobile()">
+        <iconify-icon icon="solar:chat-round-dots-bold"></iconify-icon>
+        상담 연결하기
+      </a>
+    </div>
+  </nav>
+
+  <main class="pt-28 pb-20 relative overflow-hidden">
+    <div class="orb w-[520px] h-[520px] top-[-120px] left-[-100px]" style="background: radial-gradient(circle, rgba(124,92,191,0.15) 0%, transparent 72%);"></div>
+    <div class="orb w-[420px] h-[420px] top-[10%] right-[-80px]" style="background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 72%);"></div>
+
+    <section class="px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 items-center">
+          <div class="reveal">
+            <div class="section-divider"></div>
+            <span class="text-gold text-sm font-semibold tracking-widest uppercase mb-4 block">말씀 페이지</span>
+            <h1 class="text-4xl md:text-6xl font-black leading-tight mb-6" style="letter-spacing: -0.03em;">
+              오늘 당신에게 드리는<br />
+              <span class="text-gold-gradient">말씀의 빛</span>
+            </h1>
+            <p class="text-cream-dim text-lg leading-relaxed max-w-2xl mb-8">
+              메인 페이지에 있던 말씀 컨테이너들을 그대로 옮겨와, 따로 머물며 읽을 수 있는 페이지로 분리했습니다.
+              조용히 읽고, 다시 마음을 붙들 수 있도록 구성했습니다.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="#verses" class="btn-gold">
+                <iconify-icon icon="solar:book-open-bold"></iconify-icon>
+                말씀 카드 보기
+              </a>
+              <a href="index.html" class="btn-outline">
+                <iconify-icon icon="solar:alt-arrow-left-bold"></iconify-icon>
+                메인으로 돌아가기
+              </a>
+            </div>
+          </div>
+
+          <div class="bezel-card p-7 md:p-8 reveal reveal-delay-1" style="background: linear-gradient(135deg, rgba(124,92,191,0.08) 0%, rgba(201,168,76,0.08) 100%);">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background: rgba(124,92,191,0.16);">
+                <iconify-icon icon="solar:book-bookmark-bold" style="color:#E8C96B; font-size:22px;"></iconify-icon>
+              </div>
+              <div>
+                <div class="text-sm font-semibold text-cream-DEFAULT">오늘의 말씀 보드</div>
+                <div class="text-xs text-cream-muted">메인에 있던 말씀 컨테이너를 별도 페이지로 이동</div>
+              </div>
+            </div>
+
+            <div class="space-y-3 text-sm text-cream-dim leading-relaxed">
+              <div class="rounded-2xl px-4 py-4" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+                메인 featured 말씀 카드 1개
+              </div>
+              <div class="rounded-2xl px-4 py-4" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+                짧은 묵상 말씀 카드 3개
+              </div>
+              <div class="rounded-2xl px-4 py-4" style="background: rgba(255,255,255,0.03); border: 1px dashed rgba(201,168,76,0.25);">
+                메인에서는 걷어내고, 이 페이지에서만 집중해서 읽을 수 있도록 정리했습니다.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="verses" class="px-6 pt-20">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-16 reveal">
+          <span class="text-gold text-sm font-semibold tracking-widest uppercase mb-4 block">말씀</span>
+          <h2 class="text-3xl md:text-4xl font-bold" style="letter-spacing: -0.02em;">오늘 당신에게 드리는 말씀</h2>
+        </div>
+
+        <div class="scripture-card p-10 md:p-14 mb-8 reveal">
+          <p class="text-2xl md:text-3xl font-light leading-relaxed text-cream-DEFAULT mb-6" style="letter-spacing: -0.01em;">
+            "수고하고 무거운 짐 진 자들아 다 내게로 오라 내가 너희를 쉬게 하리라"
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-6 h-px bg-gold"></div>
+            <span class="text-gold text-sm font-semibold">마태복음 11:28</span>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-5">
+          <div class="glass-card p-6 reveal reveal-delay-1">
+            <iconify-icon icon="solar:flower-bold" style="color:#C9A84C; font-size:28px;" class="mb-4 block"></iconify-icon>
+            <p class="text-cream-dim text-sm leading-relaxed mb-4">
+              "내가 세상 끝날까지 너희와 항상 함께 있으리라"
+            </p>
+            <span class="text-gold-dim text-xs font-semibold">마태복음 28:20</span>
+          </div>
+          <div class="glass-card p-6 reveal reveal-delay-2">
+            <iconify-icon icon="solar:sun-2-bold" style="color:#9B7DD4; font-size:28px;" class="mb-4 block"></iconify-icon>
+            <p class="text-cream-dim text-sm leading-relaxed mb-4">
+              "주 예수를 믿으라 그리하면 너와 네 집이 구원을 받으리라"
+            </p>
+            <span class="text-violet text-xs font-semibold">사도행전 16:31</span>
+          </div>
+          <div class="glass-card p-6 reveal reveal-delay-3">
+            <iconify-icon icon="solar:heart-shine-bold" style="color:#C9A84C; font-size:28px;" class="mb-4 block"></iconify-icon>
+            <p class="text-cream-dim text-sm leading-relaxed mb-4">
+              "하나님은 사랑이심이라... 두려움에는 형벌이 있나니 두려워하는 자는 사랑 안에서 온전히 이루지 못하였느니라"
+            </p>
+            <span class="text-gold-dim text-xs font-semibold">요한일서 4:16,18</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white border-opacity-5 py-12 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-cream-muted">
+      <div class="flex items-center gap-2.5">
+        <img src="logo.png" alt="은혜의 문 로고" class="w-7 h-7 object-contain" />
+        <span class="font-bold text-gold-gradient" style="font-size:18px;">은혜의 문</span>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-5">
+        <a href="index.html" class="hover:text-cream-DEFAULT transition-colors">메인 페이지</a>
+        <a href="grace.html" class="hover:text-cream-DEFAULT transition-colors">은혜</a>
+        <a href="index.html#counsel" class="hover:text-cream-DEFAULT transition-colors">상담</a>
+      </div>
+      <div class="text-xs text-cream-muted">© 2026 조이플 미션. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    function closeMobile() {
+      mobileMenu.classList.add('hidden');
+    }
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+</html>

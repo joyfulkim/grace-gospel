@@ -1,0 +1,24 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function validPrayer(data) {
+      return data.keys().hasOnly(['nickname', 'content', 'category', 'createdAt']) &&
+        data.nickname is string &&
+        data.nickname.size() > 0 &&
+        data.nickname.size() <= 18 &&
+        data.content is string &&
+        data.content.size() > 0 &&
+        data.content.size() <= 280 &&
+        data.category is string &&
+        data.category in ['회복', '가정', '신앙', '감사', '치유', '일상'] &&
+        data.createdAt is int &&
+        data.createdAt > 0;
+    }
+
+    match /prayerWall/{postId} {
+      allow read: if true;
+      allow create: if validPrayer(request.resource.data);
+      allow update, delete: if false;
+    }
+  }
+}

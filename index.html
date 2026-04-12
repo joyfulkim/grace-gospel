@@ -967,12 +967,12 @@
       </div>
 
       <div class="bezel-card p-8 md:p-10 reveal reveal-delay-1">
-        <form onsubmit="submitPrayer(event)" class="space-y-5">
+        <form id="homePrayerForm" onsubmit="submitPrayer(event)" class="space-y-5">
 
           <div class="grid sm:grid-cols-2 gap-5">
             <div>
               <label class="block text-sm text-cream-muted mb-2">이름 (익명 가능)</label>
-              <input type="text" class="form-input" placeholder="이름 또는 닉네임" />
+              <input type="text" name="nickname" class="form-input" placeholder="이름 또는 닉네임" />
             </div>
             <div>
               <label class="block text-sm text-cream-muted mb-2">연락처 (선택)</label>
@@ -1008,7 +1008,7 @@
 
           <div>
             <label class="block text-sm text-cream-muted mb-2">기도 내용</label>
-            <textarea class="form-input" placeholder="기도 제목을 자유롭게 적어주세요. 모든 내용은 비밀이 보장됩니다."></textarea>
+            <textarea name="content" class="form-input" placeholder="기도 제목을 자유롭게 적어주세요. 모든 내용은 비밀이 보장됩니다."></textarea>
           </div>
 
           <button type="submit" class="w-full btn-gold justify-center text-base magnetic-btn" style="border-radius: 12px; padding: 16px;">
@@ -1023,7 +1023,7 @@
             <iconify-icon icon="solar:check-circle-bold" style="color:#C9A84C; font-size:32px;"></iconify-icon>
           </div>
           <h3 class="text-xl font-bold mb-2">기도 요청을 받았습니다</h3>
-          <p class="text-cream-dim text-sm">저희 팀이 매일 함께 기도하겠습니다. ❤️</p>
+          <p class="text-cream-dim text-sm">공용 기도 담벼락에도 함께 남겨졌습니다.</p>
         </div>
       </div>
     </div>
@@ -1187,28 +1187,6 @@
       });
     });
 
-    // ── Prayer form submit ──
-    function submitPrayer(e) {
-      e.preventDefault();
-      const form = e.target;
-      const success = document.getElementById('prayerSuccess');
-      form.style.opacity = '0';
-      form.style.transform = 'scale(0.96)';
-      form.style.transition = 'all 0.3s ease';
-      setTimeout(() => {
-        form.style.display = 'none';
-        success.classList.remove('hidden');
-        success.style.opacity = '0';
-        success.style.transform = 'scale(0.9)';
-        success.style.transition = 'all 0.5s cubic-bezier(0.16,1,0.3,1)';
-        requestAnimationFrame(() => {
-          success.style.opacity = '1';
-          success.style.transform = 'scale(1)';
-        });
-      }, 300);
-    }
-
-
     // ── Magnetic hover effect ──
     document.querySelectorAll('.magnetic-btn').forEach(btn => {
       btn.addEventListener('mousemove', (e) => {
@@ -1221,6 +1199,48 @@
         btn.style.transform = '';
       });
     });
+  </script>
+  <script type="module">
+    import { createPrayerPost, normalizeCategory } from './firebase-prayer.js';
+
+    window.submitPrayer = async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const success = document.getElementById('prayerSuccess');
+      const submitButton = form.querySelector('button[type="submit"]');
+      const nickname = (form.querySelector('input[name="nickname"]')?.value || '').trim();
+      const content = (form.querySelector('textarea[name="content"]')?.value || '').trim();
+      const category = normalizeCategory(form.querySelector('input[name="prayerType"]:checked')?.value || 'healing');
+
+      if (!nickname || !content) {
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.style.opacity = '0.7';
+
+      try {
+        await createPrayerPost({ nickname, content, category });
+        form.style.opacity = '0';
+        form.style.transform = 'scale(0.96)';
+        form.style.transition = 'all 0.3s ease';
+        setTimeout(() => {
+          form.style.display = 'none';
+          success.classList.remove('hidden');
+          success.style.opacity = '0';
+          success.style.transform = 'scale(0.9)';
+          success.style.transition = 'all 0.5s cubic-bezier(0.16,1,0.3,1)';
+          requestAnimationFrame(() => {
+            success.style.opacity = '1';
+            success.style.transform = 'scale(1)';
+          });
+        }, 300);
+      } catch (error) {
+        submitButton.disabled = false;
+        submitButton.style.opacity = '1';
+        alert('기도 제목 저장 중 문제가 생겼습니다. 잠시 후 다시 시도해주세요.');
+      }
+    };
   </script>
   <!-- ── 채널톡 실시간 상담 ── -->
   <script>

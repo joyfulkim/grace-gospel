@@ -494,25 +494,13 @@
       font-size: 0.88rem;
       line-height: 1.55;
     }
-    .church-map-panel {
-      display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(290px, 0.75fr);
-      gap: 24px;
-      align-items: stretch;
-    }
     .church-live-map {
       position: relative;
-      min-height: 560px;
-      height: min(72vh, 720px);
-      border-radius: 28px;
+      min-height: 620px;
+      height: min(76vh, 820px);
+      border-radius: 30px;
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.08);
-      background:
-        radial-gradient(circle at top left, rgba(124,92,191,0.1), transparent 24%),
-        rgba(255,255,255,0.04);
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,0.05),
-        0 20px 40px rgba(0,0,0,0.24);
+      background: rgba(255,255,255,0.04);
     }
     .map-fallback {
       position: absolute;
@@ -528,87 +516,6 @@
     }
     .map-fallback.hidden {
       display: none;
-    }
-    .map-aside {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .map-note-card,
-    .map-church-button {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 22px;
-      backdrop-filter: blur(12px);
-    }
-    .map-note-card {
-      padding: 18px 20px;
-    }
-    .map-note-card h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #F8F0E3;
-      margin-bottom: 8px;
-    }
-    .map-note-card p,
-    .map-note-card li {
-      color: #D4C9B8;
-      font-size: 0.94rem;
-      line-height: 1.7;
-    }
-    .map-note-card ul {
-      display: grid;
-      gap: 6px;
-      margin-top: 10px;
-    }
-    .map-church-list {
-      display: grid;
-      gap: 10px;
-    }
-    .map-church-button {
-      width: 100%;
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      padding: 16px 18px;
-      text-align: left;
-      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-    }
-    .map-church-button:hover {
-      transform: translateY(-1px);
-      border-color: rgba(201,168,76,0.34);
-      background: rgba(201,168,76,0.08);
-    }
-    .map-church-button.is-active {
-      border-color: rgba(201,168,76,0.5);
-      background: rgba(201,168,76,0.1);
-      box-shadow: inset 0 0 0 1px rgba(201,168,76,0.12);
-    }
-    .map-church-number {
-      width: 34px;
-      height: 34px;
-      flex-shrink: 0;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.92rem;
-      font-weight: 800;
-      color: #080D1A;
-      background: linear-gradient(135deg, #E8C96B 0%, #C9A84C 100%);
-      box-shadow: 0 10px 22px rgba(201,168,76,0.22);
-    }
-    .map-church-title {
-      font-size: 0.98rem;
-      font-weight: 700;
-      color: #F8F0E3;
-      line-height: 1.45;
-      margin-bottom: 4px;
-    }
-    .map-church-meta {
-      color: #D4C9B8;
-      font-size: 0.84rem;
-      line-height: 1.6;
     }
     .leaflet-container {
       font-family: 'Pretendard Variable', Pretendard, sans-serif;
@@ -650,20 +557,12 @@
       border: none;
     }
     .church-marker > span {
-      width: 34px;
-      height: 34px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      border-radius: 999px;
-      font-size: 0.9rem;
-      font-weight: 800;
-      color: #080D1A;
-      background: linear-gradient(135deg, #E8C96B 0%, #C9A84C 100%);
-      border: 3px solid rgba(255,255,255,0.92);
-      box-shadow:
-        0 0 0 6px rgba(201,168,76,0.16),
-        0 10px 18px rgba(0,0,0,0.24);
+      font-size: 1.85rem;
+      line-height: 1;
+      filter: drop-shadow(0 10px 14px rgba(0,0,0,0.22));
     }
     @media (max-width: 1279px) {
       .korea-infographic {
@@ -700,9 +599,6 @@
       .church-callout {
         order: 2;
       }
-      .church-map-panel {
-        grid-template-columns: 1fr;
-      }
     }
     @media (max-width: 767px) {
       .korea-board {
@@ -737,13 +633,9 @@
         font-size: 0.68rem;
       }
       .church-live-map {
-        min-height: 430px;
-        height: 430px;
+        min-height: 460px;
+        height: 460px;
         border-radius: 24px;
-      }
-      .map-note-card,
-      .map-church-button {
-        border-radius: 18px;
       }
     }
   </style>
@@ -820,43 +712,12 @@
 
     <section id="korea-map" class="px-6 pt-6">
       <div class="max-w-6xl mx-auto">
-        <div class="bezel-card p-6 md:p-8 reveal">
-          <div class="text-center mb-8">
-            <span class="text-gold text-sm font-semibold tracking-widest uppercase mb-4 block">실제 지도</span>
-            <h2 class="text-3xl md:text-4xl font-bold mb-3" style="letter-spacing: -0.02em;">지도에서 추천 교회를 찾아보세요</h2>
-            <p class="text-cream-dim leading-relaxed max-w-3xl mx-auto">
-              이미지 대신 실제 지도를 넣고, 현재 등록된 추천 교회들을 마커로 표시했습니다.
-              마커를 누르거나 오른쪽 교회 목록을 선택하면 교회 이름과 연락처, 주소를 바로 확인할 수 있습니다.
-            </p>
-          </div>
-
-          <div class="church-map-panel">
-            <div class="relative">
-              <div id="churchMap" class="church-live-map" aria-label="추천 교회 지도"></div>
-              <div id="churchMapFallback" class="map-fallback hidden">
-                지도를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.
-              </div>
-            </div>
-
-            <aside class="map-aside">
-              <div class="map-note-card">
-                <h3>현재 표시된 추천 교회</h3>
-                <p>총 10개 교회를 지도에 표시했습니다. 일부 마커는 주소 기준의 대략적인 위치로 먼저 반영되어 있습니다.</p>
-                <ul>
-                  <li>서울 5곳</li>
-                  <li>인천 2곳</li>
-                  <li>경기 1곳</li>
-                  <li>충북 1곳</li>
-                  <li>부산 1곳</li>
-                </ul>
-              </div>
-
-              <div class="map-note-card">
-                <h3>지도 사용 안내</h3>
-                <p>마커를 눌러 교회 정보를 보거나, 아래 목록을 눌러 해당 교회 위치로 이동할 수 있습니다.</p>
-              </div>
-
-              <div id="mapChurchList" class="map-church-list"></div>
+        <div class="reveal">
+          <h2 class="text-center text-3xl md:text-4xl font-bold mb-6" style="letter-spacing:-0.03em;">대한민국</h2>
+          <div class="relative">
+            <div id="churchMap" class="church-live-map" aria-label="추천 교회 지도"></div>
+            <div id="churchMapFallback" class="map-fallback hidden">
+              지도를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.
             </div>
           </div>
         </div>
@@ -1195,32 +1056,22 @@
       },
     ];
 
-    const markerMap = new Map();
-    const listItemMap = new Map();
-
     function churchPopup(church) {
       return `
-        <h4>${church.id}. ${church.name}</h4>
+        <h4>${church.name}</h4>
         <p>담임목사 ${church.pastor}</p>
         <p>${church.phone}</p>
         <p>${church.address}</p>
       `;
     }
 
-    function setActiveChurch(id) {
-      listItemMap.forEach((button, key) => {
-        button.classList.toggle('is-active', key === id);
-      });
-    }
-
     function initChurchMap() {
       const mapElement = document.getElementById('churchMap');
       const fallback = document.getElementById('churchMapFallback');
-      const listElement = document.getElementById('mapChurchList');
-      if (!mapElement || !listElement) return;
+      if (!mapElement) return;
 
       if (typeof L === 'undefined') {
-        fallback.classList.remove('hidden');
+        if (fallback) fallback.classList.remove('hidden');
         return;
       }
 
@@ -1239,37 +1090,15 @@
       churchLocations.forEach((church) => {
         const icon = L.divIcon({
           className: 'church-marker',
-          html: `<span>${church.id}</span>`,
-          iconSize: [34, 34],
-          iconAnchor: [17, 17],
-          popupAnchor: [0, -16],
+          html: '<span aria-hidden="true">⛪</span>',
+          iconSize: [30, 30],
+          iconAnchor: [15, 24],
+          popupAnchor: [0, -22],
         });
 
         const marker = L.marker([church.lat, church.lng], { icon }).addTo(map);
         marker.bindPopup(churchPopup(church));
-        marker.on('click', () => {
-          setActiveChurch(church.id);
-        });
-        markerMap.set(church.id, marker);
         bounds.push([church.lat, church.lng]);
-
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'map-church-button';
-        button.innerHTML = `
-          <span class="map-church-number">${church.id}</span>
-          <span>
-            <span class="map-church-title">${church.name}</span>
-            <span class="map-church-meta">${church.region} · 담임목사 ${church.pastor}</span>
-          </span>
-        `;
-        button.addEventListener('click', () => {
-          setActiveChurch(church.id);
-          map.flyTo([church.lat, church.lng], 12, { duration: 0.8 });
-          marker.openPopup();
-        });
-        listElement.appendChild(button);
-        listItemMap.set(church.id, button);
       });
 
       if (bounds.length) {
@@ -1277,8 +1106,6 @@
       } else {
         map.setView([36.35, 127.85], 7);
       }
-
-      setActiveChurch(churchLocations[0].id);
     }
 
     initChurchMap();

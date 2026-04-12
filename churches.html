@@ -572,6 +572,27 @@
         0 0 0 6px rgba(201,168,76,0.14),
         0 10px 18px rgba(0,0,0,0.22);
     }
+    .region-label-marker {
+      background: transparent;
+      border: none;
+      pointer-events: none;
+    }
+    .region-label-marker > span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 1.18rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: rgba(41, 70, 118, 0.6);
+      background: rgba(255,255,255,0.32);
+      backdrop-filter: blur(6px);
+      text-shadow: 0 1px 0 rgba(255,255,255,0.55);
+      box-shadow: 0 10px 18px rgba(91, 116, 165, 0.08);
+      white-space: nowrap;
+    }
     @media (max-width: 1279px) {
       .korea-infographic {
         min-height: auto;
@@ -644,6 +665,10 @@
         min-height: 460px;
         height: 460px;
         border-radius: 24px;
+      }
+      .region-label-marker > span {
+        font-size: 0.92rem;
+        padding: 5px 8px;
       }
     }
   </style>
@@ -1064,6 +1089,14 @@
       },
     ];
 
+    const regionLabels = [
+      { name: '강원도', lat: 37.88, lng: 128.35 },
+      { name: '충청도', lat: 36.72, lng: 127.32 },
+      { name: '전라도', lat: 35.36, lng: 126.88 },
+      { name: '경상도', lat: 35.86, lng: 128.72 },
+      { name: '제주도', lat: 33.38, lng: 126.53 },
+    ];
+
     function churchPopup(church) {
       return `
         <h4>${church.name}</h4>
@@ -1094,7 +1127,26 @@
         attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
       }).addTo(map);
 
+      map.createPane('regionLabels');
+      map.getPane('regionLabels').style.zIndex = 350;
+      map.getPane('regionLabels').style.pointerEvents = 'none';
+
       const bounds = [];
+
+      regionLabels.forEach((region) => {
+        const labelIcon = L.divIcon({
+          className: 'region-label-marker',
+          html: `<span>${region.name}</span>`,
+          iconSize: null,
+        });
+
+        L.marker([region.lat, region.lng], {
+          icon: labelIcon,
+          interactive: false,
+          keyboard: false,
+          pane: 'regionLabels',
+        }).addTo(map);
+      });
 
       churchLocations.forEach((church) => {
         const icon = L.divIcon({

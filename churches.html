@@ -303,16 +303,58 @@
       pointer-events: none;
       z-index: 2;
     }
-    .korea-map-image {
+    .korea-map-art {
       position: absolute;
       inset: 0;
-      width: 160%;
+      width: 100%;
       height: 100%;
-      max-width: none;
-      object-fit: cover;
-      object-position: 72% 52%;
-      filter: saturate(0.88) contrast(1.04) brightness(1.03);
       z-index: 1;
+    }
+    .korea-map-art .korea-outline {
+      fill: none;
+      stroke: #2E4E8F;
+      stroke-width: 5.5;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+    .korea-map-art .province {
+      stroke: rgba(255,255,255,0.9);
+      stroke-width: 3.5;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+    .korea-map-art .coastline {
+      fill: none;
+      stroke: rgba(46,78,143,0.18);
+      stroke-width: 3;
+      stroke-linecap: round;
+    }
+    .korea-map-art .island {
+      fill: #B5C8FA;
+      stroke: #4E6DAA;
+      stroke-width: 2.2;
+    }
+    .korea-map-art .region-label {
+      fill: rgba(255,255,255,0.98);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      paint-order: stroke;
+      stroke: rgba(17,35,68,0.18);
+      stroke-width: 2;
+    }
+    .korea-map-art .city-dot {
+      fill: #173159;
+    }
+    .korea-map-art .city-label {
+      fill: #39537F;
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+    .korea-map-art .city-star {
+      fill: #FFF7C6;
+      stroke: #D1A33F;
+      stroke-width: 1.5;
     }
     .korea-map-badge,
     .korea-map-note {
@@ -493,10 +535,6 @@
         min-height: 430px;
         border-radius: 26px;
       }
-      .korea-map-image {
-        width: 178%;
-        object-position: 73% 52%;
-      }
       .korea-map-badge,
       .korea-map-note {
         padding: 10px 12px;
@@ -588,18 +626,107 @@
               <div class="korea-board-label">대한민국 지도 · 추천 교회 안내</div>
               <h2>가운데 지도를 중심으로<br />교회 정보를 한눈에 살펴보세요</h2>
               <p>
-                첨부해주신 참고 이미지의 분위기를 반영해, 대한민국 지도를 크게 두고 양옆의 추천 교회 목록이
-                실제 위치와 선으로 이어지도록 다시 구성했습니다.
+                첨부해주신 레퍼런스를 참고해 대한민국 지도를 직접 다시 그렸고, 양옆의 추천 교회 목록이
+                실제 위치와 선으로 이어지도록 인포그래픽처럼 정리했습니다.
               </p>
             </div>
 
             <div class="korea-infographic">
               <div class="korea-map-shell">
                 <div class="korea-map-frame">
-                  <img src="korea-map-reference.jpeg" alt="대한민국 지도" class="korea-map-image" />
+                  <svg class="korea-map-art" viewBox="0 0 560 780" role="img" aria-label="추천 교회 위치를 확인할 수 있는 대한민국 지도">
+                    <defs>
+                      <clipPath id="koreaMainlandClip">
+                        <path d="M292 38C326 39 360 57 384 82C408 107 427 138 438 172C450 206 449 243 444 278C440 308 435 338 444 372C453 408 470 441 466 476C462 511 445 543 426 574C407 604 390 636 376 670C360 710 335 742 302 751C268 761 230 750 203 730C176 711 159 679 147 646C135 614 114 589 98 560C81 528 71 490 75 453C79 419 95 389 102 356C108 323 100 289 101 256C102 221 111 188 131 159C150 132 175 111 192 86C215 55 253 37 292 38Z" />
+                      </clipPath>
+                      <linearGradient id="mapSeaGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#F7FAFF" />
+                        <stop offset="100%" stop-color="#D6E4FF" />
+                      </linearGradient>
+                    </defs>
+
+                    <rect x="0" y="0" width="560" height="780" fill="url(#mapSeaGlow)" opacity="0.28" />
+                    <g clip-path="url(#koreaMainlandClip)">
+                      <path class="province" fill="#AFC3F7" d="M236 56L318 49L355 81L373 130L347 170L294 184L246 154L224 112Z" />
+                      <path class="province" fill="#8FAAE6" d="M171 113L223 112L246 154L242 210L200 232L158 212L146 171Z" />
+                      <path class="province" fill="#6F8FD9" d="M130 157L158 170L158 212L133 221L118 196L117 173Z" />
+                      <path class="province" fill="#7E98DD" d="M200 232L242 210L294 184L316 236L294 301L244 324L198 292Z" />
+                      <path class="province" fill="#96B0EB" d="M133 221L158 212L200 232L198 292L167 334L120 318L108 270Z" />
+                      <path class="province" fill="#6B85CE" d="M294 301L316 236L347 170L410 184L425 248L417 326L388 383L335 404L301 360Z" />
+                      <path class="province" fill="#90AAE9" d="M198 292L244 324L301 360L286 436L232 470L184 444L166 390L167 334Z" />
+                      <path class="province" fill="#7B95D8" d="M108 318L120 318L167 334L166 390L184 444L174 518L129 545L94 503L85 430Z" />
+                      <path class="province" fill="#7E97DA" d="M286 436L335 404L388 383L398 454L387 530L348 575L299 597L267 556L274 497Z" />
+                      <path class="province" fill="#5F7CC4" d="M398 454L420 444L445 470L450 515L435 552L399 563L387 530Z" />
+                      <path class="province" fill="#9AB6F1" d="M174 518L267 556L299 597L290 666L249 713L186 688L146 640L137 584Z" />
+                      <path class="province" fill="#7D97DC" d="M299 597L348 575L399 563L389 640L351 706L296 729L290 666Z" />
+                    </g>
+
+                    <path class="korea-outline" d="M292 38C326 39 360 57 384 82C408 107 427 138 438 172C450 206 449 243 444 278C440 308 435 338 444 372C453 408 470 441 466 476C462 511 445 543 426 574C407 604 390 636 376 670C360 710 335 742 302 751C268 761 230 750 203 730C176 711 159 679 147 646C135 614 114 589 98 560C81 528 71 490 75 453C79 419 95 389 102 356C108 323 100 289 101 256C102 221 111 188 131 159C150 132 175 111 192 86C215 55 253 37 292 38Z" />
+                    <path class="coastline" d="M104 242C94 233 86 226 79 214M116 318C105 314 94 304 86 292M128 548C117 541 104 532 92 518M171 706C160 704 150 697 143 688M354 714C365 705 375 691 382 678" />
+
+                    <g>
+                      <path class="island" d="M151 692C164 682 185 680 201 689C188 703 166 705 151 692Z" />
+                      <circle class="island" cx="115" cy="195" r="6" />
+                      <circle class="island" cx="104" cy="210" r="4.5" />
+                      <circle class="island" cx="107" cy="229" r="3.5" />
+                      <circle class="island" cx="95" cy="447" r="5" />
+                      <circle class="island" cx="87" cy="465" r="3.5" />
+                      <circle class="island" cx="142" cy="606" r="4" />
+                      <circle class="island" cx="162" cy="620" r="3.5" />
+                      <circle class="island" cx="176" cy="642" r="3.5" />
+                      <circle class="island" cx="438" cy="262" r="6" />
+                    </g>
+
+                    <g>
+                      <text class="region-label" x="291" y="113">강원</text>
+                      <text class="region-label" x="212" y="174">경기</text>
+                      <text class="region-label" x="123" y="188">인천</text>
+                      <text class="region-label" x="249" y="287">충북</text>
+                      <text class="region-label" x="131" y="292">충남</text>
+                      <text class="region-label" x="338" y="302">경북</text>
+                      <text class="region-label" x="231" y="418">전북</text>
+                      <text class="region-label" x="117" y="449">전남</text>
+                      <text class="region-label" x="320" y="507">경남</text>
+                      <text class="region-label" x="410" y="500">부산</text>
+                      <text class="region-label" x="166" y="693">제주</text>
+                    </g>
+
+                    <g>
+                      <circle class="city-dot" cx="219" cy="178" r="5.5" />
+                      <text class="city-label" x="230" y="182">서울</text>
+                      <polygon class="city-star" points="219,166 222,173 230,174 224,179 226,187 219,183 212,187 214,179 208,174 216,173" />
+
+                      <circle class="city-dot" cx="150" cy="203" r="4.5" />
+                      <text class="city-label" x="160" y="207">인천</text>
+
+                      <circle class="city-dot" cx="233" cy="213" r="4.5" />
+                      <text class="city-label" x="243" y="217">수원</text>
+
+                      <circle class="city-dot" cx="219" cy="320" r="4.5" />
+                      <text class="city-label" x="229" y="324">대전</text>
+
+                      <circle class="city-dot" cx="284" cy="333" r="4.5" />
+                      <text class="city-label" x="294" y="337">청주</text>
+
+                      <circle class="city-dot" cx="375" cy="430" r="4.5" />
+                      <text class="city-label" x="385" y="434">대구</text>
+
+                      <circle class="city-dot" cx="405" cy="547" r="4.5" />
+                      <text class="city-label" x="416" y="551">부산</text>
+
+                      <circle class="city-dot" cx="148" cy="475" r="4.5" />
+                      <text class="city-label" x="158" y="479">광주</text>
+
+                      <circle class="city-dot" cx="353" cy="210" r="4.5" />
+                      <text class="city-label" x="363" y="214">강릉</text>
+
+                      <circle class="city-dot" cx="300" cy="184" r="4.5" />
+                      <text class="city-label" x="310" y="188">춘천</text>
+                    </g>
+                  </svg>
                   <div class="korea-map-badge">
-                    <strong>전국 추천 교회 지도</strong>
-                    <span>서울, 경기, 인천, 충북, 부산 지역의 교회를 먼저 표시했습니다.</span>
+                    <strong>직접 제작한 대한민국 지도</strong>
+                    <span>서울, 경기, 인천, 충북, 부산 지역 교회를 한눈에 볼 수 있게 직접 구성했습니다.</span>
                   </div>
                   <div class="korea-map-note">
                     <strong>교회 찾기의 첫 걸음</strong>

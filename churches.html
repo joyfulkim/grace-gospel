@@ -586,18 +586,19 @@
       font-size: 1.18rem;
       font-weight: 800;
       letter-spacing: -0.02em;
-      color: rgba(41, 70, 118, 0.6);
-      background: rgba(255,255,255,0.32);
+      color: color-mix(in srgb, var(--region-color, #3f68b2) 78%, #1f3157);
+      background: color-mix(in srgb, var(--region-color, #3f68b2) 18%, rgba(255,255,255,0.64));
       backdrop-filter: blur(6px);
       text-shadow: 0 1px 0 rgba(255,255,255,0.55);
       box-shadow: 0 10px 18px rgba(91, 116, 165, 0.08);
       white-space: nowrap;
+      border: 1px solid color-mix(in srgb, var(--region-color, #3f68b2) 20%, rgba(255,255,255,0.65));
     }
     .region-label-marker.metro > span {
       font-size: 0.96rem;
       padding: 5px 9px;
-      color: rgba(34, 62, 108, 0.74);
-      background: rgba(255,255,255,0.4);
+      color: color-mix(in srgb, var(--region-color, #35528c) 86%, #1f3157);
+      background: color-mix(in srgb, var(--region-color, #35528c) 16%, rgba(255,255,255,0.72));
     }
     @media (max-width: 1279px) {
       .korea-infographic {
@@ -1100,14 +1101,14 @@
     ];
 
     const regionLabels = [
-      { name: '인천', lat: 37.54, lng: 126.38, kind: 'metro' },
-      { name: '서울', lat: 37.66, lng: 127.02, kind: 'metro' },
-      { name: '경기도', lat: 37.28, lng: 127.24, kind: 'metro' },
-      { name: '강원도', lat: 37.88, lng: 128.35 },
-      { name: '충청도', lat: 36.72, lng: 127.32 },
-      { name: '전라도', lat: 35.36, lng: 126.88 },
-      { name: '경상도', lat: 35.86, lng: 128.72 },
-      { name: '제주도', lat: 33.38, lng: 126.53 },
+      { name: '인천', lat: 37.54, lng: 126.38, kind: 'metro', color: '#66B9FF', radius: 26000 },
+      { name: '서울', lat: 37.66, lng: 127.02, kind: 'metro', color: '#F3C567', radius: 22000 },
+      { name: '경기도', lat: 37.28, lng: 127.24, kind: 'metro', color: '#8EA7FF', radius: 62000 },
+      { name: '강원도', lat: 37.88, lng: 128.35, color: '#9DD8FF', radius: 93000 },
+      { name: '충청도', lat: 36.72, lng: 127.32, color: '#84CFA9', radius: 83000 },
+      { name: '전라도', lat: 35.36, lng: 126.88, color: '#8B78D8', radius: 94000 },
+      { name: '경상도', lat: 35.86, lng: 128.72, color: '#F09B71', radius: 104000 },
+      { name: '제주도', lat: 33.38, lng: 126.53, color: '#61C7C9', radius: 36000 },
     ];
 
     function churchPopup(church) {
@@ -1143,13 +1144,24 @@
       map.createPane('regionLabels');
       map.getPane('regionLabels').style.zIndex = 350;
       map.getPane('regionLabels').style.pointerEvents = 'none';
+      map.createPane('regionFills');
+      map.getPane('regionFills').style.zIndex = 320;
+      map.getPane('regionFills').style.pointerEvents = 'none';
 
       const bounds = [];
 
       regionLabels.forEach((region) => {
+        L.circle([region.lat, region.lng], {
+          pane: 'regionFills',
+          radius: region.radius,
+          stroke: false,
+          fillColor: region.color,
+          fillOpacity: region.kind ? 0.18 : 0.14,
+        }).addTo(map);
+
         const labelIcon = L.divIcon({
           className: `region-label-marker${region.kind ? ` ${region.kind}` : ''}`,
-          html: `<span>${region.name}</span>`,
+          html: `<span style="--region-color:${region.color};">${region.name}</span>`,
           iconSize: null,
         });
 

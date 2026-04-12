@@ -213,6 +213,17 @@
       gap: 6px;
       margin-bottom: 16px;
     }
+    .photo-slot.has-image {
+      display: block;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .photo-slot.has-image img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
     .church-card-compact .photo-slot iconify-icon {
       font-size: 24px !important;
     }
@@ -800,10 +811,8 @@
 
         <div class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-5">
           <article class="bezel-card church-card-compact reveal">
-            <div class="photo-slot">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
-              <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
-              <div class="text-sm text-cream-muted">1번 꿈을심는교회</div>
+            <div class="photo-slot has-image">
+              <img src="dream-church-photo.jpeg" alt="꿈을심는교회 사진" style="object-position:center 34%;" />
             </div>
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
               지도 번호 1 · 서울 송파구
@@ -817,10 +826,8 @@
           </article>
 
           <article class="bezel-card church-card-compact reveal reveal-delay-1">
-            <div class="photo-slot">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
-              <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
-              <div class="text-sm text-cream-muted">2번 강서침례교회</div>
+            <div class="photo-slot has-image">
+              <img src="church-thumb.png" alt="강서침례교회 썸네일" />
             </div>
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
               지도 번호 2 · 서울 강서구
@@ -834,10 +841,8 @@
           </article>
 
           <article class="bezel-card church-card-compact reveal reveal-delay-1">
-            <div class="photo-slot">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
-              <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
-              <div class="text-sm text-cream-muted">3번 인천주안의교회</div>
+            <div class="photo-slot has-image">
+              <img src="church-thumb.png" alt="인천주안의교회 썸네일" />
             </div>
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(124,92,191,0.12); border: 1px solid rgba(124,92,191,0.2); color:#CDBEFF;">
               지도 번호 3 · 인천 미추홀구
@@ -851,10 +856,8 @@
           </article>
 
           <article class="bezel-card church-card-compact reveal reveal-delay-2">
-            <div class="photo-slot">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
-              <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
-              <div class="text-sm text-cream-muted">4번 연산성서침례교회</div>
+            <div class="photo-slot has-image">
+              <img src="church-thumb.png" alt="연산성서침례교회 썸네일" />
             </div>
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
               지도 번호 4 · 부산 연제구
@@ -868,10 +871,8 @@
           </article>
 
           <article class="bezel-card church-card-compact reveal reveal-delay-2">
-            <div class="photo-slot">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
-              <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
-              <div class="text-sm text-cream-muted">5번 서울성서침례교회</div>
+            <div class="photo-slot has-image">
+              <img src="church-thumb.png" alt="서울성서침례교회 썸네일" />
             </div>
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
               지도 번호 5 · 서울 영등포구
@@ -885,10 +886,8 @@
           </article>
 
           <article class="bezel-card church-card-compact reveal">
-            <div class="photo-slot">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
-              <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
-              <div class="text-sm text-cream-muted">6번 인천열린성서침례교회</div>
+            <div class="photo-slot has-image">
+              <img src="church-thumb.png" alt="인천열린성서침례교회 썸네일" />
             </div>
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(124,92,191,0.12); border: 1px solid rgba(124,92,191,0.2); color:#CDBEFF;">
               지도 번호 6 · 인천 남동구
@@ -902,10 +901,8 @@
           </article>
 
           <article class="bezel-card church-card-compact reveal reveal-delay-1">
-            <div class="photo-slot">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
-              <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
-              <div class="text-sm text-cream-muted">7번 한소망성서침례교회</div>
+            <div class="photo-slot has-image">
+              <img src="church-thumb.png" alt="한소망성서침례교회 썸네일" />
             </div>
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
               지도 번호 7 · 경기 성남시 분당구
@@ -919,10 +916,8 @@
           </article>
 
           <article class="bezel-card church-card-compact reveal reveal-delay-1">
-            <div class="photo-slot">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
-              <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
-              <div class="text-sm text-cream-muted">8번 새사람교회</div>
+            <div class="photo-slot has-image">
+              <img src="church-thumb.png" alt="새사람교회 썸네일" />
             </div>
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(124,92,191,0.12); border: 1px solid rgba(124,92,191,0.2); color:#CDBEFF;">
               지도 번호 8 · 충북 옥천군
@@ -936,10 +931,8 @@
           </article>
 
           <article class="bezel-card church-card-compact reveal reveal-delay-2">
-            <div class="photo-slot">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
-              <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
-              <div class="text-sm text-cream-muted">9번 종암성서침례교회</div>
+            <div class="photo-slot has-image">
+              <img src="church-thumb.png" alt="종암성서침례교회 썸네일" />
             </div>
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
               지도 번호 9 · 서울 성북구
@@ -953,10 +946,8 @@
           </article>
 
           <article class="bezel-card church-card-compact reveal reveal-delay-2">
-            <div class="photo-slot">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
-              <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
-              <div class="text-sm text-cream-muted">10번 비전성서침례교회</div>
+            <div class="photo-slot has-image">
+              <img src="church-thumb.png" alt="비전성서침례교회 썸네일" />
             </div>
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
               지도 번호 10 · 서울 구로구
@@ -970,10 +961,8 @@
           </article>
 
           <article class="bezel-card church-card-compact reveal">
-            <div class="photo-slot">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
-              <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
-              <div class="text-sm text-cream-muted">11번 서서울성서침례교회</div>
+            <div class="photo-slot has-image">
+              <img src="church-thumb.png" alt="서서울성서침례교회 썸네일" />
             </div>
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
               지도 번호 11 · 서울 구로구
@@ -987,10 +976,8 @@
           </article>
 
           <article class="bezel-card church-card-compact reveal reveal-delay-1">
-            <div class="photo-slot">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
-              <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
-              <div class="text-sm text-cream-muted">12번 방학성서침례교회</div>
+            <div class="photo-slot has-image">
+              <img src="church-thumb.png" alt="방학성서침례교회 썸네일" />
             </div>
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
               지도 번호 12 · 서울 도봉구
@@ -1004,10 +991,8 @@
           </article>
 
           <article class="bezel-card church-card-compact reveal reveal-delay-1">
-            <div class="photo-slot">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
-              <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
-              <div class="text-sm text-cream-muted">13번 주사랑침례교회</div>
+            <div class="photo-slot has-image">
+              <img src="church-thumb.png" alt="주사랑침례교회 썸네일" />
             </div>
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
               지도 번호 13 · 경기 고양시 일산
@@ -1021,10 +1006,8 @@
           </article>
 
           <article class="bezel-card church-card-compact reveal reveal-delay-2">
-            <div class="photo-slot">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
-              <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
-              <div class="text-sm text-cream-muted">14번 정다운성서침례교회</div>
+            <div class="photo-slot has-image">
+              <img src="church-thumb.png" alt="정다운성서침례교회 썸네일" />
             </div>
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
               지도 번호 14 · 경기 시흥시

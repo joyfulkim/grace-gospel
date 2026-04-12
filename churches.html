@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>은혜의 문 — 교회추천</title>
+  <meta name="description" content="가나안 성도들을 위한 추천 교회와 지역 정보를 확인할 수 있는 페이지입니다." />
+  <link rel="icon" type="image/png" href="logo.png" />
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Pretendard Variable', 'Pretendard', 'sans-serif'] },
+          colors: {
+            midnight: '#080D1A',
+            deep: '#0D1426',
+            card: '#111827',
+            gold: { DEFAULT: '#C9A84C', light: '#E8C96B', dim: '#9A7C38' },
+            violet: { DEFAULT: '#7C5CBF', light: '#9B7DD4', dim: '#5A4190' },
+            cream: { DEFAULT: '#F8F0E3', dim: '#D4C9B8', muted: '#9A9080' },
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Pretendard Variable', Pretendard, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124,92,191,0.14), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(201,168,76,0.12), transparent 34%),
+        #080D1A;
+      color: #F8F0E3;
+      word-break: keep-all;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #080D1A; }
+    ::-webkit-scrollbar-thumb { background: #C9A84C40; border-radius: 4px; }
+    .glass-nav {
+      background: rgba(8, 13, 26, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+    }
+    .bezel-card {
+      background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      box-shadow:
+        0 0 0 1px rgba(201,168,76,0.06) inset,
+        0 28px 60px rgba(0,0,0,0.46),
+        0 8px 18px rgba(0,0,0,0.28);
+      position: relative;
+      overflow: hidden;
+    }
+    .bezel-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      border: 1px solid rgba(201,168,76,0.12);
+      pointer-events: none;
+    }
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #E8C96B 0%, #C9A84C 50%, #9A7C38 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-divider {
+      width: 72px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+      margin-bottom: 22px;
+    }
+    .nav-link {
+      color: rgba(248,240,227,0.6);
+      font-size: 1.25rem;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #C9A84C;
+      transition: width 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .nav-link:hover { color: #F8F0E3; }
+    .nav-link:hover::after { width: 100%; }
+    .btn-gold {
+      background: linear-gradient(135deg, #E8C96B 0%, #C9A84C 100%);
+      color: #080D1A;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 13px 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 30px rgba(201, 168, 76, 0.3);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-gold:hover { transform: translateY(-2px); }
+    .btn-outline {
+      border: 1.5px solid rgba(201, 168, 76, 0.4);
+      color: #E8C96B;
+      font-weight: 600;
+      border-radius: 999px;
+      padding: 12px 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      backdrop-filter: blur(8px);
+    }
+    .btn-outline:hover {
+      background: rgba(201, 168, 76, 0.1);
+      border-color: rgba(201, 168, 76, 0.7);
+      transform: translateY(-2px);
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.35s; }
+    .map-stage {
+      position: relative;
+      aspect-ratio: 16 / 11;
+      border-radius: 28px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(124,92,191,0.08), transparent 26%),
+        radial-gradient(circle at 80% 70%, rgba(201,168,76,0.08), transparent 26%),
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .map-marker {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #080D1A;
+      background: linear-gradient(135deg, #E8C96B 0%, #C9A84C 100%);
+      box-shadow: 0 8px 18px rgba(201,168,76,0.3);
+      border: 2px solid rgba(8,13,26,0.32);
+      transform: translate(-50%, -50%);
+    }
+    .map-label {
+      position: absolute;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 0.73rem;
+      color: #F8F0E3;
+      background: rgba(8,13,26,0.72);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      white-space: nowrap;
+      transform: translate(10px, -50%);
+    }
+    .photo-slot {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      border-radius: 22px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(201,168,76,0.18), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(124,92,191,0.16), transparent 35%),
+        rgba(255,255,255,0.04);
+      border: 1px dashed rgba(201,168,76,0.24);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-align: center;
+      color: #D4C9B8;
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5">
+        <img src="logo.png" alt="은혜의 문 로고" class="w-8 h-8 object-contain" />
+        <span class="font-bold tracking-tight text-gold-gradient" style="font-size:20px;">은혜의 문</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-7">
+        <a href="index.html#gospel" class="nav-link">복음</a>
+        <a href="scripture.html" class="nav-link">말씀</a>
+        <a href="churches.html" class="nav-link" style="color:#F8F0E3;">교회추천</a>
+        <a href="index.html#counsel" class="nav-link">상담</a>
+        <a href="index.html#pray" class="nav-link">기도 요청</a>
+        <a href="index.html#counsel" class="btn-gold text-sm">
+          <iconify-icon icon="solar:chat-round-dots-bold"></iconify-icon>
+          상담 연결하기
+        </a>
+      </div>
+
+      <button id="menuBtn" class="md:hidden text-cream-dim p-2">
+        <iconify-icon icon="solar:hamburger-menu-bold" style="font-size:22px;"></iconify-icon>
+      </button>
+    </div>
+
+    <div id="mobileMenu" class="hidden md:hidden px-6 pb-6 flex flex-col gap-4">
+      <a href="index.html#gospel" class="nav-link py-1" onclick="closeMobile()">복음</a>
+      <a href="scripture.html" class="nav-link py-1" onclick="closeMobile()">말씀</a>
+      <a href="churches.html" class="nav-link py-1" onclick="closeMobile()">교회추천</a>
+      <a href="index.html#counsel" class="nav-link py-1" onclick="closeMobile()">상담</a>
+      <a href="index.html#pray" class="nav-link py-1" onclick="closeMobile()">기도 요청</a>
+      <a href="index.html#counsel" class="btn-gold text-sm self-start mt-2" onclick="closeMobile()">
+        <iconify-icon icon="solar:chat-round-dots-bold"></iconify-icon>
+        상담 연결하기
+      </a>
+    </div>
+  </nav>
+
+  <main class="pt-28 pb-20 relative overflow-hidden">
+    <div class="orb w-[520px] h-[520px] top-[-140px] left-[-120px]" style="background: radial-gradient(circle, rgba(124,92,191,0.15) 0%, transparent 72%);"></div>
+    <div class="orb w-[420px] h-[420px] top-[18%] right-[-100px]" style="background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 72%);"></div>
+
+    <section class="px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="reveal text-center mb-14">
+          <div class="section-divider mx-auto"></div>
+          <span class="text-gold text-sm font-semibold tracking-widest uppercase mb-4 block">교회추천</span>
+          <h1 class="text-4xl md:text-6xl font-black leading-tight mb-6" style="letter-spacing: -0.03em;">
+            다시 연결될 수 있는<br />
+            <span class="text-gold-gradient">교회를 찾고 계신가요?</span>
+          </h1>
+          <p class="text-cream-dim text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-8">
+            상처 때문에 공동체를 멀리하게 되었어도, 하나님이 준비하신 좋은 교회를 다시 만나는 일은 여전히 소중합니다.
+            아래 지도와 추천 교회 정보를 통해, 다시 예배와 말씀의 자리로 걸어갈 수 있는 첫 걸음을 찾아보세요.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#korea-map" class="btn-gold">
+              <iconify-icon icon="solar:map-arrow-square-bold"></iconify-icon>
+              지도에서 보기
+            </a>
+            <a href="#church-list" class="btn-outline">
+              <iconify-icon icon="solar:buildings-3-bold"></iconify-icon>
+              교회 정보 보기
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="korea-map" class="px-6 pt-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="bezel-card p-6 md:p-8 reveal">
+          <div class="grid xl:grid-cols-[1.2fr_0.8fr] gap-8 items-start">
+            <div>
+              <div class="mb-5">
+                <span class="text-gold text-sm font-semibold tracking-widest uppercase mb-3 block">대한민국 지도</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-3" style="letter-spacing: -0.02em;">추천 교회 위치</h2>
+                <p class="text-cream-dim leading-relaxed">
+                  서울, 인천, 부산에 있는 추천 교회를 지도 위에 먼저 표시했습니다.
+                  이후 교회를 더 추가하면 이 지도도 같은 방식으로 확장할 수 있습니다.
+                </p>
+              </div>
+
+              <div class="map-stage">
+                <svg viewBox="0 0 520 680" class="w-full h-full" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="koreaFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="rgba(232,201,107,0.24)" />
+                      <stop offset="55%" stop-color="rgba(124,92,191,0.16)" />
+                      <stop offset="100%" stop-color="rgba(255,255,255,0.07)" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M282 45C316 55 351 88 360 124C369 158 390 191 389 234C388 266 366 292 375 327C383 359 397 385 394 422C390 476 346 507 323 545C305 575 307 613 288 645C272 672 246 690 216 688C182 686 154 666 144 634C133 599 144 566 138 536C130 502 92 483 78 448C63 412 72 374 87 339C100 309 89 279 98 246C107 213 131 193 151 167C176 136 180 97 207 72C229 52 255 38 282 45Z" fill="url(#koreaFill)" stroke="rgba(232,201,107,0.38)" stroke-width="2.5" stroke-linejoin="round"/>
+                  <path d="M244 352C266 359 282 377 286 405C289 431 274 458 251 472" fill="none" stroke="rgba(248,240,227,0.12)" stroke-width="1.5" stroke-linecap="round"/>
+                  <circle cx="134" cy="630" r="26" fill="rgba(232,201,107,0.14)" stroke="rgba(232,201,107,0.25)" stroke-width="2"/>
+                  <text x="134" y="637" text-anchor="middle" fill="rgba(248,240,227,0.62)" font-size="14" font-family="Pretendard Variable, Pretendard, sans-serif">제주</text>
+                </svg>
+
+                <div class="map-marker" style="left: 47%; top: 24%;">1</div>
+                <div class="map-label" style="left: 47%; top: 24%;">서울 송파</div>
+
+                <div class="map-marker" style="left: 40%; top: 24.5%;">2</div>
+                <div class="map-label" style="left: 40%; top: 24.5%;">서울 강서</div>
+
+                <div class="map-marker" style="left: 34%; top: 26.5%;">3</div>
+                <div class="map-label" style="left: 34%; top: 26.5%;">인천 미추홀</div>
+
+                <div class="map-marker" style="left: 72%; top: 69%;">4</div>
+                <div class="map-label" style="left: 72%; top: 69%;">부산 연제</div>
+
+                <div class="map-marker" style="left: 43.5%; top: 27.2%;">5</div>
+                <div class="map-label" style="left: 43.5%; top: 27.2%;">서울 영등포</div>
+              </div>
+            </div>
+
+            <div class="space-y-3 pt-2">
+              <div class="rounded-2xl px-4 py-4 text-sm text-cream-muted" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+                지도 번호와 아래 카드 번호가 연결됩니다.
+              </div>
+              <div class="rounded-2xl px-4 py-4" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+                <div class="flex items-start gap-3">
+                  <div class="map-marker" style="position: static; transform: none; width: 26px; height: 26px; flex-shrink: 0;">1</div>
+                  <div>
+                    <div class="text-sm font-semibold text-cream-DEFAULT">꿈을심는교회</div>
+                    <div class="text-xs text-cream-muted mt-1">서울 송파구</div>
+                  </div>
+                </div>
+              </div>
+              <div class="rounded-2xl px-4 py-4" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+                <div class="flex items-start gap-3">
+                  <div class="map-marker" style="position: static; transform: none; width: 26px; height: 26px; flex-shrink: 0;">2</div>
+                  <div>
+                    <div class="text-sm font-semibold text-cream-DEFAULT">강서침례교회</div>
+                    <div class="text-xs text-cream-muted mt-1">서울 강서구</div>
+                  </div>
+                </div>
+              </div>
+              <div class="rounded-2xl px-4 py-4" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+                <div class="flex items-start gap-3">
+                  <div class="map-marker" style="position: static; transform: none; width: 26px; height: 26px; flex-shrink: 0;">3</div>
+                  <div>
+                    <div class="text-sm font-semibold text-cream-DEFAULT">인천주안의교회</div>
+                    <div class="text-xs text-cream-muted mt-1">인천 미추홀구</div>
+                  </div>
+                </div>
+              </div>
+              <div class="rounded-2xl px-4 py-4" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+                <div class="flex items-start gap-3">
+                  <div class="map-marker" style="position: static; transform: none; width: 26px; height: 26px; flex-shrink: 0;">4</div>
+                  <div>
+                    <div class="text-sm font-semibold text-cream-DEFAULT">연산성서침례교회</div>
+                    <div class="text-xs text-cream-muted mt-1">부산 연제구</div>
+                  </div>
+                </div>
+              </div>
+              <div class="rounded-2xl px-4 py-4" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+                <div class="flex items-start gap-3">
+                  <div class="map-marker" style="position: static; transform: none; width: 26px; height: 26px; flex-shrink: 0;">5</div>
+                  <div>
+                    <div class="text-sm font-semibold text-cream-DEFAULT">서울성서침례교회</div>
+                    <div class="text-xs text-cream-muted mt-1">서울 영등포구</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="church-list" class="px-6 pt-20">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-14 reveal">
+          <span class="text-gold text-sm font-semibold tracking-widest uppercase mb-4 block">추천 교회</span>
+          <h2 class="text-3xl md:text-4xl font-bold" style="letter-spacing: -0.02em;">교회 사진과 정보</h2>
+          <p class="text-cream-dim mt-4 max-w-2xl mx-auto">
+            사진은 나중에 바로 교체할 수 있도록 자리만 먼저 만들어두고, 현재는 교회 기본 정보를 우선 정리했습니다.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-7">
+          <article class="bezel-card p-6 reveal">
+            <div class="photo-slot mb-6">
+              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B; font-size:30px;"></iconify-icon>
+              <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
+              <div class="text-sm text-cream-muted">1번 꿈을심는교회</div>
+            </div>
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
+              지도 번호 1 · 서울 송파구
+            </div>
+            <h3 class="text-2xl font-bold mb-2">꿈을심는교회</h3>
+            <p class="text-cream-muted mb-5">담임목사 김명순</p>
+            <div class="space-y-3 text-sm text-cream-dim">
+              <div><strong class="text-cream-DEFAULT">교회전화</strong> 02) 2043-0191</div>
+              <div><strong class="text-cream-DEFAULT">교회주소</strong> 서울시 송파구 새말로8길 26, 2층 (문정동)</div>
+            </div>
+          </article>
+
+          <article class="bezel-card p-6 reveal reveal-delay-1">
+            <div class="photo-slot mb-6">
+              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B; font-size:30px;"></iconify-icon>
+              <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
+              <div class="text-sm text-cream-muted">2번 강서침례교회</div>
+            </div>
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
+              지도 번호 2 · 서울 강서구
+            </div>
+            <h3 class="text-2xl font-bold mb-2">강서침례교회</h3>
+            <p class="text-cream-muted mb-5">담임목사 김경석</p>
+            <div class="space-y-3 text-sm text-cream-dim">
+              <div><strong class="text-cream-DEFAULT">교회전화</strong> 02) 2694-9191</div>
+              <div><strong class="text-cream-DEFAULT">교회주소</strong> 서울특별시 강서구 가로수공원로 88길 7-12 (화곡동)</div>
+            </div>
+          </article>
+
+          <article class="bezel-card p-6 reveal reveal-delay-1">
+            <div class="photo-slot mb-6">
+              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B; font-size:30px;"></iconify-icon>
+              <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
+              <div class="text-sm text-cream-muted">3번 인천주안의교회</div>
+            </div>
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(124,92,191,0.12); border: 1px solid rgba(124,92,191,0.2); color:#CDBEFF;">
+              지도 번호 3 · 인천 미추홀구
+            </div>
+            <h3 class="text-2xl font-bold mb-2">인천주안의교회</h3>
+            <p class="text-cream-muted mb-5">담임목사 이상돈</p>
+            <div class="space-y-3 text-sm text-cream-dim">
+              <div><strong class="text-cream-DEFAULT">교회전화</strong> 032) 439-2565</div>
+              <div><strong class="text-cream-DEFAULT">교회주소</strong> 인천광역시 미추홀구 토금중로 51번길 7</div>
+            </div>
+          </article>
+
+          <article class="bezel-card p-6 reveal reveal-delay-2">
+            <div class="photo-slot mb-6">
+              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B; font-size:30px;"></iconify-icon>
+              <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
+              <div class="text-sm text-cream-muted">4번 연산성서침례교회</div>
+            </div>
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
+              지도 번호 4 · 부산 연제구
+            </div>
+            <h3 class="text-2xl font-bold mb-2">연산성서침례교회</h3>
+            <p class="text-cream-muted mb-5">담임목사 유봉호</p>
+            <div class="space-y-3 text-sm text-cream-dim">
+              <div><strong class="text-cream-DEFAULT">교회전화</strong> 051) 863-8060</div>
+              <div><strong class="text-cream-DEFAULT">교회주소</strong> 부산광역시 연제구 과정로 283번가길 10 (연산동)</div>
+            </div>
+          </article>
+
+          <article class="bezel-card p-6 reveal reveal-delay-2 lg:col-span-2">
+            <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-6 items-start">
+              <div class="photo-slot">
+                <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B; font-size:32px;"></iconify-icon>
+                <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
+                <div class="text-sm text-cream-muted">5번 서울성서침례교회</div>
+              </div>
+              <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
+                  지도 번호 5 · 서울 영등포구
+                </div>
+                <h3 class="text-2xl font-bold mb-2">서울성서침례교회</h3>
+                <p class="text-cream-muted mb-5">담임목사 이승록</p>
+                <div class="space-y-3 text-sm text-cream-dim">
+                  <div><strong class="text-cream-DEFAULT">교회전화</strong> 02) 833-0183</div>
+                  <div><strong class="text-cream-DEFAULT">교회주소</strong> 서울시 영등포구 신풍로 62 (신길동)</div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white border-opacity-5 py-12 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-cream-muted">
+      <div class="flex items-center gap-2.5">
+        <img src="logo.png" alt="은혜의 문 로고" class="w-7 h-7 object-contain" />
+        <span class="font-bold text-gold-gradient" style="font-size:18px;">은혜의 문</span>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-5">
+        <a href="index.html" class="hover:text-cream-DEFAULT transition-colors">메인 페이지</a>
+        <a href="scripture.html" class="hover:text-cream-DEFAULT transition-colors">말씀</a>
+        <a href="index.html#counsel" class="hover:text-cream-DEFAULT transition-colors">상담</a>
+      </div>
+      <div class="text-xs text-cream-muted">© 2026 조이플 미션. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    function closeMobile() {
+      mobileMenu.classList.add('hidden');
+    }
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+</html>

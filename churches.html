@@ -204,6 +204,26 @@
       text-align: center;
       color: #D4C9B8;
     }
+    .church-card-compact {
+      padding: 18px;
+    }
+    .church-card-compact .photo-slot {
+      aspect-ratio: 16 / 8;
+      border-radius: 18px;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .church-card-compact .photo-slot iconify-icon {
+      font-size: 24px !important;
+    }
+    .church-card-compact .photo-slot .text-base {
+      font-size: 0.92rem;
+    }
+    .church-card-compact h3 {
+      font-size: 1.22rem;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+    }
     .korea-board {
       position: relative;
       padding: clamp(22px, 3vw, 34px);
@@ -778,182 +798,174 @@
           </p>
         </div>
 
-        <div class="grid lg:grid-cols-2 gap-7">
-          <article class="bezel-card p-6 reveal">
-            <div class="photo-slot mb-6">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B; font-size:30px;"></iconify-icon>
+        <div class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-5">
+          <article class="bezel-card church-card-compact reveal">
+            <div class="photo-slot">
+              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
               <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
               <div class="text-sm text-cream-muted">1번 꿈을심는교회</div>
             </div>
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
               지도 번호 1 · 서울 송파구
             </div>
-            <h3 class="text-2xl font-bold mb-2">1. 꿈을심는교회</h3>
-            <p class="text-cream-muted mb-5">담임목사 김명순</p>
-            <div class="space-y-3 text-sm text-cream-dim">
+            <h3 class="font-bold mb-1">1. 꿈을심는교회</h3>
+            <p class="text-cream-muted text-sm mb-3">담임목사 김명순</p>
+            <div class="space-y-2 text-sm text-cream-dim">
               <div><strong class="text-cream-DEFAULT">교회전화</strong> 02) 2043-0191</div>
               <div><strong class="text-cream-DEFAULT">교회주소</strong> 서울시 송파구 새말로8길 26, 2층 (문정동)</div>
             </div>
           </article>
 
-          <article class="bezel-card p-6 reveal reveal-delay-1">
-            <div class="photo-slot mb-6">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B; font-size:30px;"></iconify-icon>
+          <article class="bezel-card church-card-compact reveal reveal-delay-1">
+            <div class="photo-slot">
+              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
               <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
               <div class="text-sm text-cream-muted">2번 강서침례교회</div>
             </div>
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
               지도 번호 2 · 서울 강서구
             </div>
-            <h3 class="text-2xl font-bold mb-2">2. 강서침례교회</h3>
-            <p class="text-cream-muted mb-5">담임목사 김경석</p>
-            <div class="space-y-3 text-sm text-cream-dim">
+            <h3 class="font-bold mb-1">2. 강서침례교회</h3>
+            <p class="text-cream-muted text-sm mb-3">담임목사 김경석</p>
+            <div class="space-y-2 text-sm text-cream-dim">
               <div><strong class="text-cream-DEFAULT">교회전화</strong> 02) 2694-9191</div>
               <div><strong class="text-cream-DEFAULT">교회주소</strong> 서울특별시 강서구 가로수공원로 88길 7-12 (화곡동)</div>
             </div>
           </article>
 
-          <article class="bezel-card p-6 reveal reveal-delay-1">
-            <div class="photo-slot mb-6">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B; font-size:30px;"></iconify-icon>
+          <article class="bezel-card church-card-compact reveal reveal-delay-1">
+            <div class="photo-slot">
+              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
               <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
               <div class="text-sm text-cream-muted">3번 인천주안의교회</div>
             </div>
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(124,92,191,0.12); border: 1px solid rgba(124,92,191,0.2); color:#CDBEFF;">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(124,92,191,0.12); border: 1px solid rgba(124,92,191,0.2); color:#CDBEFF;">
               지도 번호 3 · 인천 미추홀구
             </div>
-            <h3 class="text-2xl font-bold mb-2">3. 인천주안의교회</h3>
-            <p class="text-cream-muted mb-5">담임목사 이상돈</p>
-            <div class="space-y-3 text-sm text-cream-dim">
+            <h3 class="font-bold mb-1">3. 인천주안의교회</h3>
+            <p class="text-cream-muted text-sm mb-3">담임목사 이상돈</p>
+            <div class="space-y-2 text-sm text-cream-dim">
               <div><strong class="text-cream-DEFAULT">교회전화</strong> 032) 439-2565</div>
               <div><strong class="text-cream-DEFAULT">교회주소</strong> 인천광역시 미추홀구 토금중로 51번길 7</div>
             </div>
           </article>
 
-          <article class="bezel-card p-6 reveal reveal-delay-2">
-            <div class="photo-slot mb-6">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B; font-size:30px;"></iconify-icon>
+          <article class="bezel-card church-card-compact reveal reveal-delay-2">
+            <div class="photo-slot">
+              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
               <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
               <div class="text-sm text-cream-muted">4번 연산성서침례교회</div>
             </div>
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
               지도 번호 4 · 부산 연제구
             </div>
-            <h3 class="text-2xl font-bold mb-2">4. 연산성서침례교회</h3>
-            <p class="text-cream-muted mb-5">담임목사 유봉호</p>
-            <div class="space-y-3 text-sm text-cream-dim">
+            <h3 class="font-bold mb-1">4. 연산성서침례교회</h3>
+            <p class="text-cream-muted text-sm mb-3">담임목사 유봉호</p>
+            <div class="space-y-2 text-sm text-cream-dim">
               <div><strong class="text-cream-DEFAULT">교회전화</strong> 051) 863-8060</div>
               <div><strong class="text-cream-DEFAULT">교회주소</strong> 부산광역시 연제구 과정로 283번가길 10 (연산동)</div>
             </div>
           </article>
 
-          <article class="bezel-card p-6 reveal reveal-delay-2 lg:col-span-2">
-            <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-6 items-start">
-              <div class="photo-slot">
-                <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B; font-size:32px;"></iconify-icon>
-                <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
-                <div class="text-sm text-cream-muted">5번 서울성서침례교회</div>
-              </div>
-              <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
-                  지도 번호 5 · 서울 영등포구
-                </div>
-                <h3 class="text-2xl font-bold mb-2">5. 서울성서침례교회</h3>
-                <p class="text-cream-muted mb-5">담임목사 이승록</p>
-                <div class="space-y-3 text-sm text-cream-dim">
-                  <div><strong class="text-cream-DEFAULT">교회전화</strong> 02) 833-0183</div>
-                  <div><strong class="text-cream-DEFAULT">교회주소</strong> 서울시 영등포구 신풍로 62 (신길동)</div>
-                </div>
-              </div>
+          <article class="bezel-card church-card-compact reveal reveal-delay-2">
+            <div class="photo-slot">
+              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
+              <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
+              <div class="text-sm text-cream-muted">5번 서울성서침례교회</div>
+            </div>
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
+              지도 번호 5 · 서울 영등포구
+            </div>
+            <h3 class="font-bold mb-1">5. 서울성서침례교회</h3>
+            <p class="text-cream-muted text-sm mb-3">담임목사 이승록</p>
+            <div class="space-y-2 text-sm text-cream-dim">
+              <div><strong class="text-cream-DEFAULT">교회전화</strong> 02) 833-0183</div>
+              <div><strong class="text-cream-DEFAULT">교회주소</strong> 서울시 영등포구 신풍로 62 (신길동)</div>
             </div>
           </article>
 
-          <article class="bezel-card p-6 reveal">
-            <div class="photo-slot mb-6">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B; font-size:30px;"></iconify-icon>
+          <article class="bezel-card church-card-compact reveal">
+            <div class="photo-slot">
+              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
               <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
               <div class="text-sm text-cream-muted">6번 인천열린성서침례교회</div>
             </div>
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(124,92,191,0.12); border: 1px solid rgba(124,92,191,0.2); color:#CDBEFF;">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(124,92,191,0.12); border: 1px solid rgba(124,92,191,0.2); color:#CDBEFF;">
               지도 번호 6 · 인천 남동구
             </div>
-            <h3 class="text-2xl font-bold mb-2">6. 인천열린성서침례교회</h3>
-            <p class="text-cream-muted mb-5">담임목사 정민철</p>
-            <div class="space-y-3 text-sm text-cream-dim">
+            <h3 class="font-bold mb-1">6. 인천열린성서침례교회</h3>
+            <p class="text-cream-muted text-sm mb-3">담임목사 정민철</p>
+            <div class="space-y-2 text-sm text-cream-dim">
               <div><strong class="text-cream-DEFAULT">교회전화</strong> 032) 466-9182</div>
               <div><strong class="text-cream-DEFAULT">교회주소</strong> 인천광역시 남동구 담방로 29번길 광명 아파트 상가 4층 (만수동)</div>
             </div>
           </article>
 
-          <article class="bezel-card p-6 reveal reveal-delay-1">
-            <div class="photo-slot mb-6">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B; font-size:30px;"></iconify-icon>
+          <article class="bezel-card church-card-compact reveal reveal-delay-1">
+            <div class="photo-slot">
+              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
               <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
               <div class="text-sm text-cream-muted">7번 한소망성서침례교회</div>
             </div>
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
               지도 번호 7 · 경기 성남시 분당구
             </div>
-            <h3 class="text-2xl font-bold mb-2">7. 한소망성서침례교회</h3>
-            <p class="text-cream-muted mb-5">담임목사 신현섭</p>
-            <div class="space-y-3 text-sm text-cream-dim">
+            <h3 class="font-bold mb-1">7. 한소망성서침례교회</h3>
+            <p class="text-cream-muted text-sm mb-3">담임목사 신현섭</p>
+            <div class="space-y-2 text-sm text-cream-dim">
               <div><strong class="text-cream-DEFAULT">교회전화</strong> 031) 708-0191</div>
               <div><strong class="text-cream-DEFAULT">교회주소</strong> 경기도 성남시 분당구 야탑로 231번길 45 상가동 B1</div>
             </div>
           </article>
 
-          <article class="bezel-card p-6 reveal reveal-delay-1">
-            <div class="photo-slot mb-6">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B; font-size:30px;"></iconify-icon>
+          <article class="bezel-card church-card-compact reveal reveal-delay-1">
+            <div class="photo-slot">
+              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
               <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
               <div class="text-sm text-cream-muted">8번 새사람교회</div>
             </div>
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(124,92,191,0.12); border: 1px solid rgba(124,92,191,0.2); color:#CDBEFF;">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(124,92,191,0.12); border: 1px solid rgba(124,92,191,0.2); color:#CDBEFF;">
               지도 번호 8 · 충북 옥천군
             </div>
-            <h3 class="text-2xl font-bold mb-2">8. 새사람교회</h3>
-            <p class="text-cream-muted mb-5">담임목사 전재삼</p>
-            <div class="space-y-3 text-sm text-cream-dim">
+            <h3 class="font-bold mb-1">8. 새사람교회</h3>
+            <p class="text-cream-muted text-sm mb-3">담임목사 전재삼</p>
+            <div class="space-y-2 text-sm text-cream-dim">
               <div><strong class="text-cream-DEFAULT">교회전화</strong> 043) 733-1991</div>
               <div><strong class="text-cream-DEFAULT">교회주소</strong> 충청북도 옥천군 군북면 비야대정로 282-18 (증약리)</div>
             </div>
           </article>
 
-          <article class="bezel-card p-6 reveal reveal-delay-2">
-            <div class="photo-slot mb-6">
-              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B; font-size:30px;"></iconify-icon>
+          <article class="bezel-card church-card-compact reveal reveal-delay-2">
+            <div class="photo-slot">
+              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
               <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
               <div class="text-sm text-cream-muted">9번 종암성서침례교회</div>
             </div>
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
               지도 번호 9 · 서울 성북구
             </div>
-            <h3 class="text-2xl font-bold mb-2">9. 종암성서침례교회</h3>
-            <p class="text-cream-muted mb-5">담임목사 정지원</p>
-            <div class="space-y-3 text-sm text-cream-dim">
+            <h3 class="font-bold mb-1">9. 종암성서침례교회</h3>
+            <p class="text-cream-muted text-sm mb-3">담임목사 정지원</p>
+            <div class="space-y-2 text-sm text-cream-dim">
               <div><strong class="text-cream-DEFAULT">교회전화</strong> 02) 912-9063</div>
               <div><strong class="text-cream-DEFAULT">교회주소</strong> 서울특별시 성북구 회기로 3길 12 (종암동)</div>
             </div>
           </article>
 
-          <article class="bezel-card p-6 reveal reveal-delay-2 lg:col-span-2">
-            <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-6 items-start">
-              <div class="photo-slot">
-                <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B; font-size:32px;"></iconify-icon>
-                <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
-                <div class="text-sm text-cream-muted">10번 비전성서침례교회</div>
-              </div>
-              <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
-                  지도 번호 10 · 서울 구로구
-                </div>
-                <h3 class="text-2xl font-bold mb-2">10. 비전성서침례교회</h3>
-                <p class="text-cream-muted mb-5">담임목사 이정삼</p>
-                <div class="space-y-3 text-sm text-cream-dim">
-                  <div><strong class="text-cream-DEFAULT">교회전화</strong> 02) 849-0191</div>
-                  <div><strong class="text-cream-DEFAULT">교회주소</strong> 서울특별시 구로구 구일로 110 해원리버파크 401호 (구로동)</div>
-                </div>
-              </div>
+          <article class="bezel-card church-card-compact reveal reveal-delay-2">
+            <div class="photo-slot">
+              <iconify-icon icon="solar:buildings-2-bold" style="color:#E8C96B;"></iconify-icon>
+              <div class="text-base font-semibold text-cream-DEFAULT">교회 사진 추가 예정</div>
+              <div class="text-sm text-cream-muted">10번 비전성서침례교회</div>
+            </div>
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-3" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
+              지도 번호 10 · 서울 구로구
+            </div>
+            <h3 class="font-bold mb-1">10. 비전성서침례교회</h3>
+            <p class="text-cream-muted text-sm mb-3">담임목사 이정삼</p>
+            <div class="space-y-2 text-sm text-cream-dim">
+              <div><strong class="text-cream-DEFAULT">교회전화</strong> 02) 849-0191</div>
+              <div><strong class="text-cream-DEFAULT">교회주소</strong> 서울특별시 구로구 구일로 110 해원리버파크 401호 (구로동)</div>
             </div>
           </article>
         </div>

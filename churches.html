@@ -9,6 +9,7 @@
 
   <link rel="preconnect" href="https://cdn.jsdelivr.net" />
   <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
 
@@ -493,6 +494,177 @@
       font-size: 0.88rem;
       line-height: 1.55;
     }
+    .church-map-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(290px, 0.75fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+    .church-live-map {
+      position: relative;
+      min-height: 560px;
+      height: min(72vh, 720px);
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        radial-gradient(circle at top left, rgba(124,92,191,0.1), transparent 24%),
+        rgba(255,255,255,0.04);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.05),
+        0 20px 40px rgba(0,0,0,0.24);
+    }
+    .map-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      background: rgba(8,13,26,0.82);
+      color: #F8F0E3;
+      z-index: 2;
+    }
+    .map-fallback.hidden {
+      display: none;
+    }
+    .map-aside {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .map-note-card,
+    .map-church-button {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      backdrop-filter: blur(12px);
+    }
+    .map-note-card {
+      padding: 18px 20px;
+    }
+    .map-note-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #F8F0E3;
+      margin-bottom: 8px;
+    }
+    .map-note-card p,
+    .map-note-card li {
+      color: #D4C9B8;
+      font-size: 0.94rem;
+      line-height: 1.7;
+    }
+    .map-note-card ul {
+      display: grid;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .map-church-list {
+      display: grid;
+      gap: 10px;
+    }
+    .map-church-button {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 18px;
+      text-align: left;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+    .map-church-button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(201,168,76,0.34);
+      background: rgba(201,168,76,0.08);
+    }
+    .map-church-button.is-active {
+      border-color: rgba(201,168,76,0.5);
+      background: rgba(201,168,76,0.1);
+      box-shadow: inset 0 0 0 1px rgba(201,168,76,0.12);
+    }
+    .map-church-number {
+      width: 34px;
+      height: 34px;
+      flex-shrink: 0;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #080D1A;
+      background: linear-gradient(135deg, #E8C96B 0%, #C9A84C 100%);
+      box-shadow: 0 10px 22px rgba(201,168,76,0.22);
+    }
+    .map-church-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #F8F0E3;
+      line-height: 1.45;
+      margin-bottom: 4px;
+    }
+    .map-church-meta {
+      color: #D4C9B8;
+      font-size: 0.84rem;
+      line-height: 1.6;
+    }
+    .leaflet-container {
+      font-family: 'Pretendard Variable', Pretendard, sans-serif;
+      background: #D7E2F1;
+    }
+    .leaflet-tile-pane img,
+    .leaflet-marker-icon,
+    .leaflet-marker-shadow {
+      max-width: none !important;
+    }
+    .leaflet-control-attribution {
+      font-size: 10px;
+      background: rgba(255,255,255,0.82) !important;
+    }
+    .leaflet-popup-content-wrapper,
+    .leaflet-popup-tip {
+      background: rgba(8,13,26,0.95);
+      color: #F8F0E3;
+      box-shadow: 0 16px 32px rgba(0,0,0,0.3);
+    }
+    .leaflet-popup-content {
+      margin: 14px 16px;
+      min-width: 220px;
+      line-height: 1.6;
+    }
+    .leaflet-popup-content h4 {
+      margin: 0 0 6px;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #E8C96B;
+    }
+    .leaflet-popup-content p {
+      margin: 0;
+      color: #F8F0E3;
+      font-size: 0.88rem;
+    }
+    .church-marker {
+      background: transparent;
+      border: none;
+    }
+    .church-marker > span {
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #080D1A;
+      background: linear-gradient(135deg, #E8C96B 0%, #C9A84C 100%);
+      border: 3px solid rgba(255,255,255,0.92);
+      box-shadow:
+        0 0 0 6px rgba(201,168,76,0.16),
+        0 10px 18px rgba(0,0,0,0.24);
+    }
     @media (max-width: 1279px) {
       .korea-infographic {
         min-height: auto;
@@ -528,6 +700,9 @@
       .church-callout {
         order: 2;
       }
+      .church-map-panel {
+        grid-template-columns: 1fr;
+      }
     }
     @media (max-width: 767px) {
       .korea-board {
@@ -560,6 +735,15 @@
         width: 24px;
         height: 24px;
         font-size: 0.68rem;
+      }
+      .church-live-map {
+        min-height: 430px;
+        height: 430px;
+        border-radius: 24px;
+      }
+      .map-note-card,
+      .map-church-button {
+        border-radius: 18px;
       }
     }
   </style>
@@ -635,156 +819,44 @@
     </section>
 
     <section id="korea-map" class="px-6 pt-6">
-      <div class="max-w-[1420px] mx-auto">
-        <div class="bezel-card p-3 md:p-4 xl:p-5 reveal">
-          <div class="korea-board">
-            <div class="korea-board-header">
-              <div class="korea-board-label">대한민국 지도 · 추천 교회 안내</div>
-              <h2>가운데 지도를 중심으로<br />교회 정보를 한눈에 살펴보세요</h2>
-              <p>
-                첨부해주신 레퍼런스를 참고해 대한민국 지도를 직접 다시 그렸고, 양옆의 추천 교회 목록이
-                실제 위치와 선으로 이어지도록 인포그래픽처럼 정리했습니다.
-              </p>
+      <div class="max-w-6xl mx-auto">
+        <div class="bezel-card p-6 md:p-8 reveal">
+          <div class="text-center mb-8">
+            <span class="text-gold text-sm font-semibold tracking-widest uppercase mb-4 block">실제 지도</span>
+            <h2 class="text-3xl md:text-4xl font-bold mb-3" style="letter-spacing: -0.02em;">지도에서 추천 교회를 찾아보세요</h2>
+            <p class="text-cream-dim leading-relaxed max-w-3xl mx-auto">
+              이미지 대신 실제 지도를 넣고, 현재 등록된 추천 교회들을 마커로 표시했습니다.
+              마커를 누르거나 오른쪽 교회 목록을 선택하면 교회 이름과 연락처, 주소를 바로 확인할 수 있습니다.
+            </p>
+          </div>
+
+          <div class="church-map-panel">
+            <div class="relative">
+              <div id="churchMap" class="church-live-map" aria-label="추천 교회 지도"></div>
+              <div id="churchMapFallback" class="map-fallback hidden">
+                지도를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.
+              </div>
             </div>
 
-            <div class="korea-infographic">
-              <div class="korea-map-shell">
-                <div class="korea-map-frame">
-                  <img src="korea-map-custom.png" alt="사용자가 직접 제작한 대한민국 지도" class="korea-map-image" />
-                  <div class="korea-map-badge">
-                    <strong>직접 제작한 대한민국 지도</strong>
-                    <span>보내주신 지도를 중심 비주얼로 사용해 추천 교회 위치를 다시 정리했습니다.</span>
-                  </div>
-                  <div class="korea-map-note">
-                    <strong>교회 찾기의 첫 걸음</strong>
-                    <span>번호 점과 양옆 카드가 같은 교회를 가리킵니다. 이후 교회가 더 추가되어도 같은 흐름으로 확장할 수 있습니다.</span>
-                  </div>
-                </div>
+            <aside class="map-aside">
+              <div class="map-note-card">
+                <h3>현재 표시된 추천 교회</h3>
+                <p>총 10개 교회를 지도에 표시했습니다. 일부 마커는 주소 기준의 대략적인 위치로 먼저 반영되어 있습니다.</p>
+                <ul>
+                  <li>서울 5곳</li>
+                  <li>인천 2곳</li>
+                  <li>경기 1곳</li>
+                  <li>충북 1곳</li>
+                  <li>부산 1곳</li>
+                </ul>
               </div>
 
-              <svg class="korea-connectors" viewBox="0 0 1280 820" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M 278 134 C 400 134 500 202 705 224" style="stroke:#C79A2E;" />
-                <path d="M 278 220 C 394 220 498 212 618 210" style="stroke:#5D79D7;" />
-                <path d="M 278 306 C 386 306 478 254 574 234" style="stroke:#3A9BA6;" />
-                <path d="M 278 390 C 394 390 512 304 646 232" style="stroke:#7E6BC5;" />
-                <path d="M 278 562 C 430 562 628 648 842 624" style="stroke:#D46F5B;" />
-                <path d="M 1002 134 C 904 134 806 166 676 188" style="stroke:#BC6884;" />
-                <path d="M 1002 220 C 894 220 762 208 586 210" style="stroke:#4F8FCB;" />
-                <path d="M 1002 306 C 902 306 818 294 720 266" style="stroke:#4A9C79;" />
-                <path d="M 1002 392 C 892 392 786 320 621 244" style="stroke:#D09B43;" />
-                <path d="M 1002 478 C 902 478 820 428 720 400" style="stroke:#5970A8;" />
-              </svg>
+              <div class="map-note-card">
+                <h3>지도 사용 안내</h3>
+                <p>마커를 눌러 교회 정보를 보거나, 아래 목록을 눌러 해당 교회 위치로 이동할 수 있습니다.</p>
+              </div>
 
-              <div class="korea-pin" style="left:55.1%; top:28.6%; --tone:#C79A2E;">1</div>
-              <div class="korea-pin" style="left:48.3%; top:26.2%; --tone:#5D79D7;">2</div>
-              <div class="korea-pin" style="left:44.8%; top:28.5%; --tone:#3A9BA6;">3</div>
-              <div class="korea-pin" style="left:65.8%; top:76.1%; --tone:#D46F5B;">4</div>
-              <div class="korea-pin" style="left:50.5%; top:28.3%; --tone:#7E6BC5;">5</div>
-              <div class="korea-pin" style="left:45.8%; top:26.2%; --tone:#4F8FCB;">6</div>
-              <div class="korea-pin" style="left:56.3%; top:32.4%; --tone:#4A9C79;">7</div>
-              <div class="korea-pin" style="left:56.3%; top:48.8%; --tone:#5970A8;">8</div>
-              <div class="korea-pin" style="left:52.8%; top:22.9%; --tone:#BC6884;">9</div>
-              <div class="korea-pin" style="left:48.5%; top:29.8%; --tone:#D09B43;">10</div>
-
-              <article class="church-callout left" style="top: 90px; --tone:#C79A2E;">
-                <div class="church-callout-head">
-                  <div class="church-callout-index">1</div>
-                  <div>
-                    <h3>꿈을심는교회</h3>
-                    <p>서울 송파구 · 김명순 목사</p>
-                  </div>
-                </div>
-              </article>
-
-              <article class="church-callout left" style="top: 176px; --tone:#5D79D7;">
-                <div class="church-callout-head">
-                  <div class="church-callout-index">2</div>
-                  <div>
-                    <h3>강서침례교회</h3>
-                    <p>서울 강서구 · 김경석 목사</p>
-                  </div>
-                </div>
-              </article>
-
-              <article class="church-callout left" style="top: 262px; --tone:#3A9BA6;">
-                <div class="church-callout-head">
-                  <div class="church-callout-index">3</div>
-                  <div>
-                    <h3>인천주안의교회</h3>
-                    <p>인천 미추홀구 · 이상돈 목사</p>
-                  </div>
-                </div>
-              </article>
-
-              <article class="church-callout left" style="top: 348px; --tone:#7E6BC5;">
-                <div class="church-callout-head">
-                  <div class="church-callout-index">5</div>
-                  <div>
-                    <h3>서울성서침례교회</h3>
-                    <p>서울 영등포구 · 이승록 목사</p>
-                  </div>
-                </div>
-              </article>
-
-              <article class="church-callout left" style="top: 520px; --tone:#D46F5B;">
-                <div class="church-callout-head">
-                  <div class="church-callout-index">4</div>
-                  <div>
-                    <h3>연산성서침례교회</h3>
-                    <p>부산 연제구 · 유봉호 목사</p>
-                  </div>
-                </div>
-              </article>
-
-              <article class="church-callout right" style="top: 90px; --tone:#BC6884;">
-                <div class="church-callout-head">
-                  <div class="church-callout-index">9</div>
-                  <div>
-                    <h3>종암성서침례교회</h3>
-                    <p>서울 성북구 · 정지원 목사</p>
-                  </div>
-                </div>
-              </article>
-
-              <article class="church-callout right" style="top: 176px; --tone:#4F8FCB;">
-                <div class="church-callout-head">
-                  <div class="church-callout-index">6</div>
-                  <div>
-                    <h3>인천열린성서침례교회</h3>
-                    <p>인천 남동구 · 정민철 목사</p>
-                  </div>
-                </div>
-              </article>
-
-              <article class="church-callout right" style="top: 262px; --tone:#4A9C79;">
-                <div class="church-callout-head">
-                  <div class="church-callout-index">7</div>
-                  <div>
-                    <h3>한소망성서침례교회</h3>
-                    <p>경기 성남 분당구 · 신현섭 목사</p>
-                  </div>
-                </div>
-              </article>
-
-              <article class="church-callout right" style="top: 348px; --tone:#D09B43;">
-                <div class="church-callout-head">
-                  <div class="church-callout-index">10</div>
-                  <div>
-                    <h3>비전성서침례교회</h3>
-                    <p>서울 구로구 · 이정삼 목사</p>
-                  </div>
-                </div>
-              </article>
-
-              <article class="church-callout right" style="top: 434px; --tone:#5970A8;">
-                <div class="church-callout-head">
-                  <div class="church-callout-index">8</div>
-                  <div>
-                    <h3>새사람교회</h3>
-                    <p>충북 옥천군 · 전재삼 목사</p>
-                  </div>
-                </div>
-              </article>
+              <div id="mapChurchList" class="map-church-list"></div>
             </div>
           </div>
         </div>
@@ -999,6 +1071,7 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -1018,6 +1091,197 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    const churchLocations = [
+      {
+        id: 1,
+        name: '꿈을심는교회',
+        pastor: '김명순',
+        phone: '02) 2043-0191',
+        address: '서울시 송파구 새말로8길 26, 2층 (문정동)',
+        region: '서울 송파구',
+        lat: 37.4887,
+        lng: 127.1266,
+      },
+      {
+        id: 2,
+        name: '강서침례교회',
+        pastor: '김경석',
+        phone: '02) 2694-9191',
+        address: '서울특별시 강서구 가로수공원로 88길 7-12 (화곡동)',
+        region: '서울 강서구',
+        lat: 37.5375,
+        lng: 126.8416,
+      },
+      {
+        id: 3,
+        name: '인천주안의교회',
+        pastor: '이상돈',
+        phone: '032) 439-2565',
+        address: '인천광역시 미추홀구 토금중로 51번길 7',
+        region: '인천 미추홀구',
+        lat: 37.4525,
+        lng: 126.6390,
+      },
+      {
+        id: 4,
+        name: '연산성서침례교회',
+        pastor: '유봉호',
+        phone: '051) 863-8060',
+        address: '부산광역시 연제구 과정로 283번가길 10 (연산동)',
+        region: '부산 연제구',
+        lat: 35.1872,
+        lng: 129.0967,
+      },
+      {
+        id: 5,
+        name: '서울성서침례교회',
+        pastor: '이승록',
+        phone: '02) 833-0183',
+        address: '서울시 영등포구 신풍로 62 (신길동)',
+        region: '서울 영등포구',
+        lat: 37.5120,
+        lng: 126.9125,
+      },
+      {
+        id: 6,
+        name: '인천열린성서침례교회',
+        pastor: '정민철',
+        phone: '032) 466-9182',
+        address: '인천광역시 남동구 담방로 29번길 광명 아파트 상가 4층 (만수동)',
+        region: '인천 남동구',
+        lat: 37.4583,
+        lng: 126.7348,
+      },
+      {
+        id: 7,
+        name: '한소망성서침례교회',
+        pastor: '신현섭',
+        phone: '031) 708-0191',
+        address: '경기도 성남시 분당구 야탑로 231번길 45 상가동 B1',
+        region: '경기 성남 분당구',
+        lat: 37.4079,
+        lng: 127.1481,
+      },
+      {
+        id: 8,
+        name: '새사람교회',
+        pastor: '전재삼',
+        phone: '043) 733-1991',
+        address: '충청북도 옥천군 군북면 비야대정로 282-18 (증약리)',
+        region: '충북 옥천군',
+        lat: 36.3540,
+        lng: 127.5890,
+      },
+      {
+        id: 9,
+        name: '종암성서침례교회',
+        pastor: '정지원',
+        phone: '02) 912-9063',
+        address: '서울특별시 성북구 회기로 3길 12 (종암동)',
+        region: '서울 성북구',
+        lat: 37.5918,
+        lng: 127.0374,
+      },
+      {
+        id: 10,
+        name: '비전성서침례교회',
+        pastor: '이정삼',
+        phone: '02) 849-0191',
+        address: '서울특별시 구로구 구일로 110 해원리버파크 401호 (구로동)',
+        region: '서울 구로구',
+        lat: 37.4951,
+        lng: 126.8719,
+      },
+    ];
+
+    const markerMap = new Map();
+    const listItemMap = new Map();
+
+    function churchPopup(church) {
+      return `
+        <h4>${church.id}. ${church.name}</h4>
+        <p>담임목사 ${church.pastor}</p>
+        <p>${church.phone}</p>
+        <p>${church.address}</p>
+      `;
+    }
+
+    function setActiveChurch(id) {
+      listItemMap.forEach((button, key) => {
+        button.classList.toggle('is-active', key === id);
+      });
+    }
+
+    function initChurchMap() {
+      const mapElement = document.getElementById('churchMap');
+      const fallback = document.getElementById('churchMapFallback');
+      const listElement = document.getElementById('mapChurchList');
+      if (!mapElement || !listElement) return;
+
+      if (typeof L === 'undefined') {
+        fallback.classList.remove('hidden');
+        return;
+      }
+
+      const map = L.map(mapElement, {
+        zoomControl: true,
+        scrollWheelZoom: false,
+      });
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; OpenStreetMap contributors',
+      }).addTo(map);
+
+      const bounds = [];
+
+      churchLocations.forEach((church) => {
+        const icon = L.divIcon({
+          className: 'church-marker',
+          html: `<span>${church.id}</span>`,
+          iconSize: [34, 34],
+          iconAnchor: [17, 17],
+          popupAnchor: [0, -16],
+        });
+
+        const marker = L.marker([church.lat, church.lng], { icon }).addTo(map);
+        marker.bindPopup(churchPopup(church));
+        marker.on('click', () => {
+          setActiveChurch(church.id);
+        });
+        markerMap.set(church.id, marker);
+        bounds.push([church.lat, church.lng]);
+
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'map-church-button';
+        button.innerHTML = `
+          <span class="map-church-number">${church.id}</span>
+          <span>
+            <span class="map-church-title">${church.name}</span>
+            <span class="map-church-meta">${church.region} · 담임목사 ${church.pastor}</span>
+          </span>
+        `;
+        button.addEventListener('click', () => {
+          setActiveChurch(church.id);
+          map.flyTo([church.lat, church.lng], 12, { duration: 0.8 });
+          marker.openPopup();
+        });
+        listElement.appendChild(button);
+        listItemMap.set(church.id, button);
+      });
+
+      if (bounds.length) {
+        map.fitBounds(bounds, { padding: [36, 36] });
+      } else {
+        map.setView([36.35, 127.85], 7);
+      }
+
+      setActiveChurch(churchLocations[0].id);
+    }
+
+    initChurchMap();
   </script>
 </body>
 </html>

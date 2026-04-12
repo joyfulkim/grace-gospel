@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>은혜의 문 — 기도 요청</title>
+  <meta name="description" content="닉네임으로 편하게 기도제목을 남기고 함께 기도할 수 있는 기도요청 페이지입니다." />
+  <link rel="icon" type="image/png" href="logo.png" />
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Pretendard Variable', 'Pretendard', 'sans-serif'] },
+          colors: {
+            midnight: '#080D1A',
+            deep: '#0D1426',
+            card: '#111827',
+            gold: { DEFAULT: '#C9A84C', light: '#E8C96B', dim: '#9A7C38' },
+            violet: { DEFAULT: '#7C5CBF', light: '#9B7DD4', dim: '#5A4190' },
+            cream: { DEFAULT: '#F8F0E3', dim: '#D4C9B8', muted: '#9A9080' },
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Pretendard Variable', Pretendard, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124,92,191,0.14), transparent 30%),
+        radial-gradient(circle at top right, rgba(201,168,76,0.12), transparent 32%),
+        #080D1A;
+      color: #F8F0E3;
+      word-break: keep-all;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #080D1A; }
+    ::-webkit-scrollbar-thumb { background: #C9A84C40; border-radius: 4px; }
+    .glass-nav {
+      background: rgba(8, 13, 26, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+    }
+    .bezel-card {
+      background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      box-shadow:
+        0 0 0 1px rgba(201,168,76,0.06) inset,
+        0 30px 62px rgba(0,0,0,0.48),
+        0 8px 20px rgba(0,0,0,0.28);
+      position: relative;
+      overflow: hidden;
+    }
+    .bezel-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 22px;
+      border: 1px solid rgba(201,168,76,0.12);
+      pointer-events: none;
+    }
+    .glass-card {
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    }
+    .glass-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(201,168,76,0.2);
+    }
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #E8C96B 0%, #C9A84C 50%, #9A7C38 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-divider {
+      width: 72px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+      margin-bottom: 22px;
+    }
+    .nav-link {
+      color: rgba(248,240,227,0.6);
+      font-size: 1.25rem;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #C9A84C;
+      transition: width 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .nav-link:hover { color: #F8F0E3; }
+    .nav-link:hover::after { width: 100%; }
+    .btn-gold {
+      background: linear-gradient(135deg, #E8C96B 0%, #C9A84C 100%);
+      color: #080D1A;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 13px 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 30px rgba(201, 168, 76, 0.3);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-gold:hover { transform: translateY(-2px); }
+    .btn-outline {
+      border: 1.5px solid rgba(201, 168, 76, 0.4);
+      color: #E8C96B;
+      font-weight: 600;
+      border-radius: 999px;
+      padding: 12px 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      backdrop-filter: blur(8px);
+    }
+    .btn-outline:hover {
+      background: rgba(201, 168, 76, 0.1);
+      border-color: rgba(201, 168, 76, 0.7);
+      transform: translateY(-2px);
+    }
+    .form-input {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 16px;
+      padding: 15px 16px;
+      color: #F8F0E3;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      outline: none;
+    }
+    .form-input::placeholder { color: rgba(248,240,227,0.32); }
+    .form-input:focus {
+      border-color: rgba(201,168,76,0.45);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
+    }
+    textarea.form-input {
+      min-height: 170px;
+      resize: vertical;
+    }
+    .wall-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.025) 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .wall-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(201,168,76,0.08), transparent 45%, rgba(124,92,191,0.06));
+      pointer-events: none;
+    }
+    .wall-card > * { position: relative; z-index: 1; }
+    .wall-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(201,168,76,0.12);
+      color: #E8C96B;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .category-chip {
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      padding: 11px 15px;
+      color: #D4C9B8;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+      background: rgba(255,255,255,0.03);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .category-chip.active {
+      background: rgba(201,168,76,0.14);
+      color: #F8F0E3;
+      border-color: rgba(201,168,76,0.32);
+      box-shadow: 0 10px 30px rgba(201,168,76,0.12);
+    }
+    .note-card {
+      background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(124,92,191,0.08) 100%);
+      border: 1px solid rgba(201,168,76,0.16);
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.35s; }
+    @media (max-width: 640px) {
+      .wall-card, .bezel-card { border-radius: 18px; }
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5">
+        <img src="logo.png" alt="은혜의 문 로고" class="w-8 h-8 object-contain" />
+        <span class="font-bold tracking-tight text-gold-gradient" style="font-size:24px;">은혜의 문</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-7">
+        <a href="index.html#gospel" class="nav-link">복음</a>
+        <a href="scripture.html" class="nav-link">말씀</a>
+        <a href="index.html#counsel" class="nav-link">상담</a>
+        <a href="prayer.html" class="nav-link" style="color:#F8F0E3;">기도 요청</a>
+        <a href="churches.html" class="btn-gold text-sm">
+          <iconify-icon icon="solar:map-point-bold"></iconify-icon>
+          교회추천
+        </a>
+      </div>
+
+      <button id="menuBtn" class="md:hidden text-cream-dim p-2">
+        <iconify-icon icon="solar:hamburger-menu-bold" style="font-size:22px;"></iconify-icon>
+      </button>
+    </div>
+
+    <div id="mobileMenu" class="hidden md:hidden px-6 pb-6 flex flex-col gap-4">
+      <a href="index.html#gospel" class="nav-link py-1" onclick="closeMobile()">복음</a>
+      <a href="scripture.html" class="nav-link py-1" onclick="closeMobile()">말씀</a>
+      <a href="index.html#counsel" class="nav-link py-1" onclick="closeMobile()">상담</a>
+      <a href="prayer.html" class="nav-link py-1" onclick="closeMobile()">기도 요청</a>
+      <a href="churches.html" class="btn-gold text-sm self-start mt-2" onclick="closeMobile()">
+        <iconify-icon icon="solar:map-point-bold"></iconify-icon>
+        교회추천
+      </a>
+    </div>
+  </nav>
+
+  <main class="pt-28 pb-20 relative overflow-hidden">
+    <div class="orb w-[520px] h-[520px] top-[-120px] left-[-100px]" style="background: radial-gradient(circle, rgba(124,92,191,0.15) 0%, transparent 72%);"></div>
+    <div class="orb w-[420px] h-[420px] top-[10%] right-[-80px]" style="background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 72%);"></div>
+
+    <section class="px-6 pb-10">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center reveal">
+          <div class="section-divider mx-auto"></div>
+          <span class="text-gold text-sm font-semibold tracking-widest uppercase mb-4 block">Prayer Wall</span>
+          <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-5" style="letter-spacing:-0.03em;">
+            닉네임으로 편하게<br />
+            기도제목을 남겨보세요
+          </h1>
+          <p class="text-cream-dim text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+            실명 대신 닉네임으로 가볍게 남겨도 괜찮습니다.
+            함께 기도받고 싶은 마음을 담벼락처럼 편하게 나눌 수 있도록 준비했습니다.
+          </p>
+          <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <a href="#prayer-form" class="btn-gold">
+              <iconify-icon icon="solar:pen-new-square-bold"></iconify-icon>
+              기도제목 남기기
+            </a>
+            <a href="churches.html" class="btn-outline">
+              <iconify-icon icon="solar:map-point-wave-bold"></iconify-icon>
+              가까운 교회 보기
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="prayer-form" class="px-6 py-8">
+      <div class="max-w-6xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-8 items-start">
+        <div class="bezel-card p-8 md:p-10 reveal reveal-delay-1">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background: linear-gradient(135deg, rgba(201,168,76,0.18), rgba(124,92,191,0.14)); border: 1px solid rgba(255,255,255,0.08);">
+              <iconify-icon icon="solar:hand-stars-bold" style="font-size:24px; color:#E8C96B;"></iconify-icon>
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold">기도제목 남기기</h2>
+              <p class="text-sm text-cream-dim">부담 없이 짧게 적어도 괜찮습니다.</p>
+            </div>
+          </div>
+
+          <form id="prayerForm" class="space-y-5">
+            <div>
+              <label for="nickname" class="block text-sm text-cream-muted mb-2">닉네임</label>
+              <input id="nickname" name="nickname" type="text" maxlength="18" class="form-input" placeholder="예: 다시걷는사람" required />
+            </div>
+
+            <div>
+              <label class="block text-sm text-cream-muted mb-3">기도 분류</label>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                <button type="button" class="category-chip active" data-category="회복">회복</button>
+                <button type="button" class="category-chip" data-category="가정">가정</button>
+                <button type="button" class="category-chip" data-category="신앙">신앙</button>
+                <button type="button" class="category-chip" data-category="감사">감사</button>
+              </div>
+              <input id="category" name="category" type="hidden" value="회복" />
+            </div>
+
+            <div>
+              <label for="content" class="block text-sm text-cream-muted mb-2">기도제목</label>
+              <textarea id="content" name="content" class="form-input" maxlength="280" placeholder="요즘 마음에 있는 기도 제목을 편하게 적어주세요." required></textarea>
+            </div>
+
+            <button type="submit" class="w-full btn-gold justify-center text-base" style="border-radius: 14px; padding: 16px;">
+              <iconify-icon icon="solar:hand-prayer-bold"></iconify-icon>
+              담벼락에 남기기
+            </button>
+          </form>
+        </div>
+
+        <div class="space-y-5 reveal reveal-delay-2">
+          <div class="wall-card note-card">
+            <span class="wall-badge mb-4">
+              <iconify-icon icon="solar:heart-bold"></iconify-icon>
+              함께 기도합니다
+            </span>
+            <h3 class="text-2xl font-bold mb-3">부담 없이, 편하게 남겨주세요</h3>
+            <p class="text-cream-dim leading-relaxed">
+              실명 대신 닉네임만 적어도 괜찮고, 길게 쓰지 않아도 괜찮습니다.
+              마음속 기도 제목을 한 줄로 남겨도 이 공간은 충분합니다.
+            </p>
+          </div>
+
+          <div class="glass-card p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <iconify-icon icon="solar:shield-check-bold" style="font-size:22px; color:#C9A84C;"></iconify-icon>
+              <h3 class="text-lg font-semibold">이렇게 쓰시면 편합니다</h3>
+            </div>
+            <ul class="space-y-3 text-sm text-cream-dim leading-relaxed">
+              <li>닉네임으로 적고 싶은 만큼만 남기세요.</li>
+              <li>상처, 회복, 가족, 신앙 고민을 짧게 적어도 됩니다.</li>
+              <li>더 깊은 이야기가 필요하면 상담 메뉴로 이어갈 수 있습니다.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-6 pt-10">
+      <div class="max-w-6xl mx-auto">
+        <div class="mb-8 reveal">
+          <div class="section-divider"></div>
+          <span class="text-gold text-sm font-semibold tracking-widest uppercase mb-4 block">기도 담벼락</span>
+          <h2 class="text-3xl md:text-4xl font-bold mb-3" style="letter-spacing:-0.02em;">함께 올리는 기도제목</h2>
+          <p class="text-cream-dim">새로 남긴 기도제목이 위로 쌓이도록 정리했습니다.</p>
+        </div>
+
+        <div id="prayerWall" class="grid md:grid-cols-2 xl:grid-cols-3 gap-5 reveal reveal-delay-1">
+          <div class="wall-card note-card md:col-span-2 xl:col-span-3">
+            <span class="wall-badge mb-4">
+              <iconify-icon icon="solar:bell-bing-bold"></iconify-icon>
+              안내
+            </span>
+            <h3 class="text-xl font-bold mb-3">첫 기도제목을 남겨주세요</h3>
+            <p class="text-cream-dim leading-relaxed">
+              이 담벼락은 닉네임으로 편하게 기도제목을 적을 수 있도록 준비한 공간입니다.
+              아래 작성창에서 남기면 바로 이곳에 추가됩니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white border-opacity-5 py-12 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-cream-muted">
+      <div class="flex items-center gap-2.5">
+        <img src="logo.png" alt="은혜의 문 로고" class="w-7 h-7 object-contain" />
+        <span class="font-bold text-gold-gradient" style="font-size:18px;">은혜의 문</span>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-5">
+        <a href="index.html" class="hover:text-cream-DEFAULT transition-colors">메인 페이지</a>
+        <a href="scripture.html" class="hover:text-cream-DEFAULT transition-colors">말씀</a>
+        <a href="churches.html" class="hover:text-cream-DEFAULT transition-colors">교회추천</a>
+        <a href="index.html#counsel" class="hover:text-cream-DEFAULT transition-colors">상담</a>
+      </div>
+      <div class="text-xs text-cream-muted">© 2026 조이플 미션. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    function closeMobile() {
+      mobileMenu.classList.add('hidden');
+    }
+
+    const revealTargets = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealTargets.forEach((target) => revealObserver.observe(target));
+
+    const categoryInput = document.getElementById('category');
+    const categoryButtons = document.querySelectorAll('.category-chip');
+    categoryButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        categoryButtons.forEach((chip) => chip.classList.remove('active'));
+        button.classList.add('active');
+        categoryInput.value = button.dataset.category;
+      });
+    });
+
+    const prayerForm = document.getElementById('prayerForm');
+    const prayerWall = document.getElementById('prayerWall');
+    const storageKey = 'grace-door-prayer-wall';
+
+    function escapeHtml(value) {
+      return value
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function readPosts() {
+      try {
+        return JSON.parse(localStorage.getItem(storageKey) || '[]');
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function savePosts(posts) {
+      localStorage.setItem(storageKey, JSON.stringify(posts));
+    }
+
+    function formatDate(isoString) {
+      return new Intl.DateTimeFormat('ko-KR', {
+        month: 'long',
+        day: 'numeric',
+      }).format(new Date(isoString));
+    }
+
+    function renderPosts() {
+      const posts = readPosts();
+      const noteCard = `
+        <div class="wall-card note-card md:col-span-2 xl:col-span-3">
+          <span class="wall-badge mb-4">
+            <iconify-icon icon="solar:bell-bing-bold"></iconify-icon>
+            안내
+          </span>
+          <h3 class="text-xl font-bold mb-3">첫 기도제목을 남겨주세요</h3>
+          <p class="text-cream-dim leading-relaxed">
+            이 담벼락은 닉네임으로 편하게 기도제목을 적을 수 있도록 준비한 공간입니다.
+            아래 작성창에서 남기면 바로 이곳에 추가됩니다.
+          </p>
+        </div>
+      `;
+
+      const cards = posts.map((post) => `
+        <article class="wall-card">
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <span class="wall-badge">${escapeHtml(post.category)}</span>
+            <span class="text-xs text-cream-muted">${formatDate(post.createdAt)}</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">${escapeHtml(post.nickname)}</h3>
+          <p class="text-cream-dim leading-relaxed whitespace-pre-line">${escapeHtml(post.content)}</p>
+        </article>
+      `).join('');
+
+      prayerWall.innerHTML = noteCard + cards;
+    }
+
+    prayerForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(prayerForm);
+      const nickname = (formData.get('nickname') || '').toString().trim();
+      const content = (formData.get('content') || '').toString().trim();
+      const category = (formData.get('category') || '회복').toString().trim();
+
+      if (!nickname || !content) {
+        return;
+      }
+
+      const posts = readPosts();
+      posts.unshift({
+        nickname,
+        content,
+        category,
+        createdAt: new Date().toISOString(),
+      });
+
+      savePosts(posts.slice(0, 24));
+      prayerForm.reset();
+      categoryInput.value = '회복';
+      categoryButtons.forEach((chip) => chip.classList.remove('active'));
+      categoryButtons[0].classList.add('active');
+      renderPosts();
+      document.getElementById('prayerWall').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    renderPosts();
+  </script>
+</body>
+</html>

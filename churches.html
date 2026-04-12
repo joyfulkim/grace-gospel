@@ -115,6 +115,20 @@
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .btn-gold:hover { transform: translateY(-2px); }
+    .nav-cta {
+      font-size: 24px;
+      line-height: 1;
+      min-height: 60px;
+      min-width: 198px;
+      padding: 16px 30px;
+      justify-content: center;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .nav-cta iconify-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
     .btn-outline {
       border: 1.5px solid rgba(201, 168, 76, 0.4);
       color: #E8C96B;
@@ -729,7 +743,7 @@
         <a href="scripture.html" class="nav-link">말씀</a>
         <a href="index.html#counsel" class="nav-link">상담</a>
         <a href="prayer.html" class="nav-link">기도 요청</a>
-        <a href="churches.html" class="btn-gold text-sm" aria-current="page">
+        <a href="churches.html" class="btn-gold nav-cta" aria-current="page">
           <iconify-icon icon="solar:map-point-bold"></iconify-icon>
           교회추천
         </a>
@@ -745,7 +759,7 @@
       <a href="scripture.html" class="nav-link py-1" onclick="closeMobile()">말씀</a>
       <a href="index.html#counsel" class="nav-link py-1" onclick="closeMobile()">상담</a>
       <a href="prayer.html" class="nav-link py-1" onclick="closeMobile()">기도 요청</a>
-      <a href="churches.html" class="btn-gold text-sm self-start mt-2" onclick="closeMobile()" aria-current="page">
+      <a href="churches.html" class="btn-gold nav-cta self-start mt-2" onclick="closeMobile()" aria-current="page">
         <iconify-icon icon="solar:map-point-bold"></iconify-icon>
         교회추천
       </a>

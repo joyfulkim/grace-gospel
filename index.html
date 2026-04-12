@@ -179,6 +179,20 @@
       box-shadow: 0 12px 40px rgba(201, 168, 76, 0.5);
       transform: translateY(-3px);
     }
+    .nav-cta {
+      font-size: 24px;
+      line-height: 1;
+      min-height: 60px;
+      min-width: 198px;
+      padding: 16px 30px;
+      justify-content: center;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .nav-cta iconify-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
 
     /* ── Outline button ── */
     .btn-outline {
@@ -439,7 +453,7 @@
         <a href="scripture.html" class="nav-link">말씀</a>
         <a href="#counsel" class="nav-link">상담</a>
         <a href="prayer.html" class="nav-link">기도 요청</a>
-        <a href="churches.html" class="btn-gold text-sm py-2.5 px-5 magnetic-btn">
+        <a href="churches.html" class="btn-gold nav-cta magnetic-btn">
           <iconify-icon icon="solar:map-point-bold"></iconify-icon>
           교회추천
         </a>
@@ -457,7 +471,7 @@
       <a href="scripture.html" class="nav-link py-1" onclick="closeMobile()">말씀</a>
       <a href="#counsel" class="nav-link py-1" onclick="closeMobile()">상담</a>
       <a href="prayer.html" class="nav-link py-1" onclick="closeMobile()">기도 요청</a>
-      <a href="churches.html" class="btn-gold text-sm self-start mt-2" onclick="closeMobile()">
+      <a href="churches.html" class="btn-gold nav-cta self-start mt-2" onclick="closeMobile()">
         <iconify-icon icon="solar:map-point-bold"></iconify-icon>
         교회추천
       </a>

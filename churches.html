@@ -557,12 +557,20 @@
       border: none;
     }
     .church-marker > span {
+      width: 34px;
+      height: 34px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.85rem;
-      line-height: 1;
-      filter: drop-shadow(0 10px 14px rgba(0,0,0,0.22));
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #080D1A;
+      background: linear-gradient(135deg, #E8C96B 0%, #C9A84C 100%);
+      border: 3px solid rgba(255,255,255,0.94);
+      box-shadow:
+        0 0 0 6px rgba(201,168,76,0.14),
+        0 10px 18px rgba(0,0,0,0.22);
     }
     @media (max-width: 1279px) {
       .korea-infographic {
@@ -744,7 +752,7 @@
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
               지도 번호 1 · 서울 송파구
             </div>
-            <h3 class="text-2xl font-bold mb-2">꿈을심는교회</h3>
+            <h3 class="text-2xl font-bold mb-2">1. 꿈을심는교회</h3>
             <p class="text-cream-muted mb-5">담임목사 김명순</p>
             <div class="space-y-3 text-sm text-cream-dim">
               <div><strong class="text-cream-DEFAULT">교회전화</strong> 02) 2043-0191</div>
@@ -761,7 +769,7 @@
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
               지도 번호 2 · 서울 강서구
             </div>
-            <h3 class="text-2xl font-bold mb-2">강서침례교회</h3>
+            <h3 class="text-2xl font-bold mb-2">2. 강서침례교회</h3>
             <p class="text-cream-muted mb-5">담임목사 김경석</p>
             <div class="space-y-3 text-sm text-cream-dim">
               <div><strong class="text-cream-DEFAULT">교회전화</strong> 02) 2694-9191</div>
@@ -778,7 +786,7 @@
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(124,92,191,0.12); border: 1px solid rgba(124,92,191,0.2); color:#CDBEFF;">
               지도 번호 3 · 인천 미추홀구
             </div>
-            <h3 class="text-2xl font-bold mb-2">인천주안의교회</h3>
+            <h3 class="text-2xl font-bold mb-2">3. 인천주안의교회</h3>
             <p class="text-cream-muted mb-5">담임목사 이상돈</p>
             <div class="space-y-3 text-sm text-cream-dim">
               <div><strong class="text-cream-DEFAULT">교회전화</strong> 032) 439-2565</div>
@@ -795,7 +803,7 @@
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
               지도 번호 4 · 부산 연제구
             </div>
-            <h3 class="text-2xl font-bold mb-2">연산성서침례교회</h3>
+            <h3 class="text-2xl font-bold mb-2">4. 연산성서침례교회</h3>
             <p class="text-cream-muted mb-5">담임목사 유봉호</p>
             <div class="space-y-3 text-sm text-cream-dim">
               <div><strong class="text-cream-DEFAULT">교회전화</strong> 051) 863-8060</div>
@@ -814,7 +822,7 @@
                 <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
                   지도 번호 5 · 서울 영등포구
                 </div>
-                <h3 class="text-2xl font-bold mb-2">서울성서침례교회</h3>
+                <h3 class="text-2xl font-bold mb-2">5. 서울성서침례교회</h3>
                 <p class="text-cream-muted mb-5">담임목사 이승록</p>
                 <div class="space-y-3 text-sm text-cream-dim">
                   <div><strong class="text-cream-DEFAULT">교회전화</strong> 02) 833-0183</div>
@@ -833,7 +841,7 @@
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(124,92,191,0.12); border: 1px solid rgba(124,92,191,0.2); color:#CDBEFF;">
               지도 번호 6 · 인천 남동구
             </div>
-            <h3 class="text-2xl font-bold mb-2">인천열린성서침례교회</h3>
+            <h3 class="text-2xl font-bold mb-2">6. 인천열린성서침례교회</h3>
             <p class="text-cream-muted mb-5">담임목사 정민철</p>
             <div class="space-y-3 text-sm text-cream-dim">
               <div><strong class="text-cream-DEFAULT">교회전화</strong> 032) 466-9182</div>
@@ -850,7 +858,7 @@
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
               지도 번호 7 · 경기 성남시 분당구
             </div>
-            <h3 class="text-2xl font-bold mb-2">한소망성서침례교회</h3>
+            <h3 class="text-2xl font-bold mb-2">7. 한소망성서침례교회</h3>
             <p class="text-cream-muted mb-5">담임목사 신현섭</p>
             <div class="space-y-3 text-sm text-cream-dim">
               <div><strong class="text-cream-DEFAULT">교회전화</strong> 031) 708-0191</div>
@@ -867,7 +875,7 @@
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(124,92,191,0.12); border: 1px solid rgba(124,92,191,0.2); color:#CDBEFF;">
               지도 번호 8 · 충북 옥천군
             </div>
-            <h3 class="text-2xl font-bold mb-2">새사람교회</h3>
+            <h3 class="text-2xl font-bold mb-2">8. 새사람교회</h3>
             <p class="text-cream-muted mb-5">담임목사 전재삼</p>
             <div class="space-y-3 text-sm text-cream-dim">
               <div><strong class="text-cream-DEFAULT">교회전화</strong> 043) 733-1991</div>
@@ -884,7 +892,7 @@
             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
               지도 번호 9 · 서울 성북구
             </div>
-            <h3 class="text-2xl font-bold mb-2">종암성서침례교회</h3>
+            <h3 class="text-2xl font-bold mb-2">9. 종암성서침례교회</h3>
             <p class="text-cream-muted mb-5">담임목사 정지원</p>
             <div class="space-y-3 text-sm text-cream-dim">
               <div><strong class="text-cream-DEFAULT">교회전화</strong> 02) 912-9063</div>
@@ -903,7 +911,7 @@
                 <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-gold-dim mb-4" style="background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18);">
                   지도 번호 10 · 서울 구로구
                 </div>
-                <h3 class="text-2xl font-bold mb-2">비전성서침례교회</h3>
+                <h3 class="text-2xl font-bold mb-2">10. 비전성서침례교회</h3>
                 <p class="text-cream-muted mb-5">담임목사 이정삼</p>
                 <div class="space-y-3 text-sm text-cream-dim">
                   <div><strong class="text-cream-DEFAULT">교회전화</strong> 02) 849-0191</div>
@@ -1080,9 +1088,10 @@
         scrollWheelZoom: false,
       });
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+        subdomains: 'abcd',
         maxZoom: 18,
-        attribution: '&copy; OpenStreetMap contributors',
+        attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
       }).addTo(map);
 
       const bounds = [];
@@ -1090,10 +1099,10 @@
       churchLocations.forEach((church) => {
         const icon = L.divIcon({
           className: 'church-marker',
-          html: '<span aria-hidden="true">⛪</span>',
-          iconSize: [30, 30],
-          iconAnchor: [15, 24],
-          popupAnchor: [0, -22],
+          html: `<span>${church.id}</span>`,
+          iconSize: [34, 34],
+          iconAnchor: [17, 17],
+          popupAnchor: [0, -18],
         });
 
         const marker = L.marker([church.lat, church.lng], { icon }).addTo(map);

@@ -593,6 +593,12 @@
       box-shadow: 0 10px 18px rgba(91, 116, 165, 0.08);
       white-space: nowrap;
     }
+    .region-label-marker.metro > span {
+      font-size: 0.96rem;
+      padding: 5px 9px;
+      color: rgba(34, 62, 108, 0.74);
+      background: rgba(255,255,255,0.4);
+    }
     @media (max-width: 1279px) {
       .korea-infographic {
         min-height: auto;
@@ -669,6 +675,10 @@
       .region-label-marker > span {
         font-size: 0.92rem;
         padding: 5px 8px;
+      }
+      .region-label-marker.metro > span {
+        font-size: 0.82rem;
+        padding: 4px 7px;
       }
     }
   </style>
@@ -1090,6 +1100,9 @@
     ];
 
     const regionLabels = [
+      { name: '인천', lat: 37.54, lng: 126.38, kind: 'metro' },
+      { name: '서울', lat: 37.66, lng: 127.02, kind: 'metro' },
+      { name: '경기도', lat: 37.28, lng: 127.24, kind: 'metro' },
       { name: '강원도', lat: 37.88, lng: 128.35 },
       { name: '충청도', lat: 36.72, lng: 127.32 },
       { name: '전라도', lat: 35.36, lng: 126.88 },
@@ -1135,7 +1148,7 @@
 
       regionLabels.forEach((region) => {
         const labelIcon = L.divIcon({
-          className: 'region-label-marker',
+          className: `region-label-marker${region.kind ? ` ${region.kind}` : ''}`,
           html: `<span>${region.name}</span>`,
           iconSize: null,
         });

@@ -203,6 +203,311 @@
       text-align: center;
       color: #D4C9B8;
     }
+    .korea-board {
+      position: relative;
+      padding: clamp(22px, 3vw, 34px);
+      border-radius: 34px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,0.6), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(167,187,242,0.42), transparent 26%),
+        linear-gradient(180deg, #EDF2FF 0%, #D9E5FF 100%);
+      border: 1px solid rgba(255,255,255,0.72);
+      box-shadow:
+        inset 0 0 0 1px rgba(92,118,177,0.12),
+        0 30px 60px rgba(8,13,26,0.18);
+      color: #112344;
+    }
+    .korea-board::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(89,112,158,0.18) 1px, transparent 1px);
+      background-size: 18px 18px;
+      opacity: 0.22;
+      pointer-events: none;
+    }
+    .korea-board-header {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .korea-board-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(17,35,68,0.08);
+      border: 1px solid rgba(17,35,68,0.08);
+      color: #36518C;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .korea-board-header h2 {
+      color: #112344;
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+    .korea-board-header p {
+      color: #5A6F99;
+      font-size: 1rem;
+      line-height: 1.8;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .korea-infographic {
+      position: relative;
+      min-height: 760px;
+    }
+    .korea-map-shell {
+      position: absolute;
+      left: 24%;
+      right: 24%;
+      top: 10px;
+      bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+    .korea-map-frame {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 640px;
+      border-radius: 34px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.5), rgba(255,255,255,0.18)),
+        linear-gradient(180deg, #E6EEFF 0%, #D2E0FF 100%);
+      border: 1px solid rgba(90,111,153,0.14);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.45),
+        0 28px 50px rgba(78,101,150,0.16);
+    }
+    .korea-map-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.14), transparent 22%),
+        radial-gradient(circle at center, rgba(255,255,255,0), rgba(17,35,68,0.08));
+      pointer-events: none;
+      z-index: 2;
+    }
+    .korea-map-image {
+      position: absolute;
+      inset: 0;
+      width: 160%;
+      height: 100%;
+      max-width: none;
+      object-fit: cover;
+      object-position: 72% 52%;
+      filter: saturate(0.88) contrast(1.04) brightness(1.03);
+      z-index: 1;
+    }
+    .korea-map-badge,
+    .korea-map-note {
+      position: absolute;
+      z-index: 3;
+      padding: 12px 16px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.74);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(90,111,153,0.14);
+      box-shadow: 0 12px 24px rgba(78,101,150,0.12);
+    }
+    .korea-map-badge {
+      top: 22px;
+      left: 22px;
+    }
+    .korea-map-badge strong,
+    .korea-map-note strong {
+      display: block;
+      color: #112344;
+      font-size: 0.96rem;
+      margin-bottom: 4px;
+    }
+    .korea-map-badge span,
+    .korea-map-note span {
+      color: #59709E;
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+    .korea-map-note {
+      right: 22px;
+      bottom: 22px;
+      max-width: 220px;
+    }
+    .korea-connectors {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+      overflow: visible;
+    }
+    .korea-connectors path {
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.72;
+    }
+    .korea-pin {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      background: var(--tone, #5B78CF);
+      border: 3px solid rgba(255,255,255,0.88);
+      box-shadow:
+        0 0 0 7px color-mix(in srgb, var(--tone, #5B78CF) 18%, transparent),
+        0 10px 20px rgba(41,61,104,0.18);
+      z-index: 4;
+    }
+    .church-callout {
+      position: absolute;
+      width: 21.5%;
+      min-height: 84px;
+      padding: 16px 18px 16px 20px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(90,111,153,0.14);
+      box-shadow: 0 18px 34px rgba(78,101,150,0.12);
+      z-index: 4;
+    }
+    .church-callout::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: var(--tone, #5B78CF);
+      transform: translateY(-50%);
+      box-shadow: 0 0 0 6px color-mix(in srgb, var(--tone, #5B78CF) 18%, transparent);
+    }
+    .church-callout.left { left: 0; }
+    .church-callout.left::after { right: -18px; }
+    .church-callout.right { right: 0; }
+    .church-callout.right::after { left: -18px; }
+    .church-callout-head {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .church-callout-index {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: var(--tone, #5B78CF);
+      color: #FFFFFF;
+      font-size: 0.9rem;
+      font-weight: 800;
+      box-shadow: 0 10px 20px color-mix(in srgb, var(--tone, #5B78CF) 28%, transparent);
+    }
+    .church-callout h3 {
+      margin: 0 0 6px;
+      color: #112344;
+      font-size: 1rem;
+      line-height: 1.35;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .church-callout p {
+      margin: 0;
+      color: #5A6F99;
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+    @media (max-width: 1279px) {
+      .korea-infographic {
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .korea-map-shell,
+      .church-callout {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto !important;
+        bottom: auto;
+        width: auto;
+      }
+      .korea-map-shell {
+        order: 1;
+        min-height: 560px;
+      }
+      .korea-map-frame {
+        min-height: 560px;
+      }
+      .korea-connectors {
+        display: none;
+      }
+      .korea-pin {
+        display: none;
+      }
+      .church-callout::after {
+        display: none;
+      }
+      .church-callout {
+        order: 2;
+      }
+    }
+    @media (max-width: 767px) {
+      .korea-board {
+        padding: 18px;
+        border-radius: 28px;
+      }
+      .korea-board-header p {
+        font-size: 0.94rem;
+        line-height: 1.7;
+      }
+      .korea-map-shell {
+        min-height: 430px;
+      }
+      .korea-map-frame {
+        min-height: 430px;
+        border-radius: 26px;
+      }
+      .korea-map-image {
+        width: 178%;
+        object-position: 73% 52%;
+      }
+      .korea-map-badge,
+      .korea-map-note {
+        padding: 10px 12px;
+        border-radius: 18px;
+      }
+      .korea-pin {
+        width: 24px;
+        height: 24px;
+        font-size: 0.68rem;
+      }
+    }
   </style>
 </head>
 <body class="antialiased">
@@ -276,160 +581,156 @@
     </section>
 
     <section id="korea-map" class="px-6 pt-6">
-      <div class="max-w-6xl mx-auto">
-        <div class="bezel-card p-6 md:p-8 reveal">
-          <div class="grid xl:grid-cols-[1.2fr_0.8fr] gap-8 items-start">
-            <div>
-              <div class="mb-5">
-                <span class="text-gold text-sm font-semibold tracking-widest uppercase mb-3 block">대한민국 지도</span>
-                <h2 class="text-3xl md:text-4xl font-bold mb-3" style="letter-spacing: -0.02em;">추천 교회 위치</h2>
-                <p class="text-cream-dim leading-relaxed">
-                  서울, 경기, 인천, 충북, 부산에 있는 추천 교회를 지도 위에 먼저 표시했습니다.
-                  이후 교회를 더 추가하면 이 지도도 같은 방식으로 확장할 수 있습니다.
-                </p>
-              </div>
-
-              <div class="map-stage">
-                <svg viewBox="0 0 520 680" class="w-full h-full" aria-hidden="true">
-                  <defs>
-                    <linearGradient id="koreaFill" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stop-color="rgba(232,201,107,0.24)" />
-                      <stop offset="55%" stop-color="rgba(124,92,191,0.16)" />
-                      <stop offset="100%" stop-color="rgba(255,255,255,0.07)" />
-                    </linearGradient>
-                  </defs>
-                  <path d="M282 45C316 55 351 88 360 124C369 158 390 191 389 234C388 266 366 292 375 327C383 359 397 385 394 422C390 476 346 507 323 545C305 575 307 613 288 645C272 672 246 690 216 688C182 686 154 666 144 634C133 599 144 566 138 536C130 502 92 483 78 448C63 412 72 374 87 339C100 309 89 279 98 246C107 213 131 193 151 167C176 136 180 97 207 72C229 52 255 38 282 45Z" fill="url(#koreaFill)" stroke="rgba(232,201,107,0.38)" stroke-width="2.5" stroke-linejoin="round"/>
-                  <path d="M244 352C266 359 282 377 286 405C289 431 274 458 251 472" fill="none" stroke="rgba(248,240,227,0.12)" stroke-width="1.5" stroke-linecap="round"/>
-                  <circle cx="134" cy="630" r="26" fill="rgba(232,201,107,0.14)" stroke="rgba(232,201,107,0.25)" stroke-width="2"/>
-                  <text x="134" y="637" text-anchor="middle" fill="rgba(248,240,227,0.62)" font-size="14" font-family="Pretendard Variable, Pretendard, sans-serif">제주</text>
-                </svg>
-
-                <div class="map-marker" style="left: 47%; top: 24%;">1</div>
-                <div class="map-label" style="left: 47%; top: 24%;">서울 송파</div>
-
-                <div class="map-marker" style="left: 40%; top: 24.5%;">2</div>
-                <div class="map-label" style="left: 40%; top: 24.5%;">서울 강서</div>
-
-                <div class="map-marker" style="left: 34%; top: 26.5%;">3</div>
-                <div class="map-label" style="left: 34%; top: 26.5%;">인천 미추홀</div>
-
-                <div class="map-marker" style="left: 72%; top: 69%;">4</div>
-                <div class="map-label" style="left: 72%; top: 69%;">부산 연제</div>
-
-                <div class="map-marker" style="left: 43.5%; top: 27.2%;">5</div>
-                <div class="map-label" style="left: 43.5%; top: 27.2%;">서울 영등포</div>
-
-                <div class="map-marker" style="left: 36.5%; top: 23.8%;">6</div>
-                <div class="map-label" style="left: 36.5%; top: 23.8%; transform: translate(-82px, -160%);">인천 남동</div>
-
-                <div class="map-marker" style="left: 50.5%; top: 28.7%;">7</div>
-                <div class="map-label" style="left: 50.5%; top: 28.7%;">경기 분당</div>
-
-                <div class="map-marker" style="left: 51.5%; top: 43.5%;">8</div>
-                <div class="map-label" style="left: 51.5%; top: 43.5%;">충북 옥천</div>
-
-                <div class="map-marker" style="left: 48.2%; top: 21.9%;">9</div>
-                <div class="map-label" style="left: 48.2%; top: 21.9%; transform: translate(8px, -165%);">서울 성북</div>
-
-                <div class="map-marker" style="left: 40.8%; top: 26.7%;">10</div>
-                <div class="map-label" style="left: 40.8%; top: 26.7%; transform: translate(-94px, 10%);">서울 구로</div>
-              </div>
+      <div class="max-w-[1420px] mx-auto">
+        <div class="bezel-card p-3 md:p-4 xl:p-5 reveal">
+          <div class="korea-board">
+            <div class="korea-board-header">
+              <div class="korea-board-label">대한민국 지도 · 추천 교회 안내</div>
+              <h2>가운데 지도를 중심으로<br />교회 정보를 한눈에 살펴보세요</h2>
+              <p>
+                첨부해주신 참고 이미지의 분위기를 반영해, 대한민국 지도를 크게 두고 양옆의 추천 교회 목록이
+                실제 위치와 선으로 이어지도록 다시 구성했습니다.
+              </p>
             </div>
 
-            <div class="space-y-3 pt-2">
-              <div class="rounded-2xl px-4 py-4 text-sm text-cream-muted" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
-                지도 번호와 아래 카드 번호가 연결됩니다.
-              </div>
-              <div class="rounded-2xl px-4 py-4" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
-                <div class="flex items-start gap-3">
-                  <div class="map-marker" style="position: static; transform: none; width: 26px; height: 26px; flex-shrink: 0;">1</div>
-                  <div>
-                    <div class="text-sm font-semibold text-cream-DEFAULT">꿈을심는교회</div>
-                    <div class="text-xs text-cream-muted mt-1">서울 송파구</div>
+            <div class="korea-infographic">
+              <div class="korea-map-shell">
+                <div class="korea-map-frame">
+                  <img src="korea-map-reference.jpeg" alt="대한민국 지도" class="korea-map-image" />
+                  <div class="korea-map-badge">
+                    <strong>전국 추천 교회 지도</strong>
+                    <span>서울, 경기, 인천, 충북, 부산 지역의 교회를 먼저 표시했습니다.</span>
+                  </div>
+                  <div class="korea-map-note">
+                    <strong>교회 찾기의 첫 걸음</strong>
+                    <span>번호 점과 양옆 카드가 같은 교회를 가리킵니다. 이후 교회가 더 추가되어도 같은 흐름으로 확장할 수 있습니다.</span>
                   </div>
                 </div>
               </div>
-              <div class="rounded-2xl px-4 py-4" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
-                <div class="flex items-start gap-3">
-                  <div class="map-marker" style="position: static; transform: none; width: 26px; height: 26px; flex-shrink: 0;">2</div>
+
+              <svg class="korea-connectors" viewBox="0 0 1280 820" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M 278 134 C 400 134 500 202 705 224" style="stroke:#C79A2E;" />
+                <path d="M 278 220 C 394 220 498 212 618 210" style="stroke:#5D79D7;" />
+                <path d="M 278 306 C 386 306 478 254 574 234" style="stroke:#3A9BA6;" />
+                <path d="M 278 390 C 394 390 512 304 646 232" style="stroke:#7E6BC5;" />
+                <path d="M 278 562 C 430 562 628 648 842 624" style="stroke:#D46F5B;" />
+                <path d="M 1002 134 C 904 134 806 166 676 188" style="stroke:#BC6884;" />
+                <path d="M 1002 220 C 894 220 762 208 586 210" style="stroke:#4F8FCB;" />
+                <path d="M 1002 306 C 902 306 818 294 720 266" style="stroke:#4A9C79;" />
+                <path d="M 1002 392 C 892 392 786 320 621 244" style="stroke:#D09B43;" />
+                <path d="M 1002 478 C 902 478 820 428 720 400" style="stroke:#5970A8;" />
+              </svg>
+
+              <div class="korea-pin" style="left:55.1%; top:28.6%; --tone:#C79A2E;">1</div>
+              <div class="korea-pin" style="left:48.3%; top:26.2%; --tone:#5D79D7;">2</div>
+              <div class="korea-pin" style="left:44.8%; top:28.5%; --tone:#3A9BA6;">3</div>
+              <div class="korea-pin" style="left:65.8%; top:76.1%; --tone:#D46F5B;">4</div>
+              <div class="korea-pin" style="left:50.5%; top:28.3%; --tone:#7E6BC5;">5</div>
+              <div class="korea-pin" style="left:45.8%; top:26.2%; --tone:#4F8FCB;">6</div>
+              <div class="korea-pin" style="left:56.3%; top:32.4%; --tone:#4A9C79;">7</div>
+              <div class="korea-pin" style="left:56.3%; top:48.8%; --tone:#5970A8;">8</div>
+              <div class="korea-pin" style="left:52.8%; top:22.9%; --tone:#BC6884;">9</div>
+              <div class="korea-pin" style="left:48.5%; top:29.8%; --tone:#D09B43;">10</div>
+
+              <article class="church-callout left" style="top: 90px; --tone:#C79A2E;">
+                <div class="church-callout-head">
+                  <div class="church-callout-index">1</div>
                   <div>
-                    <div class="text-sm font-semibold text-cream-DEFAULT">강서침례교회</div>
-                    <div class="text-xs text-cream-muted mt-1">서울 강서구</div>
+                    <h3>꿈을심는교회</h3>
+                    <p>서울 송파구 · 김명순 목사</p>
                   </div>
                 </div>
-              </div>
-              <div class="rounded-2xl px-4 py-4" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
-                <div class="flex items-start gap-3">
-                  <div class="map-marker" style="position: static; transform: none; width: 26px; height: 26px; flex-shrink: 0;">3</div>
+              </article>
+
+              <article class="church-callout left" style="top: 176px; --tone:#5D79D7;">
+                <div class="church-callout-head">
+                  <div class="church-callout-index">2</div>
                   <div>
-                    <div class="text-sm font-semibold text-cream-DEFAULT">인천주안의교회</div>
-                    <div class="text-xs text-cream-muted mt-1">인천 미추홀구</div>
+                    <h3>강서침례교회</h3>
+                    <p>서울 강서구 · 김경석 목사</p>
                   </div>
                 </div>
-              </div>
-              <div class="rounded-2xl px-4 py-4" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
-                <div class="flex items-start gap-3">
-                  <div class="map-marker" style="position: static; transform: none; width: 26px; height: 26px; flex-shrink: 0;">4</div>
+              </article>
+
+              <article class="church-callout left" style="top: 262px; --tone:#3A9BA6;">
+                <div class="church-callout-head">
+                  <div class="church-callout-index">3</div>
                   <div>
-                    <div class="text-sm font-semibold text-cream-DEFAULT">연산성서침례교회</div>
-                    <div class="text-xs text-cream-muted mt-1">부산 연제구</div>
+                    <h3>인천주안의교회</h3>
+                    <p>인천 미추홀구 · 이상돈 목사</p>
                   </div>
                 </div>
-              </div>
-              <div class="rounded-2xl px-4 py-4" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
-                <div class="flex items-start gap-3">
-                  <div class="map-marker" style="position: static; transform: none; width: 26px; height: 26px; flex-shrink: 0;">5</div>
+              </article>
+
+              <article class="church-callout left" style="top: 348px; --tone:#7E6BC5;">
+                <div class="church-callout-head">
+                  <div class="church-callout-index">5</div>
                   <div>
-                    <div class="text-sm font-semibold text-cream-DEFAULT">서울성서침례교회</div>
-                    <div class="text-xs text-cream-muted mt-1">서울 영등포구</div>
+                    <h3>서울성서침례교회</h3>
+                    <p>서울 영등포구 · 이승록 목사</p>
                   </div>
                 </div>
-              </div>
-              <div class="rounded-2xl px-4 py-4" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
-                <div class="flex items-start gap-3">
-                  <div class="map-marker" style="position: static; transform: none; width: 26px; height: 26px; flex-shrink: 0;">6</div>
+              </article>
+
+              <article class="church-callout left" style="top: 520px; --tone:#D46F5B;">
+                <div class="church-callout-head">
+                  <div class="church-callout-index">4</div>
                   <div>
-                    <div class="text-sm font-semibold text-cream-DEFAULT">인천열린성서침례교회</div>
-                    <div class="text-xs text-cream-muted mt-1">인천 남동구</div>
+                    <h3>연산성서침례교회</h3>
+                    <p>부산 연제구 · 유봉호 목사</p>
                   </div>
                 </div>
-              </div>
-              <div class="rounded-2xl px-4 py-4" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
-                <div class="flex items-start gap-3">
-                  <div class="map-marker" style="position: static; transform: none; width: 26px; height: 26px; flex-shrink: 0;">7</div>
+              </article>
+
+              <article class="church-callout right" style="top: 90px; --tone:#BC6884;">
+                <div class="church-callout-head">
+                  <div class="church-callout-index">9</div>
                   <div>
-                    <div class="text-sm font-semibold text-cream-DEFAULT">한소망성서침례교회</div>
-                    <div class="text-xs text-cream-muted mt-1">경기 성남시 분당구</div>
+                    <h3>종암성서침례교회</h3>
+                    <p>서울 성북구 · 정지원 목사</p>
                   </div>
                 </div>
-              </div>
-              <div class="rounded-2xl px-4 py-4" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
-                <div class="flex items-start gap-3">
-                  <div class="map-marker" style="position: static; transform: none; width: 26px; height: 26px; flex-shrink: 0;">8</div>
+              </article>
+
+              <article class="church-callout right" style="top: 176px; --tone:#4F8FCB;">
+                <div class="church-callout-head">
+                  <div class="church-callout-index">6</div>
                   <div>
-                    <div class="text-sm font-semibold text-cream-DEFAULT">새사람교회</div>
-                    <div class="text-xs text-cream-muted mt-1">충북 옥천군</div>
+                    <h3>인천열린성서침례교회</h3>
+                    <p>인천 남동구 · 정민철 목사</p>
                   </div>
                 </div>
-              </div>
-              <div class="rounded-2xl px-4 py-4" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
-                <div class="flex items-start gap-3">
-                  <div class="map-marker" style="position: static; transform: none; width: 26px; height: 26px; flex-shrink: 0;">9</div>
+              </article>
+
+              <article class="church-callout right" style="top: 262px; --tone:#4A9C79;">
+                <div class="church-callout-head">
+                  <div class="church-callout-index">7</div>
                   <div>
-                    <div class="text-sm font-semibold text-cream-DEFAULT">종암성서침례교회</div>
-                    <div class="text-xs text-cream-muted mt-1">서울 성북구</div>
+                    <h3>한소망성서침례교회</h3>
+                    <p>경기 성남 분당구 · 신현섭 목사</p>
                   </div>
                 </div>
-              </div>
-              <div class="rounded-2xl px-4 py-4" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
-                <div class="flex items-start gap-3">
-                  <div class="map-marker" style="position: static; transform: none; width: 26px; height: 26px; flex-shrink: 0;">10</div>
+              </article>
+
+              <article class="church-callout right" style="top: 348px; --tone:#D09B43;">
+                <div class="church-callout-head">
+                  <div class="church-callout-index">10</div>
                   <div>
-                    <div class="text-sm font-semibold text-cream-DEFAULT">비전성서침례교회</div>
-                    <div class="text-xs text-cream-muted mt-1">서울 구로구</div>
+                    <h3>비전성서침례교회</h3>
+                    <p>서울 구로구 · 이정삼 목사</p>
                   </div>
                 </div>
-              </div>
+              </article>
+
+              <article class="church-callout right" style="top: 434px; --tone:#5970A8;">
+                <div class="church-callout-head">
+                  <div class="church-callout-index">8</div>
+                  <div>
+                    <h3>새사람교회</h3>
+                    <p>충북 옥천군 · 전재삼 목사</p>
+                  </div>
+                </div>
+              </article>
             </div>
           </div>
         </div>

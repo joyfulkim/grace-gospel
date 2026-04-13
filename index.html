@@ -554,11 +554,15 @@
           신앙 상담사 운영
         </div>
       </div>
-    </div>
 
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce opacity-40">
-      <iconify-icon icon="solar:alt-arrow-down-bold" style="font-size:24px; color:#C9A84C;"></iconify-icon>
+      <div class="mt-20 flex justify-center pb-1">
+        <a href="#gospel" class="inline-flex items-center justify-center animate-bounce transition-transform" aria-label="아래 섹션으로 이동">
+          <svg width="62" height="34" viewBox="0 0 62 34" fill="none" aria-hidden="true" style="color:#F8F0E3; opacity:0.22; filter:drop-shadow(0 0 4px rgba(248, 240, 227, 0.05));">
+            <path d="M5 4L31 14L57 4" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M5 16L31 26L57 16" stroke="#E8C96B" stroke-opacity="0.58" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -566,7 +570,7 @@
   <!-- ════════════════════════════════════
        EMPATHY SECTION (가나안 성도)
   ════════════════════════════════════ -->
-  <section class="pt-12 pb-24 px-6 relative">
+  <section class="pt-0 pb-24 px-6 relative">
     <div class="max-w-5xl mx-auto">
 
       <div class="bezel-card p-8 md:p-12 reveal">
@@ -1145,10 +1149,8 @@
 
       <div class="border-t border-white border-opacity-5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-cream-muted">
         <p>© 2026 조이플 미션. All rights reserved.</p>
-        <div class="flex gap-6">
-          <a href="#" class="hover:text-cream-DEFAULT transition-colors">개인정보처리방침</a>
-          <a href="#" class="hover:text-cream-DEFAULT transition-colors">이용약관</a>
-          <a href="#" class="hover:text-cream-DEFAULT transition-colors">상담사 지원</a>
+        <div id="todayVisitorsBadge" class="text-xs text-cream-muted" style="white-space:pre;">
+          Today's Visitors  000
         </div>
       </div>
     </div>
@@ -1210,6 +1212,26 @@
   </script>
   <script type="module">
     import { createPrayerPost, normalizeCategory } from './firebase-prayer.js';
+    import { subscribeTodayVisitors, trackTodayVisitor } from './firebase-visitor.js';
+
+    const todayVisitorsBadge = document.getElementById('todayVisitorsBadge');
+
+    function renderTodayVisitors(count) {
+      const safeCount = Number.isFinite(count) && count > 0 ? count : 0;
+      todayVisitorsBadge.textContent = `Today's Visitors  ${String(safeCount).padStart(3, '0')}`;
+    }
+
+    if (todayVisitorsBadge) {
+      renderTodayVisitors(0);
+
+      subscribeTodayVisitors((count) => {
+        renderTodayVisitors(count);
+      });
+
+      trackTodayVisitor().catch((error) => {
+        console.warn('today visitor init failed', error);
+      });
+    }
 
     window.submitPrayer = async function(e) {
       e.preventDefault();

@@ -15,10 +15,35 @@ service cloud.firestore {
         data.createdAt > 0;
     }
 
+    function validVisitor(data, dayId) {
+      return data.keys().hasOnly(['dateKey', 'total', 'updatedAt']) &&
+        data.dateKey is string &&
+        data.dateKey == dayId &&
+        data.dateKey.matches('^\\d{4}-\\d{2}-\\d{2}$') &&
+        data.total is int &&
+        data.total > 0 &&
+        data.updatedAt is int &&
+        data.updatedAt > 0;
+    }
+
     match /prayerWall/{postId} {
       allow read: if true;
       allow create: if validPrayer(request.resource.data);
       allow update, delete: if false;
+    }
+
+    match /dailyVisitors/{dayId} {
+      allow read: if true;
+      allow create: if validVisitor(request.resource.data, dayId) &&
+        request.resource.data.total == 1;
+      allow update: if validVisitor(request.resource.data, dayId) &&
+        resource.data.dateKey is string &&
+        resource.data.dateKey == dayId &&
+        resource.data.total is int &&
+        resource.data.updatedAt is int &&
+        request.resource.data.total == resource.data.total + 1 &&
+        request.resource.data.updatedAt >= resource.data.updatedAt;
+      allow delete: if false;
     }
   }
 }

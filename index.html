@@ -58,12 +58,20 @@
             'pulse-slow': 'pulse 4s ease-in-out infinite',
             'spin-slow': 'spin 20s linear infinite',
             'shimmer': 'shimmer 3s ease-in-out infinite',
+            'aurora-one': 'auroraOne 11s ease-in-out infinite alternate',
+            'aurora-two': 'auroraTwo 8s ease-in-out infinite alternate-reverse',
+            'aurora-three': 'auroraThree 13s ease-in-out infinite alternate',
+            'aurora-four': 'auroraFour 9s ease-in-out infinite alternate-reverse',
           },
           keyframes: {
             fadeUp: { '0%': { opacity: '0', transform: 'translateY(32px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
             fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
             float: { '0%,100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-16px)' } },
             shimmer: { '0%,100%': { opacity: '0.5' }, '50%': { opacity: '1' } },
+            auroraOne: { '0%': { transform: 'translate3d(-110px,-50px,0) rotate(0deg) scale(1)' }, '100%': { transform: 'translate3d(100px,20px,0) rotate(22deg) scale(1.08)' } },
+            auroraTwo: { '0%': { transform: 'translate3d(80px,40px,0) rotate(8deg) scale(0.92)' }, '100%': { transform: 'translate3d(-70px,-22px,0) rotate(-18deg) scale(1.14)' } },
+            auroraThree: { '0%': { transform: 'translate3d(-50px,18px,0) rotate(-14deg) scale(1.08)' }, '100%': { transform: 'translate3d(72px,-36px,0) rotate(16deg) scale(0.92)' } },
+            auroraFour: { '0%': { transform: 'translate3d(26px,-18px,0) rotate(10deg) scale(0.9)' }, '100%': { transform: 'translate3d(-60px,10px,0) rotate(-14deg) scale(1.08)' } },
           },
         }
       }
@@ -145,6 +153,54 @@
       border-radius: 50%;
       filter: blur(80px);
       pointer-events: none;
+    }
+    .hero-aurora-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .hero-aurora-base {
+      background:
+        radial-gradient(circle at top center, rgba(255,255,255,0.02) 0%, transparent 36%),
+        linear-gradient(180deg, rgba(9, 15, 30, 0.96) 0%, rgba(10, 18, 36, 0.96) 45%, rgba(8, 13, 26, 0.98) 100%);
+    }
+    .hero-aurora-wave {
+      position: absolute;
+      inset: -12%;
+      filter: blur(22px);
+      mix-blend-mode: screen;
+      transform-origin: center;
+      opacity: 0.38;
+    }
+    .hero-aurora-wave.wave-1 {
+      background: radial-gradient(ellipse 860px 580px at 52% 18%, rgba(59, 130, 246, 0.16) 0%, transparent 58%);
+      animation: auroraOne 11s ease-in-out infinite alternate;
+    }
+    .hero-aurora-wave.wave-2 {
+      background: radial-gradient(ellipse 620px 420px at 82% 26%, rgba(139, 92, 246, 0.14) 0%, transparent 57%);
+      animation: auroraTwo 8s ease-in-out infinite alternate-reverse;
+    }
+    .hero-aurora-wave.wave-3 {
+      background: radial-gradient(ellipse 720px 500px at 18% 64%, rgba(236, 72, 153, 0.08) 0%, transparent 60%);
+      animation: auroraThree 13s ease-in-out infinite alternate;
+    }
+    .hero-aurora-wave.wave-4 {
+      background: radial-gradient(ellipse 920px 320px at 62% 82%, rgba(34, 197, 94, 0.07) 0%, transparent 58%);
+      animation: auroraFour 9s ease-in-out infinite alternate-reverse;
+    }
+    .hero-vignette {
+      background: radial-gradient(circle at center, transparent 0%, rgba(8, 13, 26, 0.24) 56%, rgba(8, 13, 26, 0.68) 100%);
+    }
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(232,201,107,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(157,190,255,0.07) 1px, transparent 1px);
+      background-size: 104px 104px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.14), rgba(0,0,0,0.82));
+      opacity: 0.14;
+    }
+    .hero-title-glow {
+      text-shadow: 0 0 28px rgba(232, 201, 107, 0.08);
     }
 
     /* ── Scroll reveal ── */
@@ -489,18 +545,24 @@
   ════════════════════════════════════ -->
   <section class="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-10 overflow-hidden">
 
-    <!-- Ambient orbs -->
-    <div class="orb w-[600px] h-[600px] top-[-200px] left-[-200px]" style="background: radial-gradient(circle, rgba(124,92,191,0.18) 0%, transparent 70%);"></div>
-    <div class="orb w-[500px] h-[500px] bottom-[-100px] right-[-150px]" style="background: radial-gradient(circle, rgba(201,168,76,0.14) 0%, transparent 70%);"></div>
-    <div class="orb w-[300px] h-[300px] top-1/3 left-1/2 -translate-x-1/2" style="background: radial-gradient(circle, rgba(124,92,191,0.08) 0%, transparent 70%);"></div>
+    <div class="hero-aurora-layer hero-aurora-base"></div>
+    <div class="hero-aurora-layer">
+      <div class="hero-aurora-wave wave-1"></div>
+      <div class="hero-aurora-wave wave-2"></div>
+      <div class="hero-aurora-wave wave-3"></div>
+      <div class="hero-aurora-wave wave-4"></div>
+    </div>
+    <div class="hero-aurora-layer hero-grid"></div>
+    <div class="hero-aurora-layer hero-vignette"></div>
 
-    <!-- Cross symbol floating -->
-    <div class="absolute top-32 right-12 opacity-10 animate-float" style="animation-delay: 1s;">
-      <iconify-icon icon="solar:cross-bold" style="font-size:80px; color:#C9A84C;"></iconify-icon>
-    </div>
-    <div class="absolute bottom-32 left-8 opacity-8 animate-float" style="animation-delay: 2s;">
-      <iconify-icon icon="solar:star-bold" style="font-size:48px; color:#7C5CBF;"></iconify-icon>
-    </div>
+    <!-- Ambient orbs -->
+    <div class="orb w-[620px] h-[620px] top-[-210px] left-[-220px]" style="background: radial-gradient(circle, rgba(99,102,241,0.11) 0%, transparent 72%);"></div>
+    <div class="orb w-[520px] h-[520px] bottom-[-120px] right-[-160px]" style="background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 72%);"></div>
+    <div class="orb w-[340px] h-[340px] top-[24%] left-1/2 -translate-x-1/2" style="background: radial-gradient(circle, rgba(168,85,247,0.06) 0%, transparent 70%);"></div>
+
+    <div class="absolute inset-x-0 top-24 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-40"></div>
+    <div class="absolute top-32 right-12 hidden lg:block w-32 h-32 rounded-full border border-white/10 opacity-30"></div>
+    <div class="absolute bottom-28 left-10 hidden lg:block w-24 h-24 rounded-full border border-gold/10 opacity-30"></div>
 
     <!-- Content -->
     <div class="relative z-10 max-w-3xl mx-auto text-center">
@@ -512,13 +574,13 @@
       </div>
 
       <!-- Main title -->
-      <h1 class="hero-title font-black leading-tight mb-6 reveal reveal-delay-1" style="font-size: clamp(2.4rem, 6vw, 4.5rem); letter-spacing: -0.03em;">
+      <h1 class="hero-title hero-title-glow font-black leading-tight mb-6 reveal reveal-delay-1" style="font-size: clamp(2.4rem, 6vw, 4.7rem); letter-spacing: -0.03em;">
         교회를 떠나셨나요?<br />
         <span class="text-gold-gradient">그래도 괜찮습니다.</span>
       </h1>
 
       <!-- Subtitle -->
-      <p class="text-cream-dim text-lg md:text-xl leading-relaxed mb-10 reveal reveal-delay-2" style="max-width: 560px; margin-left: auto; margin-right: auto;">
+      <p class="text-cream-dim text-lg md:text-xl leading-relaxed mb-10 reveal reveal-delay-2" style="max-width: 620px; margin-left: auto; margin-right: auto;">
         가나안 성도님들을 위한 공간입니다.<br />
         예수 그리스도의 사랑은 건물이 아닌 <strong class="text-cream-DEFAULT">당신 안에</strong> 있습니다.
       </p>
